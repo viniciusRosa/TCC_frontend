@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import {
 	Container, CssBaseline, makeStyles, Avatar, Typography, TextField,
 	Link, FormControlLabel, Checkbox, Grid, Button, Box
 } from '@material-ui/core';
 import { Login as log } from '@material-ui/icons';
-
+import api from '../../services/api'
 
 function Copyright() {
 	return (
@@ -37,7 +37,29 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-function Login() {
+
+
+
+function Login({ history }) {
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  
+  async function handleSubmit (event) {
+    event.preventDefault()
+
+    const token = await api.post('signin', {
+      email,
+      password
+    })
+
+
+  
+  
+  
+
+    console.log(token.data.accessToken)
+  }
 
 	const classes = useStyles();
 
@@ -51,7 +73,8 @@ function Login() {
 				<Typography component="h1" variant="h5">
 					Sign in
 				</Typography>
-				<form className={classes.form} noValidate>
+				<form className={classes.form} noValidate onSubmit={handleSubmit}
+>
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -61,7 +84,8 @@ function Login() {
 						label="Email"
 						name="email"
 						autoComplete="email"
-						autoFocus
+            autoFocus
+            onChange={event => setEmail(event.target.value)}
 					/>
 					<TextField
 						variant="outlined"
@@ -72,7 +96,8 @@ function Login() {
 						label="Senha"
 						type="password"
 						id="password"
-						autoComplete="current-password"
+            autoComplete="current-password"
+            onChange={event => setPassword(event.target.value)}
 					/>
 					{/* <FormControlLabel
 						control={<Checkbox value="remember" color="primary" />}
@@ -83,7 +108,7 @@ function Login() {
 						fullWidth
 						variant="contained"
 						color="primary"
-						className={classes.submit}
+            className={classes.submit}
 					>
 						Entrar
           </Button>
