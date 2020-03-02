@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Auth tutorial
+
+https://blog.rocketseat.com.br/reactjs-autenticacao/
+https://reacttraining.com/
+
 ## Available Scripts
 
 In the project directory, you can run:

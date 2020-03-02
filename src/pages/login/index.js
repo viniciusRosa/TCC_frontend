@@ -29,12 +29,18 @@ const useStyles = makeStyles(theme => ({
 	},
 	avatar: {
 		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main,
+		backgroundColor: '#616161',
 	},
 	form: {
 		width: '100%', // Fix IE 11 issue.
 		marginTop: theme.spacing(1),
-	},
+  },
+  submit: {
+    backgroundColor: '#4caf50'
+  },
+  forgot: {
+    color: '#616161'
+  }
 }))
 
 
@@ -52,12 +58,7 @@ function Login({ history }) {
       email,
       password
     })
-
-
-  
-  
-  
-
+    history.push('/dashboard')
     console.log(token.data.accessToken)
   }
 
@@ -114,7 +115,7 @@ function Login({ history }) {
           </Button>
 					<Grid container>
 						<Grid item xs>
-							<Link href="#" variant="body2">
+							<Link href="#" variant="body2" className={classes.forgot}>
 								Esqueceu sua senha?
               </Link>
 						</Grid>
