@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "name": "cadastrar",
+      "children": [
+        {
+          "name": "Aluno",
+          "url": "/login"
+        }
+      ]
+    },
+    {
+      "name": "listar",
+      "children": [
+        {
+          "name": "Aluno",
+          "url": "/login"
+        }
+      ]
+    }
+  ]
+}

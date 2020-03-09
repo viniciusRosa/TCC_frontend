@@ -27,6 +27,8 @@ import NestedList from '../../components/listItems'
 import Form from '../../components/form'
 import LastUpdates from '../../components/lastUpdates'
 
+
+
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
@@ -145,7 +147,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+
+
 export default function Dashboard() {
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -156,6 +161,15 @@ export default function Dashboard() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  const items = [
+    { 
+      items : [
+        {name: 'home', label: 'Home'},
+        {name: 'home2', label: 'Home2'}, 
+      ]
+      },
+    
+  ]
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -196,7 +210,7 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <NestedList />
+        <NestedList  items={items}/>
         <Divider />
       </Drawer>
       <main className={classes.content}>
@@ -265,7 +279,7 @@ export default function Dashboard() {
             </Grid>
           </Grid>
           <Grid item xs={12} md={3} lg={3}>
-            
+
           </Grid>
           <Box pt={4}>
             <Copyright />
