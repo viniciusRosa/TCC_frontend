@@ -10,6 +10,8 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
+import { Link } from "react-router-dom";
+import Items from './menuItem'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -47,48 +49,38 @@ export default function NestedList({ history, items }) {
       }
       className={classes.root}
     >
-  
+
       {
-        items.map( item => (
+        Items.map(item => (
           <>
-          <ListItem button onClick={handleClickRegister}>
-            <ListItemIcon>
-             <InboxIcon />
-            </ListItemIcon>
-          <ListItemText primary={item.name} />
-        {openRegister ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
-       
-      <Collapse in={openRegister} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary={item.label} />
-          </ListItem>
-        </List>
-      </Collapse>
-      </>
-))
-}
-      {/* <ListItem button onClick={handleClickList}>
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-        <ListItemText primary="Listar" />
-        {openList ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
-      <Collapse in={openList} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary="Starred" />
-          </ListItem>
-        </List>
-      </Collapse> */}
+            <ListItem button onClick={handleClickRegister}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={item.label} />
+              {openRegister ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+
+
+            {Array.isArray(item.subitems) ? (
+              <Collapse in={openRegister} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  {item.subitems.map(subitem => (
+                    <ListItem button component={Link} to={subitem.href} className={classes.nested}>
+                      <ListItemIcon>
+                        <StarBorder />
+                      </ListItemIcon>
+                      <ListItemText primary={subitem.label} />
+                    </ListItem>
+                  ))}
+                </List>
+              </Collapse>
+            ) : null}
+
+          </>
+        ))
+      }
+
     </List>
   );
 }

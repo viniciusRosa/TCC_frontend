@@ -161,15 +161,7 @@ export default function Dashboard() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-  const items = [
-    { 
-      items : [
-        {name: 'home', label: 'Home'},
-        {name: 'home2', label: 'Home2'}, 
-      ]
-      },
-    
-  ]
+  
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -210,7 +202,7 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <NestedList  items={items}/>
+        <NestedList/>
         <Divider />
       </Drawer>
       <main className={classes.content}>
