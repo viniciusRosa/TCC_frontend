@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -11,7 +11,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import { Link } from "react-router-dom";
-import Items from './menuItem'
+import Items from './menuItem';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,21 +24,43 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function NestedList({ history, items }) {
+
+
+export default function NestedList({ history }) {
   const classes = useStyles();
-  const [openRegister, setOpenRegister] = React.useState(false);
-  const [openList, setOpenList] = React.useState(false);
+  const [open, setOpen] = useState([]);
 
-  const handleClickRegister = () => {
-    setOpenRegister(!openRegister);
+  useEffect(() => {
+    const menustatus = []
+    function loadMenuStates() {
+      console.log(Items)
+ 
+      Items.map(item => {
+        menustatus.push({ name: item.name, status: false })
+      })
+      setOpen([menustatus])
+      }
+    loadMenuStates()
+  }, []);
+
+
+
+  // const buttonStates = () => {
+  //   Items.map(item => {
+  //     setOpen([...open, { name: item.name, status: false } ])
+  //  }
+  // }
+
+//   Items.map(item => {
+//     setOpen([...open, { name: item.name, status: false } ])
+//  }
+  
+  const handleClick = (e) => {
+    console.log(e)
   };
-
-  const handleClickList = () => {
-    setOpenList(!openList);
-  };
-
 
   return (
+    
     <List
       component="nav"
       aria-labelledby="nested-list-subheader"
@@ -49,21 +71,20 @@ export default function NestedList({ history, items }) {
       }
       className={classes.root}
     >
-
       {
         Items.map(item => (
           <>
-            <ListItem button onClick={handleClickRegister}>
+            <ListItem button onClick={handleClick}>
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
               <ListItemText primary={item.label} />
-              {openRegister ? <ExpandLess /> : <ExpandMore />}
+              {open ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
 
 
             {Array.isArray(item.subitems) ? (
-              <Collapse in={openRegister} timeout="auto" unmountOnExit>
+              <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   {item.subitems.map(subitem => (
                     <ListItem button component={Link} to={subitem.href} className={classes.nested}>
