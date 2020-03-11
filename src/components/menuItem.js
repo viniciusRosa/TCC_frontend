@@ -1,20 +1,21 @@
 const items = [
+
   {
-    name: 'cadastrar',
-    label: 'Cadastrar',
+    name: 'cadastro',
+    label: 'Cadastro',
     subitems: [
       { name: 'aluno', label: 'Aluno', href: '/alunos' },
-      { name: 'escola', label: 'Escola', href: '/' },
-    ],
+      { name: 'escolas', label: 'Escolas', href: '/alunos' },
+    ]
   },
   {
     name: 'listar',
     label: 'Listar',
     subitems: [
-      { name: 'alunos', label: 'Alunos', href: '/' },
-      { name: 'escola', label: 'Escola', href: '/' }
+      { name: 'aluno', label: 'Aluno', href: '/alunos' },
+      { name: 'escolas', label: 'Escolas', href: '/alunos' },
     ]
-  }
+  },
 ]
 
 module.exports = items;
