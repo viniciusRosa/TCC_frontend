@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -26,7 +26,6 @@ export default function NestedList({ history }) {
   const [open, setOpen] = useState([]);
 
   const handleClick = (e) => {
-    // setOpen([ ...open, e.target ])
     setOpen({ [e]: !this.open[e] });
     console.log(open)
   };

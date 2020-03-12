@@ -2,23 +2,11 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import {
   Container, CssBaseline, makeStyles, Avatar, Typography, TextField,
-  Link, FormControlLabel, Checkbox, Grid, Button, Box
+  Link, FormControlLabel, Grid, Button, Box
 } from '@material-ui/core';
 import { Login as log } from '@material-ui/icons';
 import api from '../../services/api'
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Vinicius Rosa
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Copyright from '../../components/copyright'
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -42,9 +30,6 @@ const useStyles = makeStyles(theme => ({
     color: '#616161'
   }
 }))
-
-
-
 
 function Login({ history }) {
 
