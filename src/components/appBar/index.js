@@ -83,7 +83,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function AppBarMenu() {
+export default function AppBarMenu(props) {
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -109,10 +109,10 @@ export default function AppBarMenu() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            {props.title}
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
+            <Badge badgeContent={1} color="secondary">
               {/* <NotificationsIcon /> */}
             </Badge>
           </IconButton>
@@ -135,6 +135,8 @@ export default function AppBarMenu() {
         <NestedList />
         <Divider />
       </Drawer>
+
+      
     </>
   )
 }
