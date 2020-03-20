@@ -17,7 +17,7 @@ export default function AddressForm() {
             required
             id="firstName"
             name="firstName"
-            label="First name"
+            label="Nome"
             fullWidth
             autoComplete="fname"
           />
@@ -27,7 +27,7 @@ export default function AddressForm() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Sobrenome"
             fullWidth
             autoComplete="lname"
           />
@@ -56,7 +56,7 @@ export default function AddressForm() {
             required
             id="city"
             name="city"
-            label="City"
+            label="Cidade"
             fullWidth
             autoComplete="billing address-level2"
           />

@@ -81,6 +81,10 @@ export default function NewPage() {
                     {/* <Avatar alt='default image' src={defaultAvatar} className={classes.large} /> */}
                     <p>sobrenome</p>
                   </Grid>
+                  <Grid item xs={12} sm={12} className={classes.grid3}>
+                    {/* <Avatar alt='default image' src={defaultAvatar} className={classes.large} /> */}
+                    <p>sobrenome</p>
+                  </Grid>
 
                 </Grid>
               </Paper>
