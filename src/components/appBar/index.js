@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,7 +11,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NestedList from './listItems'
+import ListItems from './listItems'
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 
 const drawerWidth = 240;
 
@@ -67,10 +68,7 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing(7),
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9),
-    },
+    width:0
   },
   paper: {
     padding: theme.spacing(2),
@@ -86,7 +84,7 @@ const useStyles = makeStyles(theme => ({
 export default function AppBarMenu(props) {
 
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -118,7 +116,7 @@ export default function AppBarMenu(props) {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer
+      <SwipeableDrawer
         variant="permanent"
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
@@ -132,11 +130,10 @@ export default function AppBarMenu(props) {
           </IconButton>
         </div>
         <Divider />
-        <NestedList />
-        <Divider />
-      </Drawer>
+        <ListItems />
+      </SwipeableDrawer>
 
-      
+
     </>
   )
 }

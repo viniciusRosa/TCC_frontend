@@ -5,6 +5,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import StarBorder from '@material-ui/icons/StarBorder';
 import { Link } from "react-router-dom";
@@ -19,6 +20,9 @@ const useStyles = makeStyles(theme => ({
   nested: {
     paddingLeft: theme.spacing(4),
   },
+  label: {
+    fontWeight: 'bold'
+  }
 }));
 
 export default function NestedList({ history }) {
@@ -44,23 +48,21 @@ export default function NestedList({ history }) {
       {
         Items.map(item => (
           <>
-            <ListItem key={item.name} button id={1} onClick={handleClick}>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary={item.label} />
+            <ListItem  key={item.name} button id={1} onClick={handleClick}>
+
+             <strong> <ListItemText className={classes.label} primary={item.label} /> </strong>
+
             </ListItem>
 
             {Array.isArray(item.subitems) ? (
               <List component="div" disablePadding>
                 {item.subitems.map(subitem => (
                   <ListItem button component={Link} to={subitem.href} className={classes.nested}>
-                    <ListItemIcon>
-                      <StarBorder />
-                    </ListItemIcon>
                     <ListItemText primary={subitem.label} />
                   </ListItem>
                 ))}
+                <Divider />
+
               </List>
             ) : null}
 

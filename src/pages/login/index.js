@@ -4,9 +4,9 @@ import {
   Container, CssBaseline, makeStyles, Avatar, Typography, TextField,
   Link, FormControlLabel, Grid, Button, Box
 } from '@material-ui/core';
-import { Login as log } from '@material-ui/icons';
 import api from '../../services/api'
 import Copyright from '../../components/copyright'
+import Logo from '../../assets/logo.png'
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -24,11 +24,16 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
   },
   submit: {
-    backgroundColor: '#4caf50'
+    backgroundColor: '#4caf50',
+    margin: '15px 0'
   },
   forgot: {
-    color: '#616161'
-  }
+    color: '#616161',
+
+  },
+  logo: {
+    width: '300px'
+  },
 }))
 
 function Login({ history }) {
@@ -53,12 +58,9 @@ function Login({ history }) {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <log />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-				</Typography>
+
+        <img src={Logo} className={classes.logo} alt="logo"/>
+
         <form className={classes.form} noValidate onSubmit={handleSubmit}
         >
           <TextField
