@@ -25,6 +25,7 @@ const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Login} />
+
       <PrivateRoute path="/dashboard" component={Dashboard} />
 
       <Route path="/cadastrar_aluno" component={StudentRegister} />
@@ -38,14 +39,3 @@ const Routes = () => (
 );
 
 export default Routes;
-
-// export default function () {
-//   return (
-//     <BrowserRouter>
-//       <Switch>
-//         <Route path='/' exact component={Login} />
-//         <Route path='/dashboard' component={Dashboard} />
-//       </Switch>
-//     </BrowserRouter>
-//   )
-// }
