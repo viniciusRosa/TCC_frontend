@@ -45,7 +45,7 @@ table {
 	border-spacing: 0;
 }
 html, body {
-  font-size: 10px;
+  font-size: 1px;
 }
 `
 

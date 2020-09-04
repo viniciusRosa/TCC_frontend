@@ -1,40 +1,73 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import {
-  Container, CssBaseline, makeStyles, Avatar, Typography, TextField,
-  Link, FormControlLabel, Grid, Button, Box
-} from '@material-ui/core';
+
 import api from '../../services/api'
-import Copyright from '../../components/copyright'
-import Logo from '../../assets/logo.png'
+import Logo from '../../assets/logoBranco.png'
 
-const useStyles = makeStyles(theme => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: '#616161',
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    backgroundColor: '#4caf50',
-    margin: '15px 0'
-  },
-  forgot: {
-    color: '#616161',
+import styled from 'styled-components';
 
-  },
-  logo: {
-    width: '300px'
-  },
-}))
+
+
+const TEOContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+const TEODiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-grey-dark);
+  height: 400rem;
+  width: 400rem;
+`;
+
+const LOGO = styled.img`
+  margin-top: 20rem;
+`;
+
+const TEOLoginForm = styled.form`
+  width: 86%;
+  display: flex;
+  flex-direction: column;
+
+
+`;
+
+const TEOinput = styled.input`
+  margin-top:30rem;
+  height: 30rem;
+  &::placeholder {
+    color: var(--color-grey-dark);
+    opacity: 0.5;
+    }
+`;
+
+const TEOLoginButton = styled.button`
+  height: 40rem;
+  background-color: var(--color-primary);
+  border: none;
+  transition: background-color 200ms;
+  font-size: 18rem;
+  font-weight: bold;
+  color: var(--color-white);
+  cursor: pointer;
+  margin-top:30rem;
+  &:hover {
+    background-color: var(--color-primary-dark);
+
+  }
+`;
+
+const TEOLink = styled.span`
+  color:#fff;
+  font-size: 15rem;
+  text-align: right;
+`;
+
+
 
 function Login({ history }) {
 
@@ -52,68 +85,23 @@ function Login({ history }) {
     history.push('/dashboard')
   }
 
-  const classes = useStyles();
-
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
 
-        <img src={Logo} className={classes.logo} alt="logo"/>
+    <TEOContainer>
+      <TEODiv>
+        <LOGO src={Logo} alt=""/>
 
-        <form className={classes.form} noValidate onSubmit={handleSubmit}
-        >
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            onChange={event => setEmail(event.target.value)}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Senha"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onChange={event => setPassword(event.target.value)}
-          />
-          {/* <FormControlLabel
-						control={<Checkbox value="remember" color="primary" />}
-						label="Remember me"
-					/> */}
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Entrar
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2" className={classes.forgot}>
-                Esqueceu sua senha?
-              </Link>
-            </Grid>
+        <TEOLoginForm>
+          <TEOinput type="text" placeholder="Usuário"/>
+          <TEOinput type="text" placeholder="Senha"/>
+          <TEOLink>Esqueci minha senha</TEOLink>
 
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container >
+          <TEOLoginButton>Entrar</TEOLoginButton>
+        </TEOLoginForm>
+
+      </TEODiv>
+    </TEOContainer>
+
   );
 }
 
