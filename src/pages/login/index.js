@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-
 import api from '../../services/api'
 import Logo from '../../assets/logoBranco.png'
+import { useHistory } from 'react-router-dom';
 
 import styled from 'styled-components';
-
-
 
 const TEOContainer = styled.div`
   display: flex;
@@ -20,8 +18,8 @@ const TEODiv = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: var(--color-grey-dark);
-  height: 400rem;
-  width: 400rem;
+  height: ${props => props.height.obj.height};
+  width: ${props => props.height.obj.width};
 `;
 
 const LOGO = styled.img`
@@ -42,6 +40,7 @@ const TEOinput = styled.input`
   &::placeholder {
     color: var(--color-grey-dark);
     opacity: 0.5;
+    font-size:15rem;
     }
 `;
 
@@ -62,21 +61,22 @@ const TEOLoginButton = styled.button`
 `;
 
 const TEOLink = styled.span`
+  font-family: 'sans-serif';
+  margin-top: 5rem;
   color:#fff;
   font-size: 15rem;
   text-align: right;
 `;
 
+function Login() {
 
-
-function Login({ history }) {
+  const history = useHistory();
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   async function handleSubmit(event) {
     event.preventDefault()
-
     // const token = await api.post('signin', {
     //   email,
     //   password
@@ -85,18 +85,26 @@ function Login({ history }) {
     history.push('/dashboard')
   }
 
+  const val = {
+    obj: {
+      height: '400rem',
+      width: '500rem'
+
+    }
+  }
+
   return (
 
     <TEOContainer>
-      <TEODiv>
+      <TEODiv height={val}>
         <LOGO src={Logo} alt=""/>
 
-        <TEOLoginForm>
+        <TEOLoginForm onSubmit={handleSubmit}>
           <TEOinput type="text" placeholder="Usuário"/>
           <TEOinput type="text" placeholder="Senha"/>
           <TEOLink>Esqueci minha senha</TEOLink>
 
-          <TEOLoginButton>Entrar</TEOLoginButton>
+          <TEOLoginButton type="submit">Entrar</TEOLoginButton>
         </TEOLoginForm>
 
       </TEODiv>

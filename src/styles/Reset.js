@@ -27,7 +27,8 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
+  background-color: var(--color-grey-light)
 }
 ol, ul {
 	list-style: none;
@@ -45,7 +46,10 @@ table {
 	border-spacing: 0;
 }
 html, body {
-  font-size: 1px;
+  font-size: 10px;
+}
+* {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 `
 
