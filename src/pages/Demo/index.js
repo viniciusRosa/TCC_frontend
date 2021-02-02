@@ -8,11 +8,13 @@ function Demo() {
 
   return (
     <>
-    <TeoContainer>
-      <TeoNav />
-      <TeoNavTop />
-    </TeoContainer>
-</>
+      <TeoContainer>
+        <TeoNav />
+        <TeoMainWrapper>
+          <TeoNavTop />
+        </TeoMainWrapper>
+       </TeoContainer>
+    </>
 
   );
 }

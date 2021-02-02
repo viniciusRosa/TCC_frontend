@@ -3,9 +3,10 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 import { isAuthenticated } from './services/auth'
 
-import Login from './pages/login'
+import Login from './pages/Login'
 
 import Demo from './pages/Demo'
+import SandBox from './pages/SandBox'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -26,6 +27,7 @@ const Routes = () => (
       <Route exact path="/" component={Login} />
 
       {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
+      <Route path="/sandbox" component={SandBox} />
 
 
       <Route path="/demo" component={Demo} />

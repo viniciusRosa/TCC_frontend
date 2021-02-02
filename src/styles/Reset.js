@@ -45,10 +45,15 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+button {
+  border: none;
+}
+
 html, body {
   font-size: 10px;
 }
-* {
+body {
   font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 `

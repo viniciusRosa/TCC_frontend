@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import logo from '../../assets/logoBranco.png'
-import {FiMenu } from 'react-icons/fi'
+import { FiMenu, FiX } from 'react-icons/fi'
 
 
 export const TeoNavWrapper = styled.nav`
@@ -40,5 +40,4 @@ export const TeoMenuButton = styled.a`
 export const TeoMenuIcon = styled(FiMenu)`
   font-size: 36px;
   color: var(--color-white);
-
 `;
