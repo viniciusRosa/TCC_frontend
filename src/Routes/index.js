@@ -1,12 +1,12 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
-import { isAuthenticated } from './services/auth'
+import { isAuthenticated } from '../services/auth'
 
-import Login from './pages/Login'
+import Login from '../pages/Login'
 
-import Demo from './pages/Demo'
-import SandBox from './pages/SandBox'
+import SchoolRegister from '../pages/SchoolRegister'
+import SandBox from '../pages/SandBox'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -30,7 +30,7 @@ const Routes = () => (
       <Route path="/sandbox" component={SandBox} />
 
 
-      <Route path="/demo" component={Demo} />
+      <Route path="/schoolregister" component={SchoolRegister} />
       <Route path="*" component={() => <h1>Page not found</h1>} />
 
     </Switch>

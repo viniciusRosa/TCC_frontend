@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const Input = styled.input`
-  /* box-sizing: border-box; */
-  /* width: 100%; */
+  color: var(--color-grey-dark);
+  margin-bottom: 1rem;
 `;
 
 export default Input;

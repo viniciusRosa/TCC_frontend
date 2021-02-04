@@ -1,14 +1,23 @@
 import React from 'react';
-import { TeoMenuUl, TeoMenuLi } from './styles';
+import { TeoMenuUl, TeoMenuLi, TeoNenuSpan } from './styles';
+import { FiChevronLeft } from 'react-icons/fi'
 
 const TeoMenu = () => {
   return (
     <TeoMenuUl>
-      <TeoMenuLi>Dashboard </TeoMenuLi>
-      <TeoMenuLi>Cadastrar </TeoMenuLi>
-      <TeoMenuLi>listar </TeoMenuLi>
+      <TeoMenuLi> <TeoNenuSpan>Dashboard <FiChevronLeft size='16px' /> </TeoNenuSpan> </TeoMenuLi>
+      <TeoMenuLi> <TeoNenuSpan>Dashboard <FiChevronLeft size='16px' /> </TeoNenuSpan> </TeoMenuLi>
+      <TeoMenuLi> <TeoNenuSpan>Dashboard <FiChevronLeft size='16px' /> </TeoNenuSpan>  </TeoMenuLi>
+      <TeoMenuLi> <TeoNenuSpan>Dashboard <FiChevronLeft size='16px' /> </TeoNenuSpan>
+        <TeoMenuUl>
+        <TeoMenuLi>Cadastrar </TeoMenuLi>
+        <TeoMenuLi>Cadastrar </TeoMenuLi>
 
+        </TeoMenuUl>
+      </TeoMenuLi>
+      <TeoMenuLi> <TeoNenuSpan>Dashboard <FiChevronLeft size='16px' /> </TeoNenuSpan>  </TeoMenuLi>
     </TeoMenuUl>
+
   );
 }
 
