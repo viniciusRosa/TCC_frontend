@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, ModalContainer, ModalClose, ModalContent } from './styles';
 import TeoButton from '../TeoButton'
 
-const TeoModal = ({children, activeModal}) => {
+const TeoModal = ({children, activeModal, action}) => {
   return (
     <Modal>
       <ModalContainer>
@@ -10,7 +10,7 @@ const TeoModal = ({children, activeModal}) => {
         <ModalContent>Atenção!</ModalContent>
         <ModalContent>{children}</ModalContent>
         <ModalContent>
-          <TeoButton>Confirmar</TeoButton>
+          <TeoButton onClick={action}>Confirmar</TeoButton>
           <TeoButton secondary >Cancelar</TeoButton>
         </ModalContent>
       </ModalContainer>
