@@ -23,25 +23,48 @@ const ErrorMessage = styled.span`
 const TeoUserForm = () => {
 
   const [modalIsActived, setModalIsActived] = useState(false)
-  const [confirmed, setConfirmed] = useState(null)
+  const [modalIsActivedSuccess, setModalIsActivedSuccess] = useState(false)
 
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, trigger, reset } = useForm({
     resolver: yupResolver(schema),
   });
 
-  async function activeModal(callback) {
-  }
-
-
 
   const newUser = async (data) => {
+    console.log(data)
+    reset({})
+    setModalIsActived(!modalIsActived)
+    setModalIsActivedSuccess(!modalIsActivedSuccess)
 
   }
+
+  function activeModal(){
+    setModalIsActived(!modalIsActived)
+  }
+
+
+  function activeModalSuccess(){
+    setModalIsActivedSuccess(!modalIsActivedSuccess)
+  }
+
+  function resetButtonModal() {
+    reset({})
+    setModalIsActived(!modalIsActived)
+  }
+
+  function resetButtonSuccess() {
+    reset({})
+    setModalIsActivedSuccess(!modalIsActivedSuccess)
+  }
+
 
 
   return (
+    <>
     <TeoForm onSubmit={handleSubmit(newUser)}>
+
+
       <TeoField.Text label="Nome da Escola" type="text" name="schoolName" register={register}/>
       {errors.schoolName && (<ErrorMessage>{errors.schoolName.message}</ErrorMessage>)}
 
@@ -70,13 +93,21 @@ const TeoUserForm = () => {
       </FormColums>
       {errors.telefone && (<ErrorMessage>{errors.telefone.message}</ErrorMessage>)}
 
-      <FormColums>
-        <TeoButton type="submit">Enviar</TeoButton>
-        {modalIsActived && <TeoModal activeModal={activeModal} action={() => true}>Tem Certeza?</TeoModal>}
-        <TeoButton secondary>Cancelar</TeoButton>
-      </FormColums>
+
+      {modalIsActived && <TeoModal.Warning closeModal={activeModal} secondary={resetButtonModal}>Tem Certeza?</TeoModal.Warning>}
+      {modalIsActivedSuccess && <TeoModal.Success closeModal={activeModalSuccess} text={'Escola inserida com sucesso'} button={resetButtonSuccess}/>}
+
 
     </TeoForm>
+    <TeoButton
+      onClick={async () => {
+        const result = await trigger();
+        if(result) {
+          activeModal()
+        }
+    }} >Cadastrar</TeoButton>
+
+    </>
   )
 }
 

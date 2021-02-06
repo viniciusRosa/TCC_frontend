@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-
-import TeoField from '../TeoField';
-import Label from '../TeoField/Label';
-
-
 export const FormColums = styled.div `
   display: flex;
   justify-content: space-between;

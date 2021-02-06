@@ -10,29 +10,29 @@ export const Modal = styled.div`
   top: 0;
   left: 0;
   z-index:100;
-  background-color: rgba(0,0,0, 0.5);
+  background-color: rgba(0,0,0, 0.7);
 `;
 
 export const ModalContainer = styled.div`
 
   background-color: var(--color-white);
   color: var(--color-grey-dark);
-  width: 40%;
-  height: 40%;
+  max-width:50%;
+  min-width: 30%;
   border-radius: 2px;
-
-
 `;
 
+
 export const ModalClose = styled.button`
+  display: flex;
   background-color: transparent;
   border: none;
   outline: none;
   width: 32px;
   height: 32px;
   position: relative;
+  justify-content: center;
   align-items: center;
-  right: calc(-100% + 64px);
   cursor: pointer;
   &::before,
   &::after {
@@ -52,27 +52,40 @@ export const ModalClose = styled.button`
   }
 `;
 
+export const ModalTile = styled.div`
+  width:100%;
+  display: flex;
+  justify-content:center;
+  font-size: 18px;
+  font-weight: bold;
+
+`
+
 export const ModalContent = styled.div`
-
-
-  &:nth-child(2n) {
-    font-size: 16px;
-    margin: 1rem;
-  }
-
-  &:nth-child(3n) {
-    margin: 0 1rem 1rem 1rem;
-    font-size:12px;
-    line-height: 1.6;
-    min-height: 72px;
-  }
-
-  &:nth-child(4n) {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    bottom:100px;
-
-  }
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 2rem 1rem ;
+  font-size: 12px;
+  line-height: 1.6;
 
 `;
+
+export const ModalTitleContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const ModalButton = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+`;
+
+export const ModalButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+`;
+

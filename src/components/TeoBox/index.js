@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const TeoBox = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   background-color: var(--color-white);
   width: 100%;
