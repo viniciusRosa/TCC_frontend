@@ -39,11 +39,11 @@ const TeoUserForm = () => {
     reset({})
     setModalIsActived(!modalIsActived)
     const response = await api.post('schools', data);
-    if (response.status == 200) {
+    if (response.status === 200) {
       setModalIsActivedSuccess(!modalIsActivedSuccess)
     }
 
-    if (response.status != 200) {
+    if (response.status !== 200) {
       setModalIsActivedError(!modalIsActivedError)
     }
 
@@ -86,8 +86,8 @@ const TeoUserForm = () => {
       <TeoField.Text label="Nome da Escola" type="text" name="school_name" register={register}/>
       {errors.school_name && (<ErrorMessage>{errors.school_name.message}</ErrorMessage>)}
 
-      <TeoField.Text label="Rua" type="text" name="street" register={register}/>
-      {errors.street && (<ErrorMessage>{errors.street.message}</ErrorMessage>)}
+      <TeoField.Text label="Endereço" type="text" name="address" register={register}/>
+      {errors.street && (<ErrorMessage>{errors.adress.message}</ErrorMessage>)}
 
       <FormColums>
         <TeoField.Text label="Numero" type="text" name="number" register={register}/>
