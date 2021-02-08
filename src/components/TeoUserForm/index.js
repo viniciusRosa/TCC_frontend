@@ -90,7 +90,7 @@ const TeoUserForm = () => {
       {errors.street && (<ErrorMessage>{errors.street.message}</ErrorMessage>)}
 
       <FormColums>
-        <TeoField.Text label="Numero" type="number" name="number" register={register}/>
+        <TeoField.Text label="Numero" type="text" name="number" register={register}/>
         <TeoField.Text label="Bairro" type="text" name="district" register={register}/>
       </FormColums>
 
@@ -107,7 +107,7 @@ const TeoUserForm = () => {
       {errors.email && (<ErrorMessage>{errors.email.message}</ErrorMessage>)}
 
       <FormColums>
-        <TeoField.Text label="Telefone" type="number" name="phone_number" register={register}/>
+        <TeoField.Text label="Telefone" type="text" name="phone_number" register={register}/>
       </FormColums>
       {errors.phone_number && (<ErrorMessage>{errors.phone_number.message}</ErrorMessage>)}
 
