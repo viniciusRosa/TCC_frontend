@@ -11,6 +11,8 @@ import styled from 'styled-components';
 import {FormColums} from './styles';
 import TeoModal from '../TeoModal';
 
+import api from '../../services/api';
+
 
 const ErrorMessage = styled.span`
   display: block;
@@ -24,6 +26,7 @@ const TeoUserForm = () => {
 
   const [modalIsActived, setModalIsActived] = useState(false)
   const [modalIsActivedSuccess, setModalIsActivedSuccess] = useState(false)
+  const [modalIsActivedError, setModalIsActivedError] = useState(false)
 
 
   const { register, handleSubmit, errors, trigger, reset } = useForm({
@@ -35,7 +38,14 @@ const TeoUserForm = () => {
     console.log(data)
     reset({})
     setModalIsActived(!modalIsActived)
-    setModalIsActivedSuccess(!modalIsActivedSuccess)
+    const response = await api.post('schools', data);
+    if (response.status == 200) {
+      setModalIsActivedSuccess(!modalIsActivedSuccess)
+    }
+
+    if (response.status != 200) {
+      setModalIsActivedError(!modalIsActivedError)
+    }
 
   }
 
@@ -43,9 +53,12 @@ const TeoUserForm = () => {
     setModalIsActived(!modalIsActived)
   }
 
-
   function activeModalSuccess(){
     setModalIsActivedSuccess(!modalIsActivedSuccess)
+  }
+
+  function activeModalError(){
+    setModalIsActivedError(!modalIsActivedError)
   }
 
   function resetButtonModal() {
@@ -58,6 +71,11 @@ const TeoUserForm = () => {
     setModalIsActivedSuccess(!modalIsActivedSuccess)
   }
 
+  function resetButtonError() {
+    reset({})
+    setModalIsActivedError(!modalIsActivedError)
+  }
+
 
 
   return (
@@ -65,37 +83,38 @@ const TeoUserForm = () => {
     <TeoForm onSubmit={handleSubmit(newUser)}>
 
 
-      <TeoField.Text label="Nome da Escola" type="text" name="schoolName" register={register}/>
-      {errors.schoolName && (<ErrorMessage>{errors.schoolName.message}</ErrorMessage>)}
+      <TeoField.Text label="Nome da Escola" type="text" name="school_name" register={register}/>
+      {errors.school_name && (<ErrorMessage>{errors.school_name.message}</ErrorMessage>)}
 
-      <TeoField.Text label="Rua" type="text" name="rua" register={register}/>
-      {errors.rua && (<ErrorMessage>{errors.rua.message}</ErrorMessage>)}
+      <TeoField.Text label="Rua" type="text" name="street" register={register}/>
+      {errors.street && (<ErrorMessage>{errors.street.message}</ErrorMessage>)}
 
       <FormColums>
-        <TeoField.Text label="Numero" type="number" name="numero" register={register}/>
-        <TeoField.Text label="Bairro" type="text" name="bairro" register={register}/>
+        <TeoField.Text label="Numero" type="number" name="number" register={register}/>
+        <TeoField.Text label="Bairro" type="text" name="district" register={register}/>
       </FormColums>
 
       <FormColums>
-        {errors.numero ? (<ErrorMessage>{errors.numero.message}</ErrorMessage>) : <div></div>}
-        {errors.bairro ? (<ErrorMessage>{errors.bairro.message}</ErrorMessage>) : <div></div>}
+        {errors.number ? (<ErrorMessage>{errors.number.message}</ErrorMessage>) : <div></div>}
+        {errors.district ? (<ErrorMessage>{errors.district.message}</ErrorMessage>) : <div></div>}
       </FormColums>
 
 
-      <TeoField.Text label="Complemento" type="text" name="complemento" register={register}/>
-      {errors.complemento && (<ErrorMessage>{errors.complemento.message}</ErrorMessage>)}
+      <TeoField.Text label="Complemento" type="text" name="complement" register={register}/>
+      {errors.complement && (<ErrorMessage>{errors.complement.message}</ErrorMessage>)}
 
       <TeoField.Text label="Email" type="email" name="email" register={register}/>
       {errors.email && (<ErrorMessage>{errors.email.message}</ErrorMessage>)}
 
       <FormColums>
-        <TeoField.Text label="Telefone" type="number" name="telefone" register={register}/>
+        <TeoField.Text label="Telefone" type="number" name="phone_number" register={register}/>
       </FormColums>
-      {errors.telefone && (<ErrorMessage>{errors.telefone.message}</ErrorMessage>)}
+      {errors.phone_number && (<ErrorMessage>{errors.phone_number.message}</ErrorMessage>)}
 
 
       {modalIsActived && <TeoModal.Warning closeModal={activeModal} secondary={resetButtonModal}>Tem Certeza?</TeoModal.Warning>}
       {modalIsActivedSuccess && <TeoModal.Success closeModal={activeModalSuccess} text={'Escola inserida com sucesso'} button={resetButtonSuccess}/>}
+      {modalIsActivedError && <TeoModal.Success closeModal={activeModalError} text={'Algo deu Errado'} button={resetButtonError}/>}
 
 
     </TeoForm>
