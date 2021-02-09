@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import TeoUserForm from '../../components/TeoUserForm'
+import TeoUserForm from '../School/Create/TeoUserForm'
 import TeoBox from '../../components/TeoBox'
 import TeoModal from '../../components/TeoModal'
 import TeoButton from '../../components/TeoButton'

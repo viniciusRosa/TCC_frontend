@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 import { isAuthenticated } from '../services/auth'
 import Login from '../pages/Login'
-import SchoolRegister from '../pages/SchoolRegister'
+import Create from '../pages/School/Create'
 import SandBox from '../pages/SandBox'
 
 import SchoolRotes from './SchoolRotes';

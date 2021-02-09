@@ -7,7 +7,7 @@ export const DivTitle = styled.div`
   width: 100%;
   z-index: -1;
   background-color: var(--color-white);
-
+  margin-bottom: 1rem;
 
 `;
 

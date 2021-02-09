@@ -3,15 +3,15 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import schema from './validation';
 
-import TeoForm from '../TeoForm';
-import TeoField from '../TeoField';
-import TeoButton from '../TeoButton';
+import TeoForm from '../../../../components/TeoForm';
+import TeoField from '../../../../components/TeoField';
+import TeoButton from '../../../../components/TeoButton';
 
 import styled from 'styled-components';
 import {FormColums} from './styles';
-import TeoModal from '../TeoModal';
+import TeoModal from '../../../../components/TeoModal';
 
-import api from '../../services/api';
+import api from '../../../../services/api';
 
 
 const ErrorMessage = styled.span`

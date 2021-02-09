@@ -1,11 +1,15 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 
-import SchoolRegister from '../pages/SchoolRegister'
+import Create from '../pages/School/Create'
+import Schools from '../pages/School/Schools'
+
 
 const SchoolRotes = () => (
   <>
-    <Route path='/school/create' component={ SchoolRegister } />
+    <Route exact path='/schools' component={ Schools } />
+    <Route path='/schools/create' component={ Create } />
+
   </>
 );
 
