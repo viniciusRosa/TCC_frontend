@@ -7,6 +7,7 @@ import TeoMainWrapper from '../../../components/TeoMainWrapper';
 import TeoNavTop from '../../../components/TeoNavTop';
 import TeoPageTitle from '../../../components/TeoPageTitle'
 import TeoBox from '../../../components/TeoBox';
+import TeoListItem from '../../../components/TeolistItem';
 
 function Schools() {
 
@@ -18,7 +19,7 @@ function Schools() {
           <TeoNavTop />
           <TeoPageTitle title="Escolas" />
           <TeoBox>
-
+            <TeoListItem />
           </TeoBox>
         </TeoMainWrapper>
        </TeoContainer>
