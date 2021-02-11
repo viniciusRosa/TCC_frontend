@@ -14,4 +14,10 @@ export const FormColums = styled.div `
 `;
 
 
+export const ErrorMessage = styled.span`
+  display: block;
+  padding: 0.5rem;
+  border-radius: 2px;
+  color: red;
+`;
 
