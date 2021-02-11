@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import schema from './validation';
@@ -12,14 +12,13 @@ import {FormColums} from './styles';
 import TeoModal from '../../../../components/TeoModal';
 
 import api from '../../../../services/api';
-
+import axios from 'axios'
 
 const ErrorMessage = styled.span`
   display: block;
   padding: 0.5rem;
   border-radius: 2px;
   color: red;
-
 `;
 
 const TeoUserForm = () => {
@@ -27,18 +26,30 @@ const TeoUserForm = () => {
   const [modalIsActived, setModalIsActived] = useState(false)
   const [modalIsActivedSuccess, setModalIsActivedSuccess] = useState(false)
   const [modalIsActivedError, setModalIsActivedError] = useState(false)
-
+  const [ufs, setUfs] = useState([]);
 
   const { register, handleSubmit, errors, trigger, reset } = useForm({
     resolver: yupResolver(schema),
   });
+
+  useEffect(()=>{
+    axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+    .then(response => {
+      const ufInitials = response.data.map(uf => uf.sigla);
+      setUfs(ufInitials);
+      console.log(ufInitials);
+    })
+  },[])
 
 
   const newUser = async (data) => {
     console.log(data)
     reset({})
     setModalIsActived(!modalIsActived)
-    const response = await api.post('schools', data);
+    setModalIsActivedSuccess(!modalIsActivedSuccess)
+
+    // const response = await api.post('schools', data);
+    const response = {status: 200}
     if (response.status === 200) {
       setModalIsActivedSuccess(!modalIsActivedSuccess)
     }
@@ -76,6 +87,10 @@ const TeoUserForm = () => {
     setModalIsActivedError(!modalIsActivedError)
   }
 
+  function handleSelectUf() {
+
+  }
+
 
 
   return (
@@ -103,6 +118,30 @@ const TeoUserForm = () => {
       <TeoField.Text label="Complemento" type="text" name="complement" register={register}/>
       {errors.complement && (<ErrorMessage>{errors.complement.message}</ErrorMessage>)}
 
+      <FormColums>
+        <TeoField.Select name='uf' label='UF' register={register}>
+          <option value='0'>default</option>
+          {
+            ufs.map(uf => {
+              return (
+                <option key={uf} value={uf}>{uf}</option>
+              )
+            })
+          }
+
+        </TeoField.Select>
+        {/* <TeoField.Select>
+
+        </TeoField.Select> */}
+
+      </FormColums>
+
+      {/* <FormColums>
+        {errors.city ? (<ErrorMessage>{errors.city.message}</ErrorMessage>) : <div></div>}
+        {errors.uf ? (<ErrorMessage>{errors.uf.message}</ErrorMessage>) : <div></div>}
+        {errors.cep ? (<ErrorMessage>{errors.cep.message}</ErrorMessage>) : <div></div>}
+      </FormColums> */}
+
       <TeoField.Text label="Email" type="email" name="email" register={register}/>
       {errors.email && (<ErrorMessage>{errors.email.message}</ErrorMessage>)}
 
@@ -125,6 +164,7 @@ const TeoUserForm = () => {
           activeModal()
         }
     }} >Cadastrar</TeoButton>
+
 
     </>
   )

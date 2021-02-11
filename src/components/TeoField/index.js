@@ -16,6 +16,22 @@ const Text = ({ label, type, name, register }) => {
   )
 }
 
+const Select = ({register, ...props}) => {
+  return (
+    <FieldStyle>
+      <Label>
+        <Content>{props.label}</Content>
+        <select name={props.name}  ref={register}>
+          <option value='0'>{props.defaultOption}</option>
+          {props.children}
+        </select>
+      </Label>
+    </FieldStyle>
+  )
+
+}
+
 export default {
   Text,
+  Select,
 };
