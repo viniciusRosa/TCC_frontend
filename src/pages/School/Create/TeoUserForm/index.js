@@ -19,6 +19,8 @@ const TeoUserForm = () => {
   const [modalIsActived, setModalIsActived] = useState(false);
   const [modalIsActivedSuccess, setModalIsActivedSuccess] = useState(false);
   const [modalIsActivedError, setModalIsActivedError] = useState(false);
+  const [loading, setLoading] = useState(false);
+
 
   const [ufs, setUfs] = useState([]);
   const [selectedUf, setSelectedUf] = useState('');
@@ -57,19 +59,21 @@ const TeoUserForm = () => {
     setSelectedCity(city);
   }
 
-  const newUser = async (data) => {
-    console.log(data)
-    reset({})
+  const newSchool = async (data) => {
+
     setModalIsActived(!modalIsActived)
-    setModalIsActivedSuccess(!modalIsActivedSuccess)
+    setLoading(true)
+    try{
+      const response = await api.post('schools', data);
+      console.log(response)
+      if (response.data === 'ok' ) {
+        setLoading(false)
+        setModalIsActivedSuccess(!modalIsActivedSuccess)
+        }
 
-    // const response = await api.post('schools', data);
-    const response = {status: 200}
-    if (response.status === 200) {
-      setModalIsActivedSuccess(!modalIsActivedSuccess)
-    }
-
-    if (response.status !== 200) {
+    } catch(err) {
+      console.log(err);
+      setLoading(false)
       setModalIsActivedError(!modalIsActivedError)
     }
 
@@ -106,7 +110,7 @@ const TeoUserForm = () => {
 
   return (
     <>
-    <TeoForm onSubmit={handleSubmit(newUser)}>
+    <TeoForm onSubmit={handleSubmit(newSchool)}>
 
       <TeoField.Text label="Nome da Escola" type="text" name="school_name" register={register}/>
       {errors.school_name && (<ErrorMessage>{errors.school_name.message}</ErrorMessage>)}
@@ -155,13 +159,13 @@ const TeoUserForm = () => {
 
       </FormColums>
 
-      {/* <FormColums>
-        {errors.city ? (<ErrorMessage>{errors.city.message}</ErrorMessage>) : <div></div>}
+      <FormColums>
         {errors.uf ? (<ErrorMessage>{errors.uf.message}</ErrorMessage>) : <div></div>}
+        {errors.city ? (<ErrorMessage>{errors.city.message}</ErrorMessage>) : <div></div>}
         {errors.cep ? (<ErrorMessage>{errors.cep.message}</ErrorMessage>) : <div></div>}
-      </FormColums> */}
+      </FormColums>
 
-      <TeoField.Text label="Email" type="email" name="email" register={register} />
+      <TeoField.Text label="Email" type="text" name="email" register={register} />
       {errors.email && (<ErrorMessage>{errors.email.message}</ErrorMessage>)}
 
       <FormColums>
@@ -173,6 +177,7 @@ const TeoUserForm = () => {
       {modalIsActived && <TeoModal.Warning closeModal={activeModal} secondary={resetButtonModal}>Tem Certeza?</TeoModal.Warning>}
       {modalIsActivedSuccess && <TeoModal.Success closeModal={activeModalSuccess} text={'Escola inserida com sucesso'} button={resetButtonSuccess}/>}
       {modalIsActivedError && <TeoModal.Success closeModal={activeModalError} text={'Algo deu Errado'} button={resetButtonError}/>}
+      {loading && <TeoModal.Loading/>}
 
 
     </TeoForm>

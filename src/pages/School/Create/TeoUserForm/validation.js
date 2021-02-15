@@ -6,11 +6,11 @@ import * as yup from 'yup';
 //   address: yup.string().required('Este campo é obrigatório.'),
 //   number: yup.string().required('Este campo é obrigatório.'),
 //   district: yup.string().required('Este campo é obrigatório.'),
-//   complement: yup.string().nullable(),
-//   // city: yup.string().required(),
-//   uf: yup.string().required(),
-//   // cep: yup.string().required(),
-//   email: yup.string().required('Este campo é obrigatório.'),
+//   complement: yup.string(),
+//   city: yup.string().required('Este campo é obrigatório.'),
+//   uf: yup.string().required('Este campo é obrigatório.'),
+//   cep: yup.string().required('Este campo é obrigatório.'),
+//   email: yup.string().email('Insira um email válido').required('Este campo é obrigatório.'),
 //   phone_number: yup.string().required('Este campo é obrigatório.'),
 
 // })

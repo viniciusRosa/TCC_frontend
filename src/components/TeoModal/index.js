@@ -41,8 +41,17 @@ const Success = ({text, closeModal, button}) => {
   )
 }
 
+const Loading = () => {
+  return (
+    <Modal>
+      <h1>loading</h1>
+  </Modal>
+  )
+}
+
 
 export default {
   Warning,
-  Success
+  Success,
+  Loading
 };

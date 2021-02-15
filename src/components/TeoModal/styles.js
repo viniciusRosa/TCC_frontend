@@ -5,7 +5,7 @@ export const Modal = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -87,5 +87,6 @@ export const ModalButtons = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+  margin: 1rem;
 `;
 
