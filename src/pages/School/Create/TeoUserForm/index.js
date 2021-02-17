@@ -70,8 +70,6 @@ const TeoUserForm = () => {
 
     setModalIsActived(!modalIsActived)
     console.log(data)
-    const file = data.image[0];
-    console.log(file)
 
     setLoading(true)
     try{
@@ -124,7 +122,7 @@ const TeoUserForm = () => {
 
     <TeoForm onSubmit={handleSubmit(newSchool)}  ref={form}>
 
-    <TeoDropzone accept='image/*' name='image' label='Foto da escola' text='Clique ou arraste'/>
+    <TeoDropzone accept='image/*' name='school' label='Foto da escola' text='Clique ou arraste'/>
 
       {/* <input type='file' name="image" id='image' ref={methods.register}/> */}
 
