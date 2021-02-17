@@ -5,7 +5,7 @@ export const Modal = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 120%;
   position: absolute;
   top: 0;
   left: 0;
@@ -21,7 +21,6 @@ export const ModalContainer = styled.div`
   min-width: 30%;
   border-radius: 2px;
 `;
-
 
 export const ModalClose = styled.button`
   display: flex;

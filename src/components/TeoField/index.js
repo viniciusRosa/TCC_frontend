@@ -5,7 +5,7 @@ import {FieldStyle} from './styles';
 import Content from './Content';
 import StyledSelect from './Select';
 
-import { cep, phone } from './masks';
+import { cep, phone, number } from './masks';
 
 
 const Text = ({ label, type, name, register, size = null, mask, placeholder }) => {
@@ -16,6 +16,9 @@ const Text = ({ label, type, name, register, size = null, mask, placeholder }) =
     }
     if (mask === 'phone') {
       phone(e)
+    }
+    if (mask === 'number') {
+      number(e)
     }
   }, [mask])
 

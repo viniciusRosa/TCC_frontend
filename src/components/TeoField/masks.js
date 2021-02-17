@@ -29,3 +29,11 @@ export function cpf(e) {
   }
   return e;
 }
+
+export function number(e) {
+  e.currentTarget.maxLength = 14;
+  let value = e.currentTarget.value;
+    value = value.replace(/\D/g, "");
+    e.currentTarget.value = value;
+  return e;
+}

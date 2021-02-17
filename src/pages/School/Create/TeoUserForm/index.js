@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import { useForm } from 'react-hook-form';
+import React, {useEffect, useRef, useState} from 'react';
+import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import schema from './validation';
 
@@ -12,6 +12,7 @@ import TeoModal from '../../../../components/TeoModal';
 
 import api from '../../../../services/api';
 import axios from 'axios';
+import TeoDropzone from '../../../../components/TeoDropzone';
 
 
 const TeoUserForm = () => {
@@ -28,7 +29,13 @@ const TeoUserForm = () => {
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState('')
 
-  const { register, handleSubmit, errors, trigger, reset } = useForm({
+  const form = useRef(null)
+
+
+  const { errors, trigger, reset, handleSubmit,  ...methods } = useForm({
+    defaultValues: {
+      school_name: 'polivalente'
+    },
     resolver: yupResolver(schema),
   });
 
@@ -59,17 +66,21 @@ const TeoUserForm = () => {
     setSelectedCity(city);
   }
 
-  const newSchool = async (data) => {
+  const newSchool =  async (data) => {
 
     setModalIsActived(!modalIsActived)
+    console.log(data)
+    const file = data.image[0];
+    console.log(file)
+
     setLoading(true)
     try{
-      const response = await api.post('schools', data);
+      const formdata = new FormData(form.current);
+      // formdata.append('image', file)
+      const response = await api.post('schools', formdata);
       console.log(response)
-      if (response.data === 'ok' ) {
-        setLoading(false)
-        setModalIsActivedSuccess(!modalIsActivedSuccess)
-        }
+      setLoading(false)
+      setModalIsActivedSuccess(!modalIsActivedSuccess)
 
     } catch(err) {
       console.log(err);
@@ -92,7 +103,7 @@ const TeoUserForm = () => {
   }
 
   function resetButtonModal() {
-    reset({})
+    // reset({})
     setModalIsActived(!modalIsActived)
   }
 
@@ -107,20 +118,25 @@ const TeoUserForm = () => {
   }
 
 
-
   return (
     <>
-    <TeoForm onSubmit={handleSubmit(newSchool)}>
+        <FormProvider {...methods}>
 
-      <TeoField.Text label="Nome da Escola" type="text" name="school_name" register={register}/>
+    <TeoForm onSubmit={handleSubmit(newSchool)}  ref={form}>
+
+    <TeoDropzone accept='image/*' name='image' label='Foto da escola' text='Clique ou arraste'/>
+
+      {/* <input type='file' name="image" id='image' ref={methods.register}/> */}
+
+      <TeoField.Text label="Nome da Escola" type="text" name="school_name" register={methods.register}/>
       {errors.school_name && (<ErrorMessage>{errors.school_name.message}</ErrorMessage>)}
 
-      <TeoField.Text label="Endereço" type="text" name="address" register={register}/>
+      <TeoField.Text label="Endereço" type="text" name="address" register={methods.register}/>
       {errors.street && (<ErrorMessage>{errors.adress.message}</ErrorMessage>)}
 
       <FormColums>
-        <TeoField.Text label="Numero" type="text" name="number" register={register}/>
-        <TeoField.Text label="Bairro" type="text" name="district" register={register}/>
+        <TeoField.Text label="Numero" type="text" name="number" register={methods.register} mask='number'/>
+        <TeoField.Text label="Bairro" type="text" name="district" register={methods.register}/>
       </FormColums>
 
       <FormColums>
@@ -128,11 +144,11 @@ const TeoUserForm = () => {
         {errors.district ? (<ErrorMessage>{errors.district.message}</ErrorMessage>) : <div></div>}
       </FormColums>
 
-      <TeoField.Text label="Complemento" type="text" name="complement"  register={register}/>
+      <TeoField.Text label="Complemento" type="text" name="complement"  register={methods.register}/>
       {errors.complement && (<ErrorMessage>{errors.complement.message}</ErrorMessage>)}
 
       <FormColums>
-        <TeoField.Select size='20%' name='uf' label='UF' onChange={handleSelectedUF} value={selectedUf} register={register}>
+        <TeoField.Select size='20%' name='uf' label='UF' onChange={handleSelectedUF} value={selectedUf} register={methods.register}>
           <option value='0'>default</option>
           {
             ufs.map(uf => {
@@ -144,7 +160,7 @@ const TeoUserForm = () => {
 
         </TeoField.Select>
 
-        <TeoField.Select name='city'  label='Cidade'  onChange={handleSelectedCity} value={selectedCity} register={register} >
+        <TeoField.Select name='city'  label='Cidade'  onChange={handleSelectedCity} value={selectedCity} register={methods.register} >
           <option value='0'>cidade</option>
           {
             cities.map(city => {
@@ -155,7 +171,7 @@ const TeoUserForm = () => {
           }
         </TeoField.Select>
 
-        <TeoField.Text label="CEP" type="text" name="cep" mask='cep' register={register}/>
+        <TeoField.Text label="CEP" type="text" name="cep" mask='cep' register={methods.register}/>
 
       </FormColums>
 
@@ -165,11 +181,11 @@ const TeoUserForm = () => {
         {errors.cep ? (<ErrorMessage>{errors.cep.message}</ErrorMessage>) : <div></div>}
       </FormColums>
 
-      <TeoField.Text label="Email" type="text" name="email" register={register} />
+      <TeoField.Text label="Email" type="text" name="email" register={methods.register} />
       {errors.email && (<ErrorMessage>{errors.email.message}</ErrorMessage>)}
 
       <FormColums>
-        <TeoField.Text size='50%' label="Telefone" type="text" name="phone_number" mask='phone' placeholder='(00) 00000-00' register={register}/>
+        <TeoField.Text size='50%' label="Telefone" type="text" name="phone_number" mask='phone' placeholder='(00) 00000-00' register={methods.register}/>
       </FormColums>
       {errors.phone_number && (<ErrorMessage>{errors.phone_number.message}</ErrorMessage>)}
 
@@ -181,6 +197,8 @@ const TeoUserForm = () => {
 
 
     </TeoForm>
+    </FormProvider>
+
     <TeoButton
       onClick={async () => {
         const result = await trigger();
