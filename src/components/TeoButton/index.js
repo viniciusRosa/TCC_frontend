@@ -8,13 +8,19 @@ const secondary = css`
   background-color: var(--color-secondary);
 `;
 
+const warning = css`
+  background-color: var(--color-warning);
+`;
+
 const TeoButton = styled.button`
-  ${ props => props.secondary ?  secondary : primary};
+  ${ props => props.primary && primary }
+  ${ props => props.secondary &&  secondary};
+  ${ props => props.warning &&  warning};
   border-radius: 2px;
   color: #fff;
-  width: 180px;
+  width: ${props => props.size ? props.size: '180px'};
   height: 3rem;
-  /* margin-top: 3rem; */
+  margin-left: 1rem;
   cursor: pointer;
 `;
 

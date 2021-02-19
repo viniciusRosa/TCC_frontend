@@ -15,7 +15,7 @@ const Warning = ({children, closeModal, action, secondary}) => {
         </ModalTitleContent>
         <ModalContent>{children}</ModalContent>
         <ModalButtons>
-          <TeoButton type='submit' onClick={action}>Confirmar</TeoButton>
+          <TeoButton primary type='submit' onClick={action}>Confirmar</TeoButton>
           <TeoButton secondary onClick={secondary}>Cancelar</TeoButton>
         </ModalButtons>
       </ModalContainer>
@@ -34,7 +34,7 @@ const Success = ({text, closeModal, button}) => {
       </ModalTitleContent>
       <ModalContent>{text}</ModalContent>
       <ModalButton>
-        <TeoButton onClick={button}>ok</TeoButton>
+        <TeoButton primary onClick={button}>ok</TeoButton>
       </ModalButton>
     </ModalContainer>
   </Modal>
