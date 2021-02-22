@@ -24,6 +24,7 @@ import SchoolRotes from './SchoolRotes';
 const Routes = () => (
   <BrowserRouter>
     <Switch>
+      <Route path="/sandbox" component={SandBox} />
 
       {
         <SchoolRotes />
@@ -33,7 +34,6 @@ const Routes = () => (
 
       {/* <Route path="/schoolregister" component={SchoolRegister} /> */}
       <Route exact path="/" component={Login} />
-      <Route path="/sandbox" component={SandBox} />
       <Route path="*" component={() => <h1>Page not found</h1>} />
       {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
     </Switch>

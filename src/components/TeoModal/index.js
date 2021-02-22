@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, ModalContainer, ModalClose, ModalContent, ModalTitleContent, ModalTile, ModalButton, ModalButtons } from './styles';
-import TeoButton from '../TeoButton'
+import TeoButton from '../TeoButton';
+import TeoLoader from '../TeoLoader';
 
 
 const Warning = ({children, closeModal, action, secondary}) => {
@@ -44,7 +45,7 @@ const Success = ({text, closeModal, button}) => {
 const Loading = () => {
   return (
     <Modal>
-      <h1>loading</h1>
+      <TeoLoader />
   </Modal>
   )
 }

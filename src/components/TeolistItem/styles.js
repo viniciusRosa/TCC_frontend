@@ -24,3 +24,13 @@ export const Right = styled.div`
   align-items: center;
   padding-left: 1rem;
 `;
+
+export const ImgThumb = styled.img`
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  margin-right: 2rem;
+  border : 1px solid var(--color-grey-medium);
+`;

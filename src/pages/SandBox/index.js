@@ -1,23 +1,21 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import TeoUserForm from '../School/Create/TeoUserForm'
-import TeoBox from '../../components/TeoBox'
+import TeoContainer from '../../components/TeoContainer'
+import TeoNav from '../../components/TeoNav'
 import TeoModal from '../../components/TeoModal'
-import TeoButton from '../../components/TeoButton'
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
-
 
 function SandBox() {
 
+  const [loading, setLoading] = useState(true)
+
   return (
     <>
-      <h1>sdfsdf</h1>
+      <TeoContainer>
+      <TeoNav />
+
+       </TeoContainer>
+       {loading && <TeoModal.Loading />}
+
     </>
   );
 }
