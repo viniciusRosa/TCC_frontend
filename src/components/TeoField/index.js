@@ -8,7 +8,7 @@ import StyledSelect from './Select';
 import { cep, phone, number } from './masks';
 
 
-const Text = ({ label, type, name, register, size = null, mask, placeholder }) => {
+const Text = ({ label, type, name, register, size = null, mask, placeholder, initialValue = null }) => {
 
   const handleKeyUp = useCallback((e) => {
     if (mask === 'cep') {
@@ -26,7 +26,7 @@ const Text = ({ label, type, name, register, size = null, mask, placeholder }) =
     <FieldStyle size={size}>
       <Label>
         <Content>{label}</Content>
-        <Input type={type} placeholder={placeholder} name={name} ref={register} onKeyUp={handleKeyUp} />
+        <Input type={type} placeholder={placeholder} value={initialValue} name={name} ref={register} onKeyUp={handleKeyUp} />
       </Label>
     </FieldStyle>
   )

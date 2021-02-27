@@ -6,7 +6,7 @@ import TeoModal from '../../components/TeoModal'
 
 function SandBox() {
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   return (
     <>

@@ -7,7 +7,7 @@ import TeoButton from '../TeoButton'
 
 
 
-const TeoListItem = ({item, del}) => {
+const TeoListItem = ({item, del, update}) => {
 
   return (
     <Item>
@@ -17,7 +17,7 @@ const TeoListItem = ({item, del}) => {
       </Right>
 
       <Left>
-        <TeoButton secondary size='100px' id={item.id}>Editar</TeoButton>
+        <TeoButton secondary size='100px' onClick={update}>Editar</TeoButton>
         <TeoButton warning size='100px' onClick={del}>Deletar</TeoButton>
       </Left>
 

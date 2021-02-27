@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import ReactDOM from 'react-dom';
-
 import api from '../../../services/api';
 import TeoContainer from '../../../components/TeoContainer';
 import TeoNav from '../../../components/TeoNav';
@@ -11,6 +11,7 @@ import TeoBox from '../../../components/TeoBox';
 import TeoListItem from '../../../components/TeolistItem';
 import TeoModal from '../../../components/TeoModal';
 import Content from '../../../components/TeoField/Content'
+import Axios from 'axios';
 
 
 function Schools() {
@@ -19,6 +20,7 @@ function Schools() {
   const [update, setUpdate] = useState(false);
   const [modalIsActived, setModalIsActived] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(0);
+  const history = useHistory();
 
   useEffect(() => {
 
@@ -29,10 +31,7 @@ function Schools() {
     api.get('schools').then(response => {
       setSchools(response.data)
      })
-
   }, [update])
-
-  console.log(schoolsDb)
 
   function confirmDelete(id) {
     setItemToDelete(id)
@@ -40,12 +39,21 @@ function Schools() {
   }
 
   async function deleteItem(id) {
-
     await api.delete(`schools/${id}`);
     setModalIsActived(!modalIsActived);
     setUpdate(true);
   }
 
+  async function UpdateSchool(id) {
+    const { data } = await api.get(`schools/${id}`)
+
+    history.push({
+      pathname: '/schools/update',
+      state: {
+        school: data[0],
+      }
+    })
+  }
 
   return (
     <>
@@ -55,17 +63,22 @@ function Schools() {
           <TeoNavTop />
           <TeoPageTitle title="Escolas" />
           <TeoBox>
-            { schoolsDb <= 0 ? <Content>Nenhuma escola cadastrada</Content> :
+            { schoolsDb <= 0 ? <Content>'Nenhuma escola cadastrada</Content> :
               schoolsDb.map(school => {
                 return (
-                  <TeoListItem key={school.id} item={school} del={() => {confirmDelete(school.id)}}/>
+                  <TeoListItem key={school.id}
+                      item={school}
+                      update={() => {UpdateSchool(school.id)}}
+                      del={() => {confirmDelete(school.id)}}/>
                 )
               })}
-
           </TeoBox>
         </TeoMainWrapper>
        </TeoContainer>
-       {modalIsActived && <TeoModal.Warning closeModal={() => {setModalIsActived(!modalIsActived)}} action={() => {deleteItem(itemToDelete)}} secondary={() => {setModalIsActived(!modalIsActived)}}>Tem Certeza?</TeoModal.Warning>}
+        {modalIsActived && <TeoModal.Warning
+          closeModal={() => {setModalIsActived(!modalIsActived)}}
+          action={() => {deleteItem(itemToDelete)}}
+          secondary={() => {setModalIsActived(!modalIsActived)}}>Tem Certeza?</TeoModal.Warning>}
     </>
   );
 }

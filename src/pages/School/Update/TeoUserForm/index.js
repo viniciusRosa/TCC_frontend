@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import schema from './validation';
@@ -9,7 +9,10 @@ import { FormColums, ErrorMessage } from './styles';
 import TeoModal from '../../../../components/TeoModal';
 import api from '../../../../services/api';
 import axios from 'axios';
+import { useLocation, useHistory } from 'react-router-dom';
 import TeoDropzone from '../../../../components/TeoDropzone';
+import ImageView from '../../../../components/ImageView';
+import urlimage from '../../../../services/urlImage';
 
 const TeoUserForm = () => {
 
@@ -21,26 +24,43 @@ const TeoUserForm = () => {
   const [selectedUf, setSelectedUf] = useState('');
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState('')
-  const form = useRef(null)
+  const [school, setSchool] = useState({});
+  const form = useRef(null);
+  const { state } = useLocation();
+  const history = useHistory();
+
+  const defaultValues = {
+    school_name: state.school.school_name,
+    address: state.school.address,
+    cep: state.school.cep,
+    city: state.school.city,
+    complement: state.school.complement,
+    district: state.school.district,
+    email: state.school.email,
+    number: state.school.number,
+    phone_number: state.school.phone_number
+  }
 
   const { errors, trigger, reset, handleSubmit, ...methods } = useForm({
     resolver: yupResolver(schema),
+    defaultValues
   });
 
   useEffect(() => {
     axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
-      .then(response => {
-        const ufInitials = response.data.map(uf => uf.sigla);
-        setUfs(ufInitials);
-      })
+    .then(response => {
+      const ufInitials = response.data.map(uf => uf.sigla);
+      setUfs(ufInitials);
+    })
   }, []);
 
   useEffect(() => {
     axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`)
-      .then(response => {
-        const cityNames = response.data.map(city => city.nome);
-        setCities(cityNames);
-      })
+    .then(response => {
+      const cityNames = response.data.map(city => city.nome);
+      setCities(cityNames);
+      console.log(cityNames);
+    })
   }, [selectedUf]);
 
   const handleSelectedUF = (event) => {
@@ -53,14 +73,16 @@ const TeoUserForm = () => {
     setSelectedCity(city);
   }
 
-  const newSchool = async (data) => {
+  const updateSchool = async (data) => {
+
     setModalIsActived(!modalIsActived)
     setLoading(true)
     try {
       const formdata = new FormData(form.current);
-      const response = await api.post('schools', formdata);
+      const response = await api.put(`schools/${state.school.id}`, formdata);
       setLoading(false)
       setModalIsActivedSuccess(!modalIsActivedSuccess)
+      history.push('/schools')
     } catch (err) {
       console.log(err);
       setLoading(false)
@@ -98,11 +120,14 @@ const TeoUserForm = () => {
     <>
       <FormProvider {...methods}>
 
-        <TeoForm onSubmit={handleSubmit(newSchool)} ref={form}>
+        <TeoForm onSubmit={handleSubmit(updateSchool)} ref={form}>
 
-          <TeoDropzone accept='image/*' name='school' label='Foto da escola' text='Clique ou arraste' />
+        <FormColums>
+            <ImageView image={`${urlimage.baseURL}${state.school.filename}`} text='Foto atual' />
+            <TeoDropzone accept='image/*' name='image' label='Nova escola(opcional)' text='Clique ou arraste' />
+        </FormColums>
 
-          <TeoField.Text label="Nome da Escola" type="text" name="school_name" register={methods.register} />
+          <TeoField.Text label="Nome da Escola" type="text" name="school_name" register={methods.register} value={school.school_name} />
           {errors.school_name && (<ErrorMessage>{errors.school_name.message}</ErrorMessage>)}
 
           <TeoField.Text label="Endereço" type="text" name="address" register={methods.register} />
@@ -177,7 +202,7 @@ const TeoUserForm = () => {
           if (result) {
             activeModal()
           }
-        }} >Cadastrar</TeoButton>
+        }} >Salvar</TeoButton>
     </>
   )
 }
