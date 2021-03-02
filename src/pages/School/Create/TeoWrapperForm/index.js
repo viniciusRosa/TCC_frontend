@@ -11,7 +11,7 @@ import api from '../../../../services/api';
 import axios from 'axios';
 import TeoDropzone from '../../../../components/TeoDropzone';
 
-const TeoUserForm = () => {
+const TeoWrapperForm = () => {
 
   const [modalIsActived, setModalIsActived] = useState(false);
   const [modalIsActivedSuccess, setModalIsActivedSuccess] = useState(false);
@@ -182,4 +182,4 @@ const TeoUserForm = () => {
   )
 }
 
-export default TeoUserForm;
+export default TeoWrapperForm;

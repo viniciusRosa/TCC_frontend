@@ -14,7 +14,7 @@ import TeoDropzone from '../../../../components/TeoDropzone';
 import ImageView from '../../../../components/ImageView';
 import urlimage from '../../../../services/urlImage';
 
-const TeoUserForm = () => {
+const TeoWrapperForm = () => {
 
   const [modalIsActived, setModalIsActived] = useState(false);
   const [modalIsActivedSuccess, setModalIsActivedSuccess] = useState(false);
@@ -28,6 +28,7 @@ const TeoUserForm = () => {
   const form = useRef(null);
   const { state } = useLocation();
   const history = useHistory();
+
 
   const defaultValues = {
     school_name: state.school.school_name,
@@ -90,6 +91,10 @@ const TeoUserForm = () => {
     }
   }
 
+  function goBack() {
+    history.push('/schools')
+  }
+
   function activeModal() {
     setModalIsActived(!modalIsActived)
   }
@@ -124,7 +129,7 @@ const TeoUserForm = () => {
 
         <FormColums>
             <ImageView image={`${urlimage.baseURL}${state.school.filename}`} text='Foto atual' />
-            <TeoDropzone accept='image/*' name='image' label='Nova escola(opcional)' text='Clique ou arraste' />
+            <TeoDropzone accept='image/*' name='image' label='Nova foto(opcional)' text='Clique ou arraste' />
         </FormColums>
 
           <TeoField.Text label="Nome da Escola" type="text" name="school_name" register={methods.register} value={school.school_name} />
@@ -195,16 +200,21 @@ const TeoUserForm = () => {
 
         </TeoForm>
       </FormProvider>
+      <FormColums>
+        <TeoButton primary
+          onClick={async () => {
+            const result = await trigger();
+            if (result) {
+              activeModal()
+            }
+          }} >Salvar</TeoButton>
 
-      <TeoButton primary
-        onClick={async () => {
-          const result = await trigger();
-          if (result) {
-            activeModal()
-          }
-        }} >Salvar</TeoButton>
-    </>
+        <TeoButton secondary onClick={goBack}>Voltar</TeoButton>
+
+        </FormColums>
+      </>
+
   )
 }
 
-export default TeoUserForm;
+export default TeoWrapperForm;

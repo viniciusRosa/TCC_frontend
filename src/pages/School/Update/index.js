@@ -5,7 +5,7 @@ import TeoNav from '../../../components/TeoNav';
 import TeoMainWrapper from '../../../components/TeoMainWrapper';
 import TeoNavTop from '../../../components/TeoNavTop';
 import TeoBox from '../../../components/TeoBox';
-import TeoUserForm from './TeoUserForm';
+import TeoWrapperForm from './TeoWrapperForm';
 import TeoPageTitle from '../../../components/TeoPageTitle';
 
 function Update() {
@@ -18,7 +18,7 @@ function Update() {
           <TeoNavTop />
           <TeoPageTitle title="Atualizar cadastro da Escola" />
           <TeoBox>
-            <TeoUserForm />
+            <TeoWrapperForm />
           </TeoBox>
         </TeoMainWrapper>
        </TeoContainer>

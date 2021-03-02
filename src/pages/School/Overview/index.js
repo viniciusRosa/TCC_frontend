@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import ReactDOM from 'react-dom';
-
+import api from '../../../services/api';
 import TeoContainer from '../../../components/TeoContainer';
 import TeoNav from '../../../components/TeoNav';
 import TeoMainWrapper from '../../../components/TeoMainWrapper';
 import TeoNavTop from '../../../components/TeoNavTop';
+import TeoPageTitle from '../../../components/TeoPageTitle'
 import TeoBox from '../../../components/TeoBox';
-import TeoWrapperForm from './TeoWrapperForm';
-import TeoPageTitle from '../../../components/TeoPageTitle';
+import TeoDataTable from '../../../components/TeoDataTable'
 
-function Create() {
+function Schools() {
+
 
   return (
     <>
@@ -17,15 +19,15 @@ function Create() {
         <TeoNav />
         <TeoMainWrapper>
           <TeoNavTop />
-          <TeoPageTitle title="cadastrar Escola" />
+          <TeoPageTitle title="Visão Geral" />
           <TeoBox>
-            <TeoWrapperForm />
+            <TeoDataTable />
           </TeoBox>
         </TeoMainWrapper>
        </TeoContainer>
+
     </>
   );
 }
 
-export default Create;
-
+export default Schools;

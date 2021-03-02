@@ -1,19 +1,20 @@
 import React from 'react';
-import { Item, Left, Right, ImgThumb } from './styles';
+import { Item, Left, Right, ImgThumb, ContentLink } from './styles';
 import urlimage from '../../services/urlImage';
-import Content from '../TeoField/Content'
+import Content from '../TeoField/Content';
+import { Link } from 'react-router-dom';
 
 import TeoButton from '../TeoButton'
 
 
 
-const TeoListItem = ({item, del, update}) => {
+const TeoListItem = ({item, del, update, overview}) => {
 
   return (
     <Item>
       <Right >
         <ImgThumb src={`${urlimage.baseURL}${item.filename}`} />
-        <Content>{item.school_name}</Content>
+        <ContentLink onClick={overview} >{item.school_name}</ContentLink>
       </Right>
 
       <Left>

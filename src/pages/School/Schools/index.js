@@ -11,8 +11,6 @@ import TeoBox from '../../../components/TeoBox';
 import TeoListItem from '../../../components/TeolistItem';
 import TeoModal from '../../../components/TeoModal';
 import Content from '../../../components/TeoField/Content'
-import Axios from 'axios';
-
 
 function Schools() {
 
@@ -55,6 +53,15 @@ function Schools() {
     })
   }
 
+  function goOverview(id) {
+    history.push({
+      pathname: '/schools/overview',
+      state: {
+        school: id,
+      }
+    })
+  }
+
   return (
     <>
       <TeoContainer>
@@ -68,6 +75,7 @@ function Schools() {
                 return (
                   <TeoListItem key={school.id}
                       item={school}
+                      overview={() => {goOverview(school.id)}}
                       update={() => {UpdateSchool(school.id)}}
                       del={() => {confirmDelete(school.id)}}/>
                 )
