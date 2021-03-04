@@ -7,6 +7,7 @@ import Create from '../pages/School/Create'
 import SandBox from '../pages/SandBox'
 
 import SchoolRotes from './SchoolRotes';
+import VehicleRotes from './VehicleRotes'
 
 // const PrivateRoute = ({ component: Component, ...rest }) => (
 //   <Route
@@ -27,7 +28,10 @@ const Routes = () => (
       <Route path="/sandbox" component={SandBox} />
 
       {
-        <SchoolRotes />
+        <>
+          <SchoolRotes />
+          <VehicleRotes />
+        </>
       }
 
 
