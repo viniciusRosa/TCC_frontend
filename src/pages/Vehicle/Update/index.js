@@ -16,7 +16,7 @@ function Update() {
         <TeoNav />
         <TeoMainWrapper>
           <TeoNavTop />
-          <TeoPageTitle title="Atualizar cadastro da Escola" />
+          <TeoPageTitle title="Atualizar cadastro de veículos" />
           <TeoBox>
             <TeoWrapperForm />
           </TeoBox>

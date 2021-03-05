@@ -3,8 +3,6 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 import { isAuthenticated } from '../services/auth'
 import Login from '../pages/Login'
-import Create from '../pages/School/Create'
-import SandBox from '../pages/SandBox'
 
 import SchoolRotes from './SchoolRotes';
 import VehicleRotes from './VehicleRotes'
@@ -25,7 +23,6 @@ import VehicleRotes from './VehicleRotes'
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/sandbox" component={SandBox} />
 
       {
         <>

@@ -17,7 +17,7 @@ function Create() {
         <TeoNav />
         <TeoMainWrapper>
           <TeoNavTop />
-          <TeoPageTitle title="cadastrar Escola" />
+          <TeoPageTitle title="cadastrar Veículos" />
           <TeoBox>
             <TeoWrapperForm />
           </TeoBox>
