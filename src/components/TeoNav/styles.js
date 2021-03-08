@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import logo from '../../assets/logoBranco.png'
 import { FiMenu, FiX } from 'react-icons/fi'
 
@@ -40,4 +40,52 @@ export const TeoMenuButton = styled.a`
 export const TeoMenuIcon = styled(FiMenu)`
   font-size: 36px;
   color: var(--color-white);
+`;
+
+
+export const TeoMenuUl = styled.ul`
+  margin: 1rem 1rem;
+
+`;
+
+const hide = css`
+  display: none;
+`;
+
+export const DivM = styled.div`
+  border-bottom: 1px solid var(--color-grey-medium);
+
+  & > ${TeoMenuUl}{
+    margin-left: 2rem;
+  }
+
+
+`;
+
+
+export const TeoMenuLi = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  transition: color 0.5s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-grey-light);
+  }
+
+  & > a {
+    text-decoration: none;
+    font-size: 16px;
+    padding: 20px;
+    color: var(--color-grey-dark);
+  }
+`;
+
+
+export const TeoNenuSpan = styled.span`
+  /* display: flex;
+  justify-content: space-between; */
+
 `;

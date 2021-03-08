@@ -11,6 +11,8 @@ import TeoBox from '../../../components/TeoBox';
 import TeoListItem from './TeolistItem';
 import TeoModal from '../../../components/TeoModal';
 import Content from '../../../components/TeoField/Content'
+import TeoButton from '../../../components/TeoButton';
+import { DivCreateNew } from './styles';
 
 function Vehicles() {
 
@@ -42,6 +44,12 @@ function Vehicles() {
     setUpdate(true);
   }
 
+  function createNewVehicle() {
+    history.push({
+      pathname: '/vehicles/create',
+    })
+  }
+
   async function UpdateSchool(id) {
     const { data } = await api.get(`vehicles/${id}`)
 
@@ -70,6 +78,9 @@ function Vehicles() {
           <TeoNavTop />
           <TeoPageTitle title="Veículos" />
           <TeoBox>
+          <DivCreateNew>
+              <TeoButton primary size='50%' onClick={createNewVehicle}>Cadastrar novo Veículo</TeoButton>
+          </DivCreateNew>
             { resultDb <= 0 ? <Content>'Nenhum veículo cadastrada</Content> :
               resultDb.map(item => {
                 return (

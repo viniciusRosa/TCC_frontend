@@ -11,6 +11,8 @@ import TeoBox from '../../../components/TeoBox';
 import TeoListItem from '../../../components/TeolistItem';
 import TeoModal from '../../../components/TeoModal';
 import Content from '../../../components/TeoField/Content'
+import TeoButton from '../../../components/TeoButton';
+import { DivCreateNew } from './styles';
 
 function Schools() {
 
@@ -42,6 +44,12 @@ function Schools() {
     setUpdate(true);
   }
 
+  function createNewSchool() {
+    history.push({
+      pathname: '/schools/create',
+    })
+  }
+
   async function UpdateSchool(id) {
     const { data } = await api.get(`schools/${id}`)
 
@@ -70,6 +78,9 @@ function Schools() {
           <TeoNavTop />
           <TeoPageTitle title="Escolas" />
           <TeoBox>
+            <DivCreateNew>
+              <TeoButton primary size='50%' onClick={createNewSchool}>Cadastrar nova Escola</TeoButton>
+            </DivCreateNew>
             { schoolsDb <= 0 ? <Content>'Nenhuma escola cadastrada</Content> :
               schoolsDb.map(school => {
                 return (
