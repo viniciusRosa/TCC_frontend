@@ -1,6 +1,7 @@
 import {
-  schoolCreate,
-  schoolOverview } from './pages'
+  vehicleOverview,
+  schoolOverview,
+  pointOverview } from './pages'
 
 
 export default [
@@ -10,8 +11,13 @@ export default [
     title: 'Escolas',
   },
   {
-    component: schoolOverview,
+    component: vehicleOverview,
     path: '/vehicles',
     title: 'Veiculos',
+  },
+  {
+    component: pointOverview,
+    path: '/Points',
+    title: 'Pontos',
   },
 ]

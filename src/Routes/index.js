@@ -6,6 +6,7 @@ import Login from '../pages/Login'
 
 import SchoolRotes from './SchoolRotes';
 import VehicleRotes from './VehicleRotes'
+import PointRotes from './PointRotes';
 
 // const PrivateRoute = ({ component: Component, ...rest }) => (
 //   <Route
@@ -28,6 +29,7 @@ const Routes = () => (
         <>
           <SchoolRotes />
           <VehicleRotes />
+          <PointRotes />
         </>
       }
 
