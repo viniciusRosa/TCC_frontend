@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TeoMain = styled.div`
-  /* background-color: black; */
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,56 +1,68 @@
-import React from 'react';
-import { TeoNavWrapper,
-          TeoLogo,
-          TeoMenuButton,
-          TeoMenuIcon,
-          TeoNavTop,
-          TeoMenuUl,
-          DivM,
-          TeoMenuLi,
+import React, { useState } from 'react';
+import {
+  Wrapper,
+  TeoNavWrapper,
+  TeoLogo,
+  NavTop,
+  TeoMenuUl,
+  DivM,
+  TeoMenuLi,
+  TeoMenuButton,
+  TeoMenuIcon
 
-         } from './styles';
-import { FiChevronLeft } from 'react-icons/fi'
+} from './styles';
 import { Link } from 'react-router-dom'
 import SubMenu from './SubMenu';
 
 import menu from '../../testeMenu';
 
 
-const TeoNav = () => {
+const TeoNav = ({ status }) => {
+
+  const [sidebar, setsidebar] = useState(false)
+
+
+  function handleSidebar() {
+    setsidebar(!sidebar)
+  }
+
+
   return (
-    <TeoNavWrapper>
-      <TeoNavTop>
-        <TeoLogo />
-        <TeoMenuButton>
-          <TeoMenuIcon />
-        </TeoMenuButton>
-      </TeoNavTop>
+    <Wrapper status={sidebar}>
+        <NavTop>
+          <TeoLogo />
+          <TeoMenuButton status={sidebar} onClick={handleSidebar}>
+            <TeoMenuIcon />
+          </TeoMenuButton>
+        </NavTop>
+      <TeoNavWrapper status={sidebar}>
 
-      <TeoMenuUl>
+        <TeoMenuUl >
 
-      {
-        menu.map((item) => {
-          return (
-            <DivM>
-              <TeoMenuLi key={item.path}> <Link to={item.path}>{item.title}</Link>
-              </TeoMenuLi>
-                {/* {
-                  item.children &&
-                  <>
+          {
+            menu.map((item) => {
+              return (
+                <DivM>
+                  <TeoMenuLi key={item.path}> <Link to={item.path}>{item.title}</Link>
+                  </TeoMenuLi>
+                  {/* {
+                    item.children &&
+                    <>
                     <SubMenu item={item}/>
-                  </>
-                } */}
+                    </>
+                  } */}
 
-            </DivM>
-          )
-        })
-      }
+                </DivM>
+              )
+            })
+          }
 
 
 
-    </TeoMenuUl>
+        </TeoMenuUl>
 
-    </TeoNavWrapper>
+      </TeoNavWrapper>
+      </Wrapper>
   );
 }
 

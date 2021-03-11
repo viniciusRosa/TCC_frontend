@@ -1,15 +1,14 @@
-import React from 'react'
-import styled from 'styled-components';
+import React, { Children, useState } from 'react';
+import { TeoNav, TeoMenuButton, TeoMenuIcon } from './styles';
 
+const TeoNavTop = ({children}) => {
 
-const TeoNavTop = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 56px;
-  width: 100%;
-  background-color: var(--color-primary);
+  return (
+  <TeoNav>
+    {children}
 
-`;
+  </TeoNav>
+  )
+}
 
 export default TeoNavTop;
