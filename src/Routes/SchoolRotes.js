@@ -13,8 +13,6 @@ const SchoolRotes = () => (
     <Route path='/schools/create' component={ Create } />
     <Route path='/schools/update' component={ Update } />
     <Route path='/schools/overview' component={ Overview } />
-
-
   </>
 );
 

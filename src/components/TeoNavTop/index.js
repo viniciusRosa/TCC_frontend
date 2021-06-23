@@ -1,12 +1,13 @@
-import React, { Children, useState } from 'react';
-import { TeoNav, TeoMenuButton, TeoMenuIcon } from './styles';
+import React from 'react';
+import { TeoNav } from './styles';
 
-const TeoNavTop = ({children}) => {
+const TeoNavTop = () => {
 
   return (
   <TeoNav>
-    {children}
+    <div>
 
+    </div>
   </TeoNav>
   )
 }

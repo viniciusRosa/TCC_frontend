@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ViewTable, TableHead, TableRow, DivHead } from './styles'
 import { useLocation, useHistory, Link } from 'react-router-dom';
-import api from '../../services/api';
-import urlimage from '../../services/urlImage';
-
+import api from '../../../../services/api';
+import urlimage from '../../../../services/urlImage';
 
 const TeoDataTable = () => {
 
