@@ -2,9 +2,14 @@
 import axios from 'axios'
 import { getToken } from './auth'
 
+// fake server
 const api = axios.create({
-    baseURL: 'http://localhost:3100/api'
+  baseURL: 'http://localhost:3333/'
 })
+
+// const api = axios.create({
+//     baseURL: 'http://localhost:3100/api'
+// })
 
 // api.interceptors.request.use(async config => {
 //     const token = getToken()

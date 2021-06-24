@@ -1,7 +1,7 @@
 import {
   vehicleOverview,
   schoolOverview,
-  pointOverview } from './pages'
+  pointOverview } from '../pages'
 
 
 export default [
@@ -10,11 +10,11 @@ export default [
     path: '/schools',
     title: 'Escolas',
   },
-  // {
-  //   component: vehicleOverview,
-  //   path: '/vehicles',
-  //   title: 'Veiculos',
-  // },
+  {
+    component: vehicleOverview,
+    path: '/vehicles',
+    title: 'Veiculos',
+  },
   {
     component: pointOverview,
     path: '/Points',

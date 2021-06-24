@@ -14,7 +14,7 @@ import {
 import { Link } from 'react-router-dom'
 import SubMenu from './SubMenu';
 
-import menu from '../../testeMenu';
+import SideMenu from '../../Routes/SideMenu';
 
 
 const TeoNav = ({ status }) => {
@@ -40,7 +40,7 @@ const TeoNav = ({ status }) => {
         <TeoMenuUl >
 
           {
-            menu.map((item) => {
+            SideMenu.map((item) => {
               return (
                 <DivM>
                   <TeoMenuLi key={item.path}> <Link to={item.path}>{item.title}</Link>
