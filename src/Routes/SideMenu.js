@@ -10,11 +10,11 @@ export default [
     path: '/schools',
     title: 'Escolas',
   },
-  {
-    component: vehicleOverview,
-    path: '/vehicles',
-    title: 'Veiculos',
-  },
+  // {
+  //   component: vehicleOverview,
+  //   path: '/vehicles',
+  //   title: 'Veiculos',
+  // },
   {
     component: pointOverview,
     path: '/Points',
