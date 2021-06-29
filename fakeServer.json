@@ -3,7 +3,7 @@
     {
       "id": 1,
       "school_name": "Polivalente",
-      "image": 1,
+      "image": "https://github.com/viniciusRosa.png",
       "address": "Av.Brasil",
       "number": "243",
       "district": "Porto lacustre",
@@ -29,6 +29,43 @@
       "cep": "95520-000",
       "email": "escola.@escola.com",
       "phone_number": "(51) 3663-1979"
+    }
+  ],
+
+  "vehicles": [
+    {
+      "id": 1,
+      "school_name": "Polivalente",
+      "image": 1,
+      "address": "Av.Brasil",
+      "number": "243",
+      "district": "Porto lacustre",
+      "complement": "",
+      "uf": "RS",
+      "city": "Osório",
+      "cep": "95520-000",
+      "email": "escola.@escola.com",
+      "phone_number": "(51) 3663-1979"
+    }
+  ],
+
+  "vacancyrequests": [
+    {
+      "id": 1,
+      "email": "escola.@escola.com",
+      "image": "https://github.com/viniciusRosa.png",
+      "name": "Vinicius Rosa",
+      "rg": "24234234234",
+      "cpf": "234234234",
+      "borndate": "23/01/1990",
+      "address": "Av.Brasil",
+      "number": "243",
+      "city": "Osório",
+      "uf": "RS",
+      "complement": "",
+      "school_name": "Polivalente",
+      "shift": "manhã",
+      "class": ""
     }
   ]
 }

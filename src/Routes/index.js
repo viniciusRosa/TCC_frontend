@@ -5,8 +5,10 @@ import { isAuthenticated } from '../services/auth'
 import Login from '../pages/Login'
 
 import SchoolRotes from './SchoolRotes';
-import VehicleRotes from './VehicleRotes'
+import VacancyRotes from './VacancyRotes';
 import PointRotes from './PointRotes';
+
+import {VacancyContextProvider} from '../contexts/VacancyContext';
 
 // const PrivateRoute = ({ component: Component, ...rest }) => (
 //   <Route
@@ -28,7 +30,11 @@ const Routes = () => (
       {
         <>
           <SchoolRotes />
-          <VehicleRotes />
+
+          <VacancyContextProvider>
+            <VacancyRotes />
+          </VacancyContextProvider>
+          
           <PointRotes />
         </>
       }

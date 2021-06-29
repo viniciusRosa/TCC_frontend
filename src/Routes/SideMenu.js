@@ -1,20 +1,20 @@
 import {
-  vehicleOverview,
+  vacancyOverview,
   schoolOverview,
   pointOverview } from '../pages'
 
 
 export default [
   {
+    component: vacancyOverview,
+    path: '/vacancy',
+    title: 'Solicitações',
+  },
+  {
     component: schoolOverview,
     path: '/schools',
     title: 'Escolas',
   },
-  // {
-  //   component: vehicleOverview,
-  //   path: '/vehicles',
-  //   title: 'Veiculos',
-  // },
   {
     component: pointOverview,
     path: '/Points',

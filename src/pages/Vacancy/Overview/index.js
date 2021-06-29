@@ -7,6 +7,7 @@ import TeoNavTop from '../../../components/TeoNavTop';
 import TeoPageTitle from '../../../components/TeoPageTitle'
 import TeoBox from '../../../components/TeoBox';
 import TeoDataTable from './TeoDataTable'
+// import {VacancyContextProvider} from '../contexts/VacancyContext';
 
 function Schools() {
 
