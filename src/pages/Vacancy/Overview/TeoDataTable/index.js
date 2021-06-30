@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ViewTable, TableHead, TableRow, DivHead } from './styles'
-import { useLocation, useHistory, Link } from 'react-router-dom';
-import api from '../../../../services/api';
+import { useHistory, Link } from 'react-router-dom';
 import { useVacancy } from '../../../../contexts/VacancyContext';
 
 
@@ -9,32 +8,10 @@ const TeoDataTable = () => {
 
   const {
     overviewItem,
-    resultDb
   } = useVacancy()
-  // console.log(overviewItem)
 
 console.log(overviewItem)
   const history = useHistory();
-
-  // useEffect(() => {
-  //   api.get(`vehicles/${state.result}`).then(
-  //     response => {
-  //       setResult(response.data[0])
-  //     }
-  //   )
-  //   }, [])
-
-  // async function goToUpdate(id) {
-
-  //   const { data } = await api.get(`vehicles/${id}`)
-
-  //   history.push({
-  //     pathname: '/vehicles/update',
-  //     state: {
-  //       result: data[0],
-  //     }
-  //   })
-  // }
 
   return (
     <div>

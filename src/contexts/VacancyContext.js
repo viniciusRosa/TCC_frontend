@@ -22,23 +22,16 @@ export function VacancyContextProvider({ children }) {
      })
   }, [update])
 
-  // function goOverview(id) {
-  //   history.push({
-  //     pathname: '/vacancy/overview',
-  //     state: {
-  //       result: id,
-  //     }
-  //   })
-  // }
 
 
-
+  
   return (
     <VacancyContext.Provider
       value={{
         resultDb,
+        overviewItem,
         setOverviewItem,
-        overviewItem
+        setUpdate,
       }}>
 
         { children }

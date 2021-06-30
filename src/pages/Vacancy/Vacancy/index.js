@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import ReactDOM from 'react-dom';
-import api from '../../../services/api';
 import TeoContainer from '../../../components/TeoContainer';
 import TeoNav from '../../../components/TeoNav';
 import TeoMainWrapper from '../../../components/TeoMainWrapper';
@@ -9,22 +8,24 @@ import TeoNavTop from '../../../components/TeoNavTop';
 import TeoPageTitle from '../../../components/TeoPageTitle'
 import TeoBox from '../../../components/TeoBox';
 import TeoListItem from './TeolistItem';
-import TeoModal from '../../../components/TeoModal';
 import Content from '../../../components/TeoField/Content'
-import TeoButton from '../../../components/TeoButton';
 import { useVacancy } from '../../../contexts/VacancyContext';
 
 
 function Vacancy() {
 
+  useEffect(() => {
+    setUpdate(true)
+  }, [])
+
   const {
     resultDb,
     setOverviewItem,
-    overviewItem
+    setUpdate
   } = useVacancy()
 
   const history = useHistory();
-
+  
   async function goOverview(id) {
      await setOverviewItem(id)
     history.push('/vacancy/overview')
