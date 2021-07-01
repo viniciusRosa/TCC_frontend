@@ -4,12 +4,12 @@ import Content from '../../../../components/TeoField/Content';
 
 export const Item = styled.div`
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   min-height: 50px;
   margin-top: 1.5rem;
 
   border: 1px solid var(--color-grey-medium);
-  border-radius: 2px;
+  border-radius: 4px;
 `;
 
 export const ContentLink = styled(Content)`
@@ -39,4 +39,20 @@ export const ImgThumb = styled.img`
   overflow: hidden;
   margin-right: 2rem;
   border : 1px solid var(--color-grey-medium);
+`;
+
+export const ListTable = styled.table`
+  width: 100%;
+`;
+
+export const ListTr = styled.tr`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const ListTd = styled.td`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
 `;

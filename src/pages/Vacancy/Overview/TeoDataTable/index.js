@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ViewTable, TableHead, TableRow, DivHead } from './styles'
-import { useHistory, Link } from 'react-router-dom';
 import { useVacancy } from '../../../../contexts/VacancyContext';
-
 
 const TeoDataTable = () => {
 
@@ -10,17 +8,13 @@ const TeoDataTable = () => {
     overviewItem,
   } = useVacancy()
 
-console.log(overviewItem)
-  const history = useHistory();
-
   return (
     <div>
       <DivHead>
         <div>
-          <img src={overviewItem.image}/>
+          <img src={overviewItem.image} />
           <p>{overviewItem.name}</p>
         </div>
-        <Link onClick={() => {}}>EDITAR</Link>
       </DivHead>
       <ViewTable>
         <TableHead >
@@ -74,6 +68,7 @@ console.log(overviewItem)
         </tbody>
       </ViewTable>
     </div>
+
   )
 }
 

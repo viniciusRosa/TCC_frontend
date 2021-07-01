@@ -1,34 +1,39 @@
 import React from 'react';
-import { Item, Left, Right, ImgThumb, ContentLink } from './styles';
-import urlimage from '../../../../services/urlImage';
-
-import TeoButton from '../../../../components/TeoButton'
-
-
+import {
+  Item,
+  ImgThumb,
+  ContentLink,
+  ListTable,
+  ListTr,
+  ListTd
+} from './styles';
 
 const TeoListItem = ({item, del, update, overview}) => {
 
   return (
     <Item>
-      <Right >
-        <ImgThumb src={item.image} />
-        <ContentLink onClick={overview} >{item.name} </ContentLink>
-        <ContentLink onClick={overview} style={{
-          marginLeft: '100px'
-        }}>{item.school_name}</ContentLink>
-        <ContentLink onClick={overview} style={{
-          marginLeft: '100px'
-        }}>{item.shift}</ContentLink>
+      <ListTable>
+        <ListTr>
+          <ListTd>
+            <ImgThumb src={item.image} />
+            <ContentLink onClick={overview}> {item.name} </ContentLink>
+          </ListTd>
 
-      </Right>
+          <ListTd>
+            <ContentLink onClick={overview}> {item.school_name} </ContentLink>
+          </ListTd>
 
-      <Left>
-      <ContentLink onClick={overview}> {item.city} - {item.uf} </ContentLink>
+          <ListTd>
+            <ContentLink onClick={overview}> {item.shift} </ContentLink>
+          </ListTd>
 
-      </Left>
+          <ListTd>
+            <ContentLink onClick={overview}> {item.city} - {item.uf} </ContentLink>
+          </ListTd>
 
+        </ListTr>
+      </ListTable>
     </Item>
-
   )
 }
 

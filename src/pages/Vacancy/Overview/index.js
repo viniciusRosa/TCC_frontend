@@ -19,9 +19,15 @@ function Schools() {
         <TeoMainWrapper>
           <TeoNavTop />
           <TeoPageTitle title="Visão Geral" />
+
           <TeoBox>
             <TeoDataTable />
           </TeoBox>
+
+          <TeoBox>
+            <p>sdfs</p>
+          </TeoBox>
+
         </TeoMainWrapper>
        </TeoContainer>
 
