@@ -20,15 +20,18 @@ function Vacancy() {
 
   const {
     resultDb,
-    setOverviewItem,
-    setUpdate
+    setUpdate,
   } = useVacancy()
 
   const history = useHistory();
-  
+
   async function goOverview(id) {
-     await setOverviewItem(id)
-    history.push('/vacancy/overview')
+    history.push({
+      pathname: '/vacancy/overview',
+      state: {
+        student: id
+      }
+    })
   }
 
   return (
@@ -39,13 +42,13 @@ function Vacancy() {
           <TeoNavTop />
           <TeoPageTitle title="Solicitações pendentes" />
           <TeoBox>
-          
+
             { resultDb <= 0 ? <Content>Nenhuma solicitação pendente</Content> :
-              resultDb.map(item => {
+              resultDb.map((item) => {
                 return (
                   <TeoListItem key={item.id}
                       item={item}
-                      overview={() => {goOverview(item)}}
+                      overview={() => {goOverview(item.id)}}
                       />
                 )
               })}

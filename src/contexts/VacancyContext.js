@@ -20,14 +20,26 @@ export function VacancyContextProvider({ children }) {
      })
   }, [update])
 
+  async function loadOverview(student) {
+    await api.get(`vacancyrequests/${student}`).then(
+      response => {
+        setOverviewItem(response.data)
+      }
+    )
+  }
+
+  function sendMessage(data) {
+    console.log(data)
+  }
 
   return (
     <VacancyContext.Provider
       value={{
         resultDb,
         overviewItem,
-        setOverviewItem,
         setUpdate,
+        loadOverview,
+        sendMessage
       }}>
 
         { children }

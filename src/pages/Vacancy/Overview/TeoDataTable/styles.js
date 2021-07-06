@@ -73,3 +73,10 @@ export const TableRow = styled.tr`
 export const TableD = styled.td`
 
 `;
+
+export const ButtonDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 5rem;
+  margin-bottom: 4rem;
+`;
