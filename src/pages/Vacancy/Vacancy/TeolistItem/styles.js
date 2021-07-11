@@ -7,9 +7,9 @@ export const Item = styled.div`
   align-items: center;
   min-height: 50px;
   margin-top: 1.5rem;
-
   border: 1px solid var(--color-grey-medium);
   border-radius: 4px;
+  cursor: pointer;
 `;
 
 export const ContentLink = styled(Content)`
@@ -48,11 +48,20 @@ export const ListTable = styled.table`
 export const ListTr = styled.tr`
   display: flex;
   flex-direction: row;
+
 `;
 
 export const ListTd = styled.td`
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  border-right: 1px solid var(--color-grey-medium);
+
+  & div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+  }
 `;

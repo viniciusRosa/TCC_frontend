@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import TeoContainer from '../../../components/TeoContainer';
@@ -11,17 +11,18 @@ import TeoListItem from './TeolistItem';
 import Content from '../../../components/TeoField/Content'
 import { useVacancy } from '../../../contexts/VacancyContext';
 
-
 function Vacancy() {
-
-  useEffect(() => {
-    setUpdate(true)
-  }, [])
 
   const {
     resultDb,
-    setUpdate,
+    setUpdate
   } = useVacancy()
+
+  useEffect(() => {
+
+    setUpdate(true)
+
+  }, [])
 
   const history = useHistory();
 
@@ -43,18 +44,19 @@ function Vacancy() {
           <TeoPageTitle title="Solicitações pendentes" />
           <TeoBox>
 
-            { resultDb <= 0 ? <Content>Nenhuma solicitação pendente</Content> :
+            {resultDb <= 0 ? <Content>Nenhuma solicitação pendente</Content> :
               resultDb.map((item) => {
+
                 return (
                   <TeoListItem key={item.id}
-                      item={item}
-                      overview={() => {goOverview(item.id)}}
-                      />
+                    item={item}
+                    overview={() => { goOverview(item.id) }}
+                  />
                 )
               })}
           </TeoBox>
         </TeoMainWrapper>
-       </TeoContainer>
+      </TeoContainer>
     </>
   );
 }

@@ -26,6 +26,9 @@ const TeoDataTable = () => {
     setModalIsActived(true);
   }
 
+
+  console.log(overviewItem.id)
+
   return (
     <>
       <div>

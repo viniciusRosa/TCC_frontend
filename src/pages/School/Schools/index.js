@@ -38,6 +38,8 @@ function Schools() {
     setModalIsActived(true);
   }
 
+  console.log(schoolsDb)
+
   async function deleteItem(id) {
     await api.delete(`schools/${id}`);
     setModalIsActived(!modalIsActived);

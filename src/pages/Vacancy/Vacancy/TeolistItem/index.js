@@ -8,30 +8,39 @@ import {
   ListTd
 } from './styles';
 
-const TeoListItem = ({item, del, update, overview}) => {
+const TeoListItem = ({ item, overview }) => {
 
   return (
-    <Item>
+    <Item onClick={overview}>
       <ListTable>
-        <ListTr>
-          <ListTd>
-            <ImgThumb src={item.image} />
-            <ContentLink onClick={overview}> {item.name} </ContentLink>
-          </ListTd>
+        <tbody>
+          <ListTr>
+            <ListTd>
+              <div>
+                <ImgThumb src={item.image} />
+                <ContentLink> {item.name} </ContentLink>
+              </div>
+            </ListTd>
 
-          <ListTd>
-            <ContentLink onClick={overview}> {item.school_name} </ContentLink>
-          </ListTd>
+            <ListTd>
+              <ContentLink> {item.school_name} </ContentLink>
+            </ListTd>
 
-          <ListTd>
-            <ContentLink onClick={overview}> {item.shift} </ContentLink>
-          </ListTd>
+            <ListTd>
+              <ContentLink> {item.shift} </ContentLink>
+            </ListTd>
 
-          <ListTd>
-            <ContentLink onClick={overview}> {item.city} - {item.uf} </ContentLink>
-          </ListTd>
+            <ListTd>
+              <ContentLink> {item.city} - {item.uf} </ContentLink>
+            </ListTd>
 
-        </ListTr>
+            <ListTd>
+              <ContentLink> horario</ContentLink>
+            </ListTd>
+
+
+          </ListTr>
+        </tbody>
       </ListTable>
     </Item>
   )

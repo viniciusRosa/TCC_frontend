@@ -5,9 +5,9 @@ export const VacancyContext = createContext({});
 
 export function VacancyContextProvider({ children }) {
 
-  const [resultDb, setResult] = useState([]);
   const [update, setUpdate] = useState(false);
-  const [overviewItem, setOverviewItem] = useState([])
+  const [resultDb, setResult] = useState([]);
+  const [overviewItem, setOverviewItem] = useState({})
 
   useEffect(() => {
 
@@ -15,21 +15,23 @@ export function VacancyContextProvider({ children }) {
       setUpdate(false);
     }
 
-    api.get('vacancyrequests').then(response => {
-      setResult(response.data)
-     })
+    loadVacancyList()
+
   }, [update])
 
-  async function loadOverview(student) {
-    await api.get(`vacancyrequests/${student}`).then(
-      response => {
-        setOverviewItem(response.data)
-      }
-    )
+  async function loadVacancyList() {
+
+    await api.get('vacancyrequest').then(response => {
+      setResult(response.data)
+     })
   }
 
-  function sendMessage(data) {
-    console.log(data)
+  async function loadOverview(student) {
+    await api.get(`vacancyrequest/${student}`).then(
+      response => {
+        setOverviewItem(response.data[0])
+      }
+    )
   }
 
   return (
@@ -39,7 +41,7 @@ export function VacancyContextProvider({ children }) {
         overviewItem,
         setUpdate,
         loadOverview,
-        sendMessage
+        loadVacancyList
       }}>
 
         { children }
