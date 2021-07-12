@@ -9,6 +9,8 @@ export function VacancyContextProvider({ children }) {
   const [resultDb, setResult] = useState([]);
   const [overviewItem, setOverviewItem] = useState({})
 
+  const [message, setMessage] = useState('')
+
   useEffect(() => {
 
     if(update === true) {
@@ -34,14 +36,32 @@ export function VacancyContextProvider({ children }) {
     )
   }
 
+  async function sendMessage() {
+
+    await api.post('/messages', {
+      data: {
+        from: 1,
+        to: overviewItem.user_id,
+        message: message
+      }
+    })
+  }
+
+  async function getMessages() {
+
+  }
+
   return (
     <VacancyContext.Provider
       value={{
         resultDb,
         overviewItem,
+        message,
+        setMessage,
         setUpdate,
         loadOverview,
-        loadVacancyList
+        loadVacancyList,
+        sendMessage
       }}>
 
         { children }

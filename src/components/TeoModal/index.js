@@ -56,16 +56,14 @@ const Loading = () => {
   )
 }
 
-const SendMessage = ({closeModal, secondary}) => {
+const SendMessage = ({closeModal, secondary, action}) => {
 
   const {
-
+    setMessage,
   } = useVacancy()
 
-  const { register, handleSubmit, watch, errors } = useForm();
-
-  const submitMessage = data => {
-    console.log(data)
+  function handlemessage(value) {
+    setMessage(value)
   }
 
   return (
@@ -78,20 +76,18 @@ const SendMessage = ({closeModal, secondary}) => {
           <ModalClose onClick={closeModal} />
         </ModalTitleContent>
 
-        <TeoForm onSubmit={handleSubmit(submitMessage)}>
           <TeoField.TextArea
             name='message'
             type='text'
+            onChange={(event) => {handlemessage(event.target.value)}}
             placeholder='Mensagem'
-            register={register}
             rows="5"
             cols="80" />
 
         <ModalButtons>
-          <TeoButton primary type='submit' >Enviar</TeoButton>
+          <TeoButton primary onClick={action}>Enviar</TeoButton>
           <TeoButton secondary onClick={secondary}>Cancelar</TeoButton>
         </ModalButtons>
-        </TeoForm>
       </ModalContainer>
     </Modal>
   )

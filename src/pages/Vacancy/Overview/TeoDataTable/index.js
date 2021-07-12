@@ -12,10 +12,15 @@ const TeoDataTable = () => {
   const history = useHistory();
 
   const [modalIsActived, setModalIsActived] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [modalIsActivedSuccess, setModalIsActivedSuccess] = useState(false);
+  const [modalIsActivedError, setModalIsActivedError] = useState(false);
+
 
   const {
     overviewItem,
     loadOverview,
+    sendMessage,
   } = useVacancy()
 
   useEffect(() => {
@@ -26,8 +31,46 @@ const TeoDataTable = () => {
     setModalIsActived(true);
   }
 
+  async function handleSendMessage() {
+    setModalIsActived(false);
+    setLoading(true);
+    try{
+      await sendMessage();
+      setLoading(false);
+      setModalIsActivedSuccess(!modalIsActivedSuccess)
 
-  console.log(overviewItem.id)
+
+    } catch(err) {
+      console.log(err)
+      setLoading(false);
+      setModalIsActivedError(!modalIsActivedError)
+
+    }
+  }
+
+  function activeModal() {
+    setModalIsActived(!modalIsActived)
+  }
+
+  function activeModalSuccess() {
+    setModalIsActivedSuccess(!modalIsActivedSuccess)
+  }
+
+  function activeModalError() {
+    setModalIsActivedError(!modalIsActivedError)
+  }
+
+  function resetButtonModal() {
+    setModalIsActived(!modalIsActived)
+  }
+
+  function resetButtonSuccess() {
+    setModalIsActivedSuccess(!modalIsActivedSuccess)
+  }
+
+  function resetButtonError() {
+    setModalIsActivedError(!modalIsActivedError)
+  }
 
   return (
     <>
@@ -102,7 +145,12 @@ const TeoDataTable = () => {
       {modalIsActived && <TeoModal.SendMessage
           closeModal={() => {setModalIsActived(!modalIsActived)}}
           secondary={() => {setModalIsActived(!modalIsActived)}}
+          action={() => handleSendMessage()}
            />}
+      {loading && <TeoModal.Loading />}
+      {modalIsActivedSuccess && <TeoModal.Success closeModal={activeModalSuccess} text={'Mensagem enviada com sucesso'} button={resetButtonSuccess} />}
+      {modalIsActivedError && <TeoModal.Success closeModal={activeModalError} text={'Algo deu Errado'} button={resetButtonError} />}
+
     </>
 
   )
