@@ -52,7 +52,7 @@ export function VacancyContextProvider({ children }) {
 
   async function getMessages() {
     await api.get(`messages/${1}/${2}`).then(
-      response => {setMessages(response.data)}
+      response => {setMessages(response.data.rows)}
     );
   }
 

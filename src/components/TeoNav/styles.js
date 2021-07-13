@@ -12,8 +12,8 @@ export const TeoNavWrapper = styled.nav`
   position:relative;
   display: ${ props => props.status ? 'none' : 'flex' };
   flex-direction: column;
-  width: 256px;
-  height: 100%;
+  /* width: 256px;
+  height: 100%; */
   background-color: var(--color-white);
 `;
 
@@ -28,14 +28,14 @@ export const NavTop = styled.nav`
 
 export const TeoLogo = styled.img.attrs({
   src: logo,
-  alt: 'Logo doTeo'
+  alt: 'Logo do Teo'
 })`
   height: 36px;
   margin-left: 20px;
 `;
 
 export const TeoMenuUl = styled.ul`
-  margin: 1rem 1rem;
+  /* margin: 1rem 1rem; */
 `;
 
 const hide = css`
@@ -43,7 +43,9 @@ const hide = css`
 `;
 
 export const DivM = styled.div`
+  /* border-right: 1px solid var(--color-grey-medium); */
   border-bottom: 1px solid var(--color-grey-medium);
+
 
   & > ${TeoMenuUl}{
     margin-left: 2rem;
@@ -54,7 +56,7 @@ export const TeoMenuLi = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1rem;
+  /* padding: 1rem 1rem; */
   transition: background-color 0.5s ;
   cursor: pointer;
 
@@ -64,7 +66,7 @@ export const TeoMenuLi = styled.li`
 
   & > a {
     text-decoration: none;
-    font-size: 16px;
+    font-size: 1.2rem;
     padding: 20px;
     color: var(--color-grey-dark);
   }
