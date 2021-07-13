@@ -1,9 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { ViewTable, TableHead, TableRow, DivHead, ButtonDiv } from './styles'
+import {
+    ViewTable,
+    TableHead,
+    TableRow,
+    DivHead,
+    ButtonDiv,
+    DivMessage,
+    DivMessages,
+    TextMessage,
+    DivMessageStudent,
+    DivstudentData,
+    DivData
+   } from './styles'
 import { useVacancy } from '../../../../contexts/VacancyContext';
 import TeoButton from '../../../../components/TeoButton';
 import TeoModal from '../../../../components/TeoModal';
-import { useLocation, useHistory, Link } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 
 const TeoDataTable = () => {
@@ -19,13 +31,23 @@ const TeoDataTable = () => {
 
   const {
     overviewItem,
+    messages,
+    MessagesUpdate,
     loadOverview,
     sendMessage,
+    getMessages,
+    setMessagesUpdate
   } = useVacancy()
 
   useEffect(() => {
     loadOverview(state.student)
   }, [])
+
+  useEffect(() => {
+    getMessages()
+    setMessagesUpdate(false)
+  }, [MessagesUpdate])
+
 
   function handleMessage() {
     setModalIsActived(true);
@@ -38,7 +60,7 @@ const TeoDataTable = () => {
       await sendMessage();
       setLoading(false);
       setModalIsActivedSuccess(!modalIsActivedSuccess)
-
+      setMessagesUpdate(true)
 
     } catch(err) {
       console.log(err)
@@ -48,20 +70,12 @@ const TeoDataTable = () => {
     }
   }
 
-  function activeModal() {
-    setModalIsActived(!modalIsActived)
-  }
-
   function activeModalSuccess() {
     setModalIsActivedSuccess(!modalIsActivedSuccess)
   }
 
   function activeModalError() {
     setModalIsActivedError(!modalIsActivedError)
-  }
-
-  function resetButtonModal() {
-    setModalIsActived(!modalIsActived)
   }
 
   function resetButtonSuccess() {
@@ -134,6 +148,37 @@ const TeoDataTable = () => {
         </ViewTable>
       </div>
 
+      <DivMessages>
+
+        {
+
+        messages.map((message, index) => {
+
+          if (message.from_id === overviewItem.user_id) {
+            return (
+              <DivstudentData>
+                <span>{overviewItem.name}</span>
+                <DivMessageStudent>
+                  <TextMessage>{message.message}</TextMessage>
+                </DivMessageStudent>
+              </DivstudentData>
+            )
+
+          } else {
+            return (
+              <DivData>
+                  <span>Usuário</span>
+                <DivMessage>
+                  <TextMessage>{message.message}</TextMessage>
+                </DivMessage>
+              </DivData>
+
+            )
+          }
+        })
+        }
+      </DivMessages>
+
       <ButtonDiv>
 
         <TeoButton primary size='50%' >Deferido</TeoButton>
@@ -141,6 +186,8 @@ const TeoDataTable = () => {
         <TeoButton warning size='50%' >Indeferido</TeoButton>
 
       </ButtonDiv>
+
+
 
       {modalIsActived && <TeoModal.SendMessage
           closeModal={() => {setModalIsActived(!modalIsActived)}}

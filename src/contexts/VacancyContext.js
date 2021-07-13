@@ -10,6 +10,9 @@ export function VacancyContextProvider({ children }) {
   const [overviewItem, setOverviewItem] = useState({})
 
   const [message, setMessage] = useState('')
+  const [messages, setMessages] = useState([])
+  const [MessagesUpdate, setMessagesUpdate] = useState(false);
+
 
   useEffect(() => {
 
@@ -48,7 +51,9 @@ export function VacancyContextProvider({ children }) {
   }
 
   async function getMessages() {
-
+    await api.get(`messages/${1}/${2}`).then(
+      response => {setMessages(response.data)}
+    );
   }
 
   return (
@@ -57,11 +62,15 @@ export function VacancyContextProvider({ children }) {
         resultDb,
         overviewItem,
         message,
+        messages,
+        MessagesUpdate,
         setMessage,
         setUpdate,
         loadOverview,
         loadVacancyList,
-        sendMessage
+        sendMessage,
+        getMessages,
+        setMessagesUpdate
       }}>
 
         { children }
