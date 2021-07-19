@@ -29,6 +29,7 @@ const Routes = () => (
 
       {
         <>
+          <Route exact path="/" component={Login} />
           <SchoolRotes />
 
           <VacancyContextProvider>
@@ -41,10 +42,8 @@ const Routes = () => (
 
 
 
-      {/* <Route path="/schoolregister" component={SchoolRegister} /> */}
-      <Route exact path="/" component={Login} />
+      {/* <Route path="/dashboard" component={Dashboard} /> */}
       <Route path="*" component={() => <h1>Page not found</h1>} />
-      {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
     </Switch>
   </BrowserRouter>
 );

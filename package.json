@@ -24,7 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server fakeServer.json -w -p 3333"
+    "server": "json-server fakeServer.json --routes routes.json -w -p 3100"
   },
   "eslintConfig": {
     "extends": "react-app"

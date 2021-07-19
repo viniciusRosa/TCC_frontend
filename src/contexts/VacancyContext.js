@@ -26,13 +26,13 @@ export function VacancyContextProvider({ children }) {
 
   async function loadVacancyList() {
 
-    await api.get('vacancyrequest').then(response => {
+    await api.get('vacancyrequests/').then(response => {
       setResult(response.data)
      })
   }
 
   async function loadOverview(student) {
-    await api.get(`vacancyrequest/${student}`).then(
+    await api.get(`vacancyrequests/${student}`).then(
       response => {
         setOverviewItem(response.data[0])
       }
