@@ -18,12 +18,12 @@ const TeoListItem = ({ item, overview }) => {
             <ListTd>
               <div>
                 <ImgThumb src={item.image} />
-                <ContentLink> {item.name} </ContentLink>
+                <ContentLink> {item.student} </ContentLink>
               </div>
             </ListTd>
 
             <ListTd>
-              <ContentLink> {item.school_name} </ContentLink>
+              <ContentLink> {item.school} </ContentLink>
             </ListTd>
 
             <ListTd>

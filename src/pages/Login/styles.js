@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import logo from '../../assets/logoV2.png'
+
 
 export const TEOLoginContainer = styled.div`
   display: flex;
@@ -14,12 +16,12 @@ export const TEOLoginContainer = styled.div`
   padding: 2rem;
   border-radius: 5px;
   min-width: 300px;
+  box-shadow: 0.1rem 0.1rem 0.1rem var(--color-grey-medium );
  `;
 
  export const FormWrapper = styled.div`
-  border: 1px solid red;
   width: 100%;
-
+  margin-top: 20px;
  `;
 
  export const LoginForm = styled.form`
@@ -27,19 +29,17 @@ export const TEOLoginContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid black
   width: 100%;
-  
+
  `;
 
  export const Label = styled.label`
   display: flex;
   flex-direction: column;
   margin: 1rem 0;
-  border: 1px solid yellow
   width: 100%;
 
- `; 
+ `;
 
 
  export const Input = styled.input`
@@ -47,3 +47,11 @@ export const TEOLoginContainer = styled.div`
   width: 100%;
   height: 24px;
  `;
+
+export const TeoLogo = styled.img.attrs({
+  src: logo,
+  alt: 'Logo do Teo'
+})`
+  height: 88px;
+  padding: 2rem, 0;
+`;

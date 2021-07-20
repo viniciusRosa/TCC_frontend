@@ -1,23 +1,37 @@
-import {
-  vacancyOverview,
-  schoolOverview,
-  pointOverview } from '../pages'
-
 
 export default [
   {
-    component: vacancyOverview,
-    path: '/vacancy',
-    title: 'Solicitações',
+    path: '/dashboard',
+    title: 'Dashboard',
   },
   {
-    component: schoolOverview,
+    path: '/vacancyrequest',
+    title: 'Solicitações pendentes',
+    children: [
+      {
+        path: '/vacancyqueue',
+        title: 'Fila de espera'
+      },
+      {
+        path: '/vacancyaccepted',
+        title: 'Deferidos'
+      },
+      {
+        path: 'vacancyrejected',
+        title: 'Indeferidos'
+      }
+    ]
+  },
+  {
     path: '/schools',
     title: 'Escolas',
   },
   {
-    component: pointOverview,
-    path: '/Points',
+    path: '/points',
     title: 'Pontos',
+  },
+  {
+    path: '/rotas',
+    title: 'Rotas',
   },
 ]

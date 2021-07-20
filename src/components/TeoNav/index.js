@@ -44,13 +44,13 @@ const TeoNav = ({ status }) => {
               return (
                 <DivM>
                   <TeoMenuLi key={item.path}> <Link to={item.path}>{item.title}</Link>
-                  </TeoMenuLi>
-                  {/* {
+                  {
                     item.children &&
                     <>
                     <SubMenu item={item}/>
                     </>
-                  } */}
+                  }
+                  </TeoMenuLi>
 
                 </DivM>
               )

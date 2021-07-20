@@ -15,33 +15,40 @@ import {
 import { useVacancy } from '../../../../contexts/VacancyContext';
 import TeoButton from '../../../../components/TeoButton';
 import TeoModal from '../../../../components/TeoModal';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 
 const TeoDataTable = () => {
 
   const { state } = useLocation();
-  const history = useHistory();
 
   const [modalIsActived, setModalIsActived] = useState(false);
   const [loading, setLoading] = useState(false);
   const [modalIsActivedSuccess, setModalIsActivedSuccess] = useState(false);
   const [modalIsActivedError, setModalIsActivedError] = useState(false);
 
+  const [overviewItem, setOverviewItem] = useState({})
+
 
   const {
-    overviewItem,
+    loadOverview,
+
     messages,
     MessagesUpdate,
-    loadOverview,
     sendMessage,
     getMessages,
     setMessagesUpdate
   } = useVacancy()
 
   useEffect(() => {
-    loadOverview(state.student)
+    async function getStudent() {
+      const student = await loadOverview(state.student);
+      setOverviewItem(student)
+    }
+    getStudent()
   }, [])
+
+  console.log(overviewItem)
 
   useEffect(() => {
     getMessages()

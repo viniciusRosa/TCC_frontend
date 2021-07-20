@@ -4,7 +4,7 @@ import { FiMenu, FiX } from 'react-icons/fi'
 
 export const Wrapper = styled.div`
   position: relative;
-  width: ${ props => props.status ? '0' : '256px' };
+  width: ${ props => props.status ? '0' : '200px' };
   /* flex-direction: ${ props => props.status ? 'row' : 'column' }; */
 `;
 
@@ -43,7 +43,6 @@ const hide = css`
 `;
 
 export const DivM = styled.div`
-  /* border-right: 1px solid var(--color-grey-medium); */
   border-bottom: 1px solid var(--color-grey-medium);
 
 
@@ -54,9 +53,7 @@ export const DivM = styled.div`
 
 export const TeoMenuLi = styled.li`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* padding: 1rem 1rem; */
+  flex-direction: column;
   transition: background-color 0.5s ;
   cursor: pointer;
 
@@ -69,6 +66,10 @@ export const TeoMenuLi = styled.li`
     font-size: 1.2rem;
     padding: 20px;
     color: var(--color-grey-dark);
+  }
+
+  & ul {
+    margin-left: 2rem;
   }
 `;
 

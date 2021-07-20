@@ -13,16 +13,23 @@ import { useVacancy } from '../../../contexts/VacancyContext';
 
 function Vacancy() {
 
+  const [resultDb, setResult] = useState([]);
+
   const {
-    resultDb,
-    setUpdate
+    loadVacancyList
   } = useVacancy()
 
   useEffect(() => {
 
-    setUpdate(true)
+    async function getVacancy() {
+      const vacancy = await loadVacancyList('queue');
+      setResult(vacancy);
+    }
+    getVacancy()
 
-  }, [])
+  }, [loadVacancyList])
+
+  console.log(resultDb)
 
   const history = useHistory();
 
@@ -41,7 +48,7 @@ function Vacancy() {
         <TeoNav />
         <TeoMainWrapper>
           <TeoNavTop />
-          <TeoPageTitle title="Solicitações pendentes" />
+          <TeoPageTitle title="Fila de espera" />
           <TeoBox>
 
             {resultDb <= 0 ? <Content>Nenhuma solicitação pendente</Content> :
