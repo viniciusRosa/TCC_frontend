@@ -20,20 +20,12 @@ export function VacancyContextProvider({ children }) {
     return response.data[0]
   }
 
-  // async function loadOverview(student) {
-  //   await api.get(`vacancyrequests/${student}`).then(
-  //     response => {
-  //       setOverviewItem(response.data[0])
-  //     }
-  //   )
-  // }
-
   async function sendMessage() {
 
     await api.post('/messages', {
       data: {
-        from: 1,
-        to: overviewItem.user_id,
+        from: '45393f92-2489-4fde-b11f-efd1634594e4',
+        to: overviewItem.id,
         message: message
       }
     })

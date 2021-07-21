@@ -16,6 +16,7 @@ import { useVacancy } from '../../../../contexts/VacancyContext';
 import TeoButton from '../../../../components/TeoButton';
 import TeoModal from '../../../../components/TeoModal';
 import { useLocation } from 'react-router-dom';
+import urlimage from '../../../../services/urlImage';
 
 
 const TeoDataTable = () => {
@@ -47,8 +48,6 @@ const TeoDataTable = () => {
     }
     getStudent()
   }, [])
-
-  console.log(overviewItem)
 
   useEffect(() => {
     getMessages()
@@ -98,7 +97,7 @@ const TeoDataTable = () => {
       <div>
         <DivHead>
           <div>
-            <img src={overviewItem.image} />
+            <img src={`${urlimage.baseURL}${overviewItem.filename}`} alt='foto do aluno'/>
             <p>{overviewItem.name}</p>
           </div>
         </DivHead>
@@ -145,7 +144,7 @@ const TeoDataTable = () => {
             </TableRow>
             <TableRow>
               <td>Escola</td>
-              <td>{overviewItem.school_name}</td>
+              <td>{overviewItem.school}</td>
             </TableRow>
             <TableRow>
               <td>Turno</td>
