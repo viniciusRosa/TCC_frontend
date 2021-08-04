@@ -5,10 +5,7 @@ export const VacancyContext = createContext({});
 
 export function VacancyContextProvider({ children }) {
 
-  const [overviewItem, setOverviewItem] = useState({})
   const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState([])
-  const [MessagesUpdate, setMessagesUpdate] = useState(false);
 
   async function loadVacancyList(status) {
     const response = await api.get(`vacancyrequest/${status}`)
@@ -20,36 +17,31 @@ export function VacancyContextProvider({ children }) {
     return response.data[0]
   }
 
-  async function sendMessage() {
+  async function loadMessages(vacancyrequest) {
+    const response = await api.get(`messages/${vacancyrequest}`);
+    return response.data;
+  }
+
+  async function sendMessage(vacancyrequestId, from, to, message) {
 
     await api.post('/messages', {
-      data: {
-        from: '45393f92-2489-4fde-b11f-efd1634594e4',
-        to: overviewItem.id,
+        vacancyrequestId: vacancyrequestId,
+        from: from,
+        to: to,
         message: message
-      }
     })
   }
 
-  async function getMessages() {
-    await api.get(`messages/${1}/${2}`).then(
-      response => {setMessages(response.data.rows)}
-    );
-  }
 
   return (
     <VacancyContext.Provider
       value={{
-        overviewItem,
         message,
-        messages,
-        MessagesUpdate,
         setMessage,
         loadOverview,
         loadVacancyList,
+        loadMessages,
         sendMessage,
-        getMessages,
-        setMessagesUpdate
       }}>
 
         { children }

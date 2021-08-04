@@ -29,16 +29,16 @@ const TeoDataTable = () => {
   const [modalIsActivedError, setModalIsActivedError] = useState(false);
 
   const [overviewItem, setOverviewItem] = useState({})
+  const [MessagesUpdate, setMessagesUpdate] = useState(false);
+  const [messages, setMessages] = useState([])
 
+  const user = '31cfc616-530d-4621-bdb7-d61b626baab6';
 
   const {
     loadOverview,
-
-    messages,
-    MessagesUpdate,
+    loadMessages,
     sendMessage,
-    getMessages,
-    setMessagesUpdate
+    message
   } = useVacancy()
 
   useEffect(() => {
@@ -50,7 +50,11 @@ const TeoDataTable = () => {
   }, [])
 
   useEffect(() => {
-    getMessages()
+    async function getMessages() {
+      const messages = await loadMessages(state.vacancyrequest)
+      setMessages(messages)
+    }
+    getMessages();
     setMessagesUpdate(false)
   }, [MessagesUpdate])
 
@@ -62,8 +66,9 @@ const TeoDataTable = () => {
   async function handleSendMessage() {
     setModalIsActived(false);
     setLoading(true);
+    console.log(message)
     try{
-      await sendMessage();
+      await sendMessage(state.vacancyrequest, user, state.student, message);
       setLoading(false);
       setModalIsActivedSuccess(!modalIsActivedSuccess)
       setMessagesUpdate(true)
@@ -160,7 +165,7 @@ const TeoDataTable = () => {
 
         messages.map((message, index) => {
 
-          if (message.from_id === overviewItem.user_id) {
+          if (message.from_id === state.student) {
             return (
               <DivstudentData>
                 <span>{overviewItem.name}</span>

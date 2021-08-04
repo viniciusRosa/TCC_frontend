@@ -29,15 +29,14 @@ function Vacancy() {
 
   }, [loadVacancyList])
 
-  console.log(resultDb)
-
   const history = useHistory();
 
-  async function goOverview(id) {
+  async function goOverview(studentId, vacancyrequestId) {
     history.push({
       pathname: '/vacancy/overview',
       state: {
-        student: id
+        student: studentId,
+        vacancyrequest: vacancyrequestId
       }
     })
   }
@@ -57,7 +56,7 @@ function Vacancy() {
                 return (
                   <TeoListItem key={item.id}
                     item={item}
-                    overview={() => { goOverview(item.id) }}
+                    overview={() => { goOverview(item.id, item.vacancyrequest) }}
                   />
                 )
               })}
