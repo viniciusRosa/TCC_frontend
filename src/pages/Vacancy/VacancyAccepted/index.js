@@ -51,7 +51,7 @@ function Vacancy() {
           <TeoPageTitle title="Solicitações Deferidas" />
           <TeoBox>
 
-            {resultDb <= 0 ? <Content>Nenhuma solicitação pendente</Content> :
+            {resultDb <= 0 ? <Content>Nenhuma solicitação aceita</Content> :
               resultDb.map((item) => {
 
                 return (

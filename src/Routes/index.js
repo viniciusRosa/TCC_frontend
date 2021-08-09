@@ -6,8 +6,9 @@ import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
 
 import SchoolRotes from './SchoolRotes';
-import VacancyRotes from './VacancyRotes';
+import VacancyRoutes from './VacancyRoutes';
 import PointRotes from './PointRotes';
+import RouteRoutes from './RouteRoutes';
 
 import {VacancyContextProvider} from '../contexts/VacancyContext';
 
@@ -35,10 +36,12 @@ const Routes = () => (
           <SchoolRotes />
 
           <VacancyContextProvider>
-            <VacancyRotes />
+            <VacancyRoutes />
           </VacancyContextProvider>
 
           <PointRotes />
+
+          <RouteRoutes />
         </>
       }
 

@@ -51,7 +51,7 @@ function Vacancy() {
           <TeoPageTitle title="Fila de espera" />
           <TeoBox>
 
-            {resultDb <= 0 ? <Content>Nenhuma solicitação pendente</Content> :
+            {resultDb <= 0 ? <Content>Nenhuma solicitação na fila de espera</Content> :
               resultDb.map((item) => {
 
                 return (

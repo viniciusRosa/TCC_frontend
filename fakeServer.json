@@ -77,7 +77,7 @@
     }
   ],
 
-  "vacancyrequests": [
+  "vacancyrequest/in_process": [
     {
       "id": 1,
       "email": "escola.@escola.com",
