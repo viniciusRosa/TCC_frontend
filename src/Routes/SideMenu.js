@@ -5,7 +5,7 @@ export default [
     title: 'Dashboard',
   },
   {
-    path: '/vacancyrequest',
+    path: '/solicitacoespendentes',
     title: 'Solicitações pendentes',
     children: [
       {

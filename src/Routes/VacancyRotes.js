@@ -11,7 +11,7 @@ import Overview from '../pages/Vacancy/Overview';
 
 const VacancyRotes = () => (
   <>
-    <Route exact path='/vacancyrequest' component={ VacancyRequest } />
+    <Route exact path='/solicitacoespendentes' component={ VacancyRequest } />
     <Route exact path='/vacancyaccepted' component={ VacancyAccepted } />
     <Route exact path='/vacancyrejected' component={ VacancyRejected } />
     <Route exact path='/vacancyqueue' component={ VacancyQueue } />

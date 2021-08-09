@@ -7,6 +7,7 @@ import {
   ListTr,
   ListTd
 } from './styles';
+import urlimage from '../../../../services/urlImage';
 
 const TeoListItem = ({ item, overview }) => {
 
@@ -17,7 +18,7 @@ const TeoListItem = ({ item, overview }) => {
           <ListTr>
             <ListTd>
               <div>
-                <ImgThumb src={item.image} />
+                <ImgThumb src={`${urlimage.baseURL}${item.filename}`} />
                 <ContentLink> {item.student} </ContentLink>
               </div>
             </ListTd>
