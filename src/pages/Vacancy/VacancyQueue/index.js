@@ -33,11 +33,12 @@ function Vacancy() {
 
   const history = useHistory();
 
-  async function goOverview(id) {
+  async function goOverview(studentId, vacancyrequestId) {
     history.push({
       pathname: '/vacancy/overview',
       state: {
-        student: id
+        student: studentId,
+        vacancyrequest: vacancyrequestId
       }
     })
   }
@@ -48,7 +49,7 @@ function Vacancy() {
         <TeoNav />
         <TeoMainWrapper>
           <TeoNavTop />
-          <TeoPageTitle title="Fila de espera" />
+          <TeoPageTitle title="Solicitações pendentes" />
           <TeoBox>
 
             {resultDb <= 0 ? <Content>Nenhuma solicitação na fila de espera</Content> :
@@ -57,7 +58,7 @@ function Vacancy() {
                 return (
                   <TeoListItem key={item.id}
                     item={item}
-                    overview={() => { goOverview(item.id) }}
+                    overview={() => { goOverview(item.id, item.vacancyrequest) }}
                   />
                 )
               })}

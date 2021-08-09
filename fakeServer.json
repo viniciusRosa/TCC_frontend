@@ -43,24 +43,8 @@
       "phone_number": "(51) 3663-1979"
     }
   ],
-  "points": [
-    {
-      "id": 1,
-      "school_name": "Polivalente",
-      "image": 1,
-      "address": "Av.Brasil",
-      "number": "243",
-      "district": "Porto lacustre",
-      "complement": "",
-      "uf": "RS",
-      "city": "Osório",
-      "cep": "95520-000",
-      "email": "escola.@escola.com",
-      "phone_number": "(51) 3663-1979"
-    }
-  ],
 
-  "vehicles": [
+  "in_progress": [
     {
       "id": 1,
       "school_name": "Polivalente",
