@@ -76,7 +76,7 @@ function Routes() {
         <TeoNav />
         <TeoMainWrapper>
           <TeoNavTop />
-          <TeoPageTitle title="Pontos de parada" />
+          <TeoPageTitle title="Rotas" />
           <TeoBox>
             <DivCreateNew>
               <TeoButton primary size='50%' onClick={createNew}>Cadastrar nova rota</TeoButton>

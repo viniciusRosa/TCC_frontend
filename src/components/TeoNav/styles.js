@@ -57,10 +57,6 @@ export const TeoMenuLi = styled.li`
   transition: background-color 0.5s ;
   cursor: pointer;
 
-  &:hover {
-    background-color: var(--color-grey-light);
-  }
-
   & > a {
     text-decoration: none;
     font-size: 1.2rem;
