@@ -12,9 +12,11 @@ export const TeoNavWrapper = styled.nav`
   position:relative;
   display: ${ props => props.status ? 'none' : 'flex' };
   flex-direction: column;
-  /* width: 256px;
-  height: 100%; */
   background-color: var(--color-white);
+
+  & > ul {
+    margin-top: 56px;
+  }
 `;
 
 export const NavTop = styled.nav`
@@ -35,20 +37,11 @@ export const TeoLogo = styled.img.attrs({
 `;
 
 export const TeoMenuUl = styled.ul`
-  /* margin: 1rem 1rem; */
+
 `;
 
 const hide = css`
   display: none;
-`;
-
-export const DivM = styled.div`
-  border-bottom: 1px solid var(--color-grey-medium);
-
-
-  & > ${TeoMenuUl}{
-    margin-left: 2rem;
-  }
 `;
 
 export const TeoMenuLi = styled.li`
@@ -57,24 +50,43 @@ export const TeoMenuLi = styled.li`
   transition: background-color 0.5s ;
   cursor: pointer;
 
+  &:hover {
+  }
+
+  & a:hover{
+    color: white;
+    background-color: var(--color-grey-dark);
+  }
+
   & > a {
     text-decoration: none;
     font-size: 1.2rem;
     padding: 20px;
     color: var(--color-grey-dark);
+    border-bottom: 1px solid  #efefef;
+    border-left: 1px solid #efefef;
   }
 
   & ul {
     margin-left: 2rem;
   }
+
+  & ul li a {
+
+  }
 `;
 
+export const DivM = styled.div`
+
+  & > ${TeoMenuUl}{
+    margin-left: 2rem;
+  }
+`;
 
 export const TeoMenuIcon = styled(FiMenu)`
   font-size: 36px;
   color: var(--color-white);
 `;
-
 
 export const TeoMenuButton = styled.a`
   display: flex;
@@ -88,8 +100,10 @@ export const TeoMenuButton = styled.a`
 
   &:hover {
     background-color: white;
+
     & > ${TeoMenuIcon} {
       color: var(--color-primary);
+
     }
   }
 `;
