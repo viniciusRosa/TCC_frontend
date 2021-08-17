@@ -5,6 +5,8 @@
     "/api/vacancyrequest/accepted": "/accepted",
     "/api/vacancyrequest/queue": "/queue",
     "/api/points": "/points",
-    "/api/points/*": "/pointresult"
+    "/api/points/*": "/pointresult",
+    "/api/routes": "/routes"
+
 }
 

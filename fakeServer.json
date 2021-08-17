@@ -107,5 +107,27 @@
       "latitude": "123123123",
       "longitude": "234234234"
     }
+  ],
+
+  "routes": [
+    {
+      "id": "d664bba4-16eb-46df-9aa8-1f83a67ce870",
+      "name": "Rota 1",
+      "vacancy": 40,
+      "shift": "Manhã"
+    },
+    {
+      "id": "d664bba4-16eb-46df-9aa8-1f83a67ce870",
+      "name": "Rota 2",
+      "vacancy": 30,
+      "shift": "Tarde"
+    },
+    {
+      "id": "d664bba4-16eb-46df-9aa8-1f83a67ce870",
+      "name": "Rota 3",
+      "vacancy": 23,
+      "shift": "Noite"
+    }
+
   ]
 }

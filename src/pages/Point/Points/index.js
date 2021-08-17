@@ -14,6 +14,7 @@ import Content from '../../../components/TeoField/Content'
 import TeoButton from '../../../components/TeoButton';
 import { DivCreateNew } from './styles';
 import { usePoint } from '../../../contexts/PointContext';
+import HeaderList from '../../../components/HeaderList'
 
 function Points() {
 
@@ -90,6 +91,7 @@ function Points() {
             <DivCreateNew>
               <TeoButton primary size='50%' onClick={createNew}>Cadastrar novo ponto de parada</TeoButton>
             </DivCreateNew>
+            <HeaderList  arrayFields={['Nome',  'Opções']} />
             { items <= 0 ? <Content>'Nenhum ponto cadastrado</Content> :
               items.map(item => {
                 return (

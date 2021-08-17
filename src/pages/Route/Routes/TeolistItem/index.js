@@ -1,5 +1,5 @@
 import React from 'react';
-import { Item, Left, Right, ImgThumb, ContentLink } from './styles';
+import { Item, Left, Right, DivColumn, ContentLink } from './styles';
 import urlimage from '../../../../services/urlImage';
 
 import TeoButton from '../../../../components/TeoButton'
@@ -10,10 +10,17 @@ const TeoListItem = ({item, del, update, overview}) => {
 
   return (
     <Item>
-      <Right >
-        <ImgThumb src='https://images.pexels.com/photos/2942172/pexels-photo-2942172.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' />
-        <ContentLink onClick={overview} >{item.point_name}</ContentLink>
-      </Right>
+      <DivColumn >
+        <ContentLink onClick={overview} >{item.name}</ContentLink>
+      </DivColumn>
+
+      <DivColumn>
+      <ContentLink onClick={overview}>23/{item.vacancy}</ContentLink>
+      </DivColumn>
+
+      <DivColumn>
+      <ContentLink onClick={overview}>{item.shift}</ContentLink>
+      </DivColumn>
 
       <Left>
         <TeoButton secondary size='100px' onClick={update}>Editar</TeoButton>

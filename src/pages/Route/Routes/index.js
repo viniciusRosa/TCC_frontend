@@ -13,6 +13,8 @@ import TeoModal from '../../../components/TeoModal';
 import Content from '../../../components/TeoField/Content'
 import TeoButton from '../../../components/TeoButton';
 import { DivCreateNew } from './styles';
+import { useRoute } from '../../../contexts/RouteContext';
+import HeaderList from '../../../components/HeaderList'
 
 function Routes() {
 
@@ -22,16 +24,18 @@ function Routes() {
   const [itemToDelete, setItemToDelete] = useState(0);
   const history = useHistory();
 
-  useEffect(() => {
+  const {
+    loadRouteList
+  } = useRoute();
 
-    if(update === true) {
-      setUpdate(false);
+  useEffect(() => {
+    async function getRoutes() {
+      const routes = await loadRouteList();
+      setItem(routes);
     }
 
-    api.get('points').then(response => {
-      setItem(response.data)
-     })
-  }, [update])
+    getRoutes()
+  }, [])
 
   function confirmDelete(id) {
     setItemToDelete(id)
@@ -39,31 +43,31 @@ function Routes() {
   }
 
   async function deleteItem(id) {
-    await api.delete(`points/${id}`);
-    setModalIsActived(!modalIsActived);
-    setUpdate(true);
+    // await api.delete(`points/${id}`);
+    // setModalIsActived(!modalIsActived);
+    // setUpdate(true);
   }
 
   function createNew() {
-    history.push({
-      pathname: '/points/create',
-    })
+    // history.push({
+    //   pathname: '/points/create',
+    // })
   }
 
   async function UpdateItem(id) {
-    const { data } = await api.get(`points/${id}`)
+    // const { data } = await api.get(`points/${id}`)
 
-    history.push({
-      pathname: '/points/update',
-      state: {
-        item: data[0],
-      }
-    })
+    // history.push({
+    //   pathname: '/points/update',
+    //   state: {
+    //     item: data[0],
+    //   }
+    // })
   }
 
   function goOverview(id) {
     history.push({
-      pathname: '/points/overview',
+      pathname: '/route/overview',
       state: {
         item: id,
       }
@@ -81,6 +85,7 @@ function Routes() {
             <DivCreateNew>
               <TeoButton primary size='50%' onClick={createNew}>Cadastrar nova rota</TeoButton>
             </DivCreateNew>
+            <HeaderList  arrayFields={['Nome', 'Vagas', 'Turno', 'Opções']} />
             { items <= 0 ? <Content>'Nenhuma rota cadastrado</Content> :
               items.map(item => {
                 return (

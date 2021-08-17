@@ -10,6 +10,7 @@ import TeoBox from '../../../components/TeoBox';
 import TeoListItem from './TeolistItem';
 import Content from '../../../components/TeoField/Content'
 import { useVacancy } from '../../../contexts/VacancyContext';
+import HeaderList from '../../../components/HeaderList'
 
 function Vacancy() {
 
@@ -51,6 +52,7 @@ function Vacancy() {
           <TeoNavTop />
           <TeoPageTitle title="Solicitações Indeferidas" />
           <TeoBox>
+          <HeaderList  arrayFields={['Nome', 'Escola', 'Turno', 'Cidade', 'Data do pedido']} />
 
             {resultDb <= 0 ? <Content>Nenhuma solicitação indeferida</Content> :
               resultDb.map((item) => {

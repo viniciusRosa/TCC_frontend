@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import Content from '../../../../components/TeoField/Content';
 
 
 export const Item = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   min-height: 50px;
   margin-top: 1.5rem;
 
@@ -12,9 +11,11 @@ export const Item = styled.div`
   border-radius: 2px;
 `;
 
-export const ContentLink = styled(Content)`
-  cursor: pointer;
-  
+export const ContentLink = styled.p`
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+
 `;
 
 
@@ -43,8 +44,12 @@ export const ImgThumb = styled.img`
 `;
 
 export const DivColumn = styled.div`
-  display: flex;
+display: flex;
   justify-content:center;
   align-items: center;
+  padding-right: 1rem;
   width: 100%;
+  border : 1px solid white;
+  background-color: var(--color-grey-medium);
+
 `;
