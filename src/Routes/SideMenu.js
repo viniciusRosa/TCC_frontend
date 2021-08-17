@@ -7,20 +7,18 @@ export default [
   {
     path: '/solicitacoespendentes',
     title: 'Solicitações pendentes',
-    children: [
-      {
-        path: '/vacancyqueue',
-        title: 'Fila de espera'
-      },
-      {
-        path: '/vacancyaccepted',
-        title: 'Deferidos'
-      },
-      {
-        path: 'vacancyrejected',
-        title: 'Indeferidos'
-      }
-    ]
+  },
+  {
+    path: '/vacancyqueue',
+    title: 'Fila de espera'
+  },
+  {
+    path: '/vacancyaccepted',
+    title: 'Deferidos'
+  },
+  {
+    path: 'vacancyrejected',
+    title: 'Indeferidos'
   },
   {
     path: '/schools',
