@@ -10,7 +10,8 @@ import VacancyRoutes from './VacancyRoutes';
 import PointRotes from './PointRotes';
 import RouteRoutes from './RouteRoutes';
 
-import {VacancyContextProvider} from '../contexts/VacancyContext';
+import { VacancyContextProvider } from '../contexts/VacancyContext';
+import { PointContextProvider } from '../contexts/PointContext';
 
 // const PrivateRoute = ({ component: Component, ...rest }) => (
 //   <Route
@@ -39,7 +40,9 @@ const Routes = () => (
             <VacancyRoutes />
           </VacancyContextProvider>
 
-          <PointRotes />
+          <PointContextProvider>
+            <PointRotes />
+          </PointContextProvider>
 
           <RouteRoutes />
         </>

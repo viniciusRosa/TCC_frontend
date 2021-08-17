@@ -1,151 +1,111 @@
 {
-  "schools": [
-    {
-      "id": 1,
-      "school_name": "Polivalente",
-      "image": "https://github.com/viniciusRosa.png",
-      "address": "Av.Brasil",
-      "number": "243",
-      "district": "Porto lacustre",
-      "complement": "",
-      "uf": "RS",
-      "city": "Osório",
-      "cep": "95520-000",
-      "email": "escola.@escola.com",
-      "phone_number": "(51) 3663-1979"
-    },
-    {
-      "id": 2,
-      "school_name": "Polivalente",
-      "image": "https://github.com/viniciusRosa.png",
-      "address": "Av.Brasil",
-      "number": "243",
-      "district": "Porto lacustre",
-      "complement": "",
-      "uf": "RS",
-      "city": "Osório",
-      "cep": "95520-000",
-      "email": "escola.@escola.com",
-      "phone_number": "(51) 3663-1979"
-    },
-    {
-      "id": 3,
-      "school_name": "Polivalente",
-      "image": "https://github.com/viniciusRosa.png",
-      "address": "Av.Brasil",
-      "number": "243",
-      "district": "Porto lacustre",
-      "complement": "",
-      "uf": "RS",
-      "city": "Osório",
-      "cep": "95520-000",
-      "email": "escola.@escola.com",
-      "phone_number": "(51) 3663-1979"
-    }
-  ],
-
   "in_progress": [
     {
-      "id": 1,
-      "school_name": "Polivalente",
-      "image": 1,
-      "address": "Av.Brasil",
-      "number": "243",
-      "district": "Porto lacustre",
-      "complement": "",
-      "uf": "RS",
-      "city": "Osório",
-      "cep": "95520-000",
-      "email": "escola.@escola.com",
-      "phone_number": "(51) 3663-1979"
+      "filename": "1627832474177-40827609-studentphoto.jpg",
+      "image": "c92cfd1d-d3e5-467c-b24a-a9d2fadc43cb",
+      "student": "vinicius rosa",
+      "school": "polivalente",
+      "shift": "tarde",
+      "uf": "TO",
+      "city": "Aparecida do Rio Negro",
+      "created_at": "2021-08-01T15:41:14.480Z",
+      "id": "3c1eef4f-fd69-4488-9533-5b8e33ac12fe",
+      "vacancyrequest": "57a946aa-a940-4849-a543-008241713a08"
     }
   ],
 
-  "vacancyrequest/in_process": [
+  "rejected": [
     {
-      "id": 1,
-      "email": "escola.@escola.com",
-      "image": "https://github.com/viniciusRosa.png",
-      "name": "Vinicius Rosa",
-      "rg": "24234234234",
-      "cpf": "234234234",
-      "borndate": "23/01/1990",
+      "filename": "1627832474177-40827609-studentphoto.jpg",
+      "image": "c92cfd1d-d3e5-467c-b24a-a9d2fadc43cb",
+      "student": "vinicius rosa",
+      "school": "polivalente",
+      "shift": "tarde",
+      "uf": "TO",
+      "city": "Aparecida do Rio Negro",
+      "created_at": "2021-08-01T15:41:14.480Z",
+      "id": "3c1eef4f-fd69-4488-9533-5b8e33ac12fe",
+      "vacancyrequest": "57a946aa-a940-4849-a543-008241713a08"
+    }
+  ],
+
+  "accepted": [
+    {
+      "filename": "1627832474177-40827609-studentphoto.jpg",
+      "image": "c92cfd1d-d3e5-467c-b24a-a9d2fadc43cb",
+      "student": "vinicius rosa",
+      "school": "polivalente",
+      "shift": "tarde",
+      "uf": "TO",
+      "city": "Aparecida do Rio Negro",
+      "created_at": "2021-08-01T15:41:14.480Z",
+      "id": "3c1eef4f-fd69-4488-9533-5b8e33ac12fe",
+      "vacancyrequest": "57a946aa-a940-4849-a543-008241713a08"
+    }
+  ],
+
+  "queue": [
+    {
+      "filename": "1627832474177-40827609-studentphoto.jpg",
+      "image": "c92cfd1d-d3e5-467c-b24a-a9d2fadc43cb",
+      "student": "vinicius rosa",
+      "school": "polivalente",
+      "shift": "tarde",
+      "uf": "TO",
+      "city": "Aparecida do Rio Negro",
+      "created_at": "2021-08-01T15:41:14.480Z",
+      "id": "3c1eef4f-fd69-4488-9533-5b8e33ac12fe",
+      "vacancyrequest": "57a946aa-a940-4849-a543-008241713a08"
+    }
+  ],
+
+  "points": [
+    {
+      "id": "d664bba4-16eb-46df-9aa8-1f83a67ce870",
+      "name": "PONTO - polivalente",
       "address": "Av.Brasil",
       "number": "243",
-      "city": "Osório",
       "uf": "RS",
-      "complement": "",
-      "school_name": "Polivalente",
-      "shift": "manhã",
-      "class": ""
+      "city": "Osório",
+      "latitude": "123123123",
+      "longitude": "234234234"
     },
     {
-      "id": 2,
-      "email": "escola.@escola.com",
-      "image": "https://github.com/viniciusRosa.png",
-      "name": "Vinicius Rosa2",
-      "rg": "24234234234",
-      "cpf": "234234234",
-      "borndate": "23/01/1990",
+      "id": "d664bba4-16eb-46df-9aa8-1f83a67ce870",
+      "name": "PONTO - IFRS",
       "address": "Av.Brasil",
       "number": "243",
-      "city": "Osório",
       "uf": "RS",
-      "complement": "",
-      "school_name": "Polivalente",
-      "shift": "manhã",
-      "class": ""
+      "city": "Osório",
+      "latitude": "123123123",
+      "longitude": "234234234"
     },
     {
-      "id": 3,
-      "email": "escola.@escola.com",
-      "image": "https://github.com/viniciusRosa.png",
-      "name": "Vinicius Rosa3",
-      "rg": "24234234234",
-      "cpf": "234234234",
-      "borndate": "23/01/1990",
+      "id": "d664bba4-16eb-46df-9aa8-1f83a67ce870",
+      "name": "PONTO - 1",
       "address": "Av.Brasil",
       "number": "243",
-      "city": "Osório",
       "uf": "RS",
-      "complement": "",
-      "school_name": "Polivalente",
-      "shift": "manhã",
-      "class": ""
-    },
+      "city": "Osório",
+      "latitude": "123123123",
+      "longitude": "234234234"
+    }
+  ],
+
+  "schools": [
+
+  ],
+
+  "pointresult": [
     {
-      "id": 4,
-      "email": "escola.@escola.com",
-      "image": "https://github.com/viniciusRosa.png",
-      "name": "Vinicius Rosa4",
-      "rg": "24234234234",
-      "cpf": "234234234",
-      "borndate": "23/01/1990",
+      "id": "d664bba4-16eb-46df-9aa8-1f83a67ce870",
+      "name": "PONTO - polivalente",
       "address": "Av.Brasil",
       "number": "243",
-      "city": "Osório",
       "uf": "RS",
-      "complement": "",
-      "school_name": "Polivalente",
-      "shift": "manhã",
-      "class": ""
-    },
-    {
-      "id": 5,
-      "email": "escola.@escola.com",
-      "image": "https://github.com/viniciusRosa.png",
-      "name": "Vinicius Rosa5",
-      "rg": "24234234234",
-      "cpf": "234234234",
-      "borndate": "23/01/1990",
-      "address": "Av.Brasil",
-      "number": "243",
       "city": "Osório",
-      "uf": "RS",
-      "complement": "",
-      "school_name": "Polivalente",
-      "shift": "manhã",
-      "class": ""
+      "latitude": "123123123",
+      "longitude": "234234234"
     }
   ]
 }

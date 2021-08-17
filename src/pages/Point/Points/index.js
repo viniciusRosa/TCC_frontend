@@ -13,6 +13,7 @@ import TeoModal from '../../../components/TeoModal';
 import Content from '../../../components/TeoField/Content'
 import TeoButton from '../../../components/TeoButton';
 import { DivCreateNew } from './styles';
+import { usePoint } from '../../../contexts/PointContext';
 
 function Points() {
 
@@ -22,16 +23,24 @@ function Points() {
   const [itemToDelete, setItemToDelete] = useState(0);
   const history = useHistory();
 
+  const {
+    loadPointList
+   } = usePoint();
+
   useEffect(() => {
 
-    if(update === true) {
-      setUpdate(false);
+    async function getPoints() {
+      const points = await loadPointList();
+      setItem(points)
     }
 
-    api.get('points').then(response => {
-      setItem(response.data)
-     })
-  }, [update])
+    getPoints()
+
+    // if(update === true) {
+    //   setUpdate(false);
+    // }
+
+  }, [])
 
   function confirmDelete(id) {
     setItemToDelete(id)

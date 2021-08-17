@@ -57,7 +57,7 @@ export const TableRow = styled.tr`
 
   & td:first-child {
       border-right: 1px solid var(--color-grey-medium);
-      width: 30%;
+      width: 50%;
       text-align: right;
   }
 
@@ -71,5 +71,13 @@ export const TableRow = styled.tr`
 `;
 
 export const TableD = styled.td`
+
+`;
+
+export const Title = styled.p`
+  color: #414d6a;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
 
 `;

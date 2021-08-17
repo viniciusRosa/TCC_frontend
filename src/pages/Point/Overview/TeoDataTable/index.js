@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { ViewTable, TableHead, TableRow, DivHead } from './styles'
+import { ViewTable, TableHead, TableRow, DivHead, Title } from './styles'
 import { useLocation, useHistory, Link } from 'react-router-dom';
-import api from '../../../../services/api';
+import { usePoint } from '../../../../contexts/PointContext';
+
 
 const TeoDataTable = () => {
 
@@ -10,35 +11,43 @@ const TeoDataTable = () => {
 
   const [result, setResult] = useState({})
 
+  const {
+    loadPoint
+   } = usePoint()
+
   useEffect(() => {
-    api.get(`points/${state.item}`).then(
-      response => {
-        setResult(response.data[0])
-      }
-    )
-    }, [])
+    async function getPoint() {
+      const point = await loadPoint(state.item)
+      setResult(point)
+    }
+    getPoint()
+  }, [])
+
+  console.log(state.item)
 
   async function goToUpdate(id) {
 
-    const { data } = await api.get(`points/${id}`)
+    // const { data } = await api.get(`points/${id}`)
 
-    history.push({
-      pathname: '/points/update',
-      state: {
-        item: data[0],
-      }
-    })
+    // history.push({
+    //   pathname: '/points/update',
+    //   state: {
+    //     item: data[0],
+    //   }
+    // })
   }
 
   return (
     <div>
       <DivHead>
         <div>
-          <img src='https://images.pexels.com/photos/2942172/pexels-photo-2942172.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'/>
-          <p>{result.point_name}</p>
+        <Link to='/points' >VOLTAR</Link>
         </div>
         <Link onClick={() => goToUpdate(result.id)}>EDITAR</Link>
       </DivHead>
+      <div>
+        <Title>{result.name}</Title>
+      </div>
       <ViewTable>
         <TableHead >
           <th></th>
@@ -53,14 +62,6 @@ const TeoDataTable = () => {
             <td>{result.number}</td>
           </TableRow>
           <TableRow>
-            <td>Bairro</td>
-            <td>{result.district}</td>
-          </TableRow>
-          <TableRow>
-            <td>Complemento</td>
-            <td>{result.complement}</td>
-          </TableRow>
-          <TableRow>
             <td>UF</td>
             <td>{result.uf}</td>
           </TableRow>
@@ -69,8 +70,12 @@ const TeoDataTable = () => {
             <td>{result.city}</td>
           </TableRow>
           <TableRow>
-            <td>CEP</td>
-            <td>{result.cep}</td>
+            <td>Latitude</td>
+            <td>{result.latitude}</td>
+          </TableRow>
+          <TableRow>
+            <td>Longitude</td>
+            <td>{result.longitude}</td>
           </TableRow>
         </tbody>
       </ViewTable>

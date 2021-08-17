@@ -1,4 +1,10 @@
 {
     "/api/schools/*": "/$1",
-    "/api/vacancyrequest/*": "/in_progress"
+    "/api/vacancyrequest/in_progress": "/in_progress",
+    "/api/vacancyrequest/rejected": "/rejected",
+    "/api/vacancyrequest/accepted": "/accepted",
+    "/api/vacancyrequest/queue": "/queue",
+    "/api/points": "/points",
+    "/api/points/*": "/pointresult"
 }
+
