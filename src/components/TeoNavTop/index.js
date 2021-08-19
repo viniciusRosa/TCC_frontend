@@ -1,12 +1,12 @@
 import React from 'react';
-import { TeoNav } from './styles';
+import { TeoNav, TeoLogo } from './styles';
 
 const TeoNavTop = () => {
 
   return (
   <TeoNav>
-    <div>
-
+    <div style={{ marginRight: '1rem' }}>
+      <TeoLogo />
     </div>
   </TeoNav>
   )

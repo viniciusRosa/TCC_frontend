@@ -92,9 +92,9 @@ export const TeoMenuButton = styled.a`
   display: flex;
   justify-content: center;
   margin-right: 20px;
+  margin-left: 1rem;
   width: 40px;
   position: relative;
-  left: ${ props => props.status ? '40px' : '0' };
   cursor: pointer;
   transition: background-color 0.5s;
 
