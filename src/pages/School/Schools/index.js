@@ -8,11 +8,14 @@ import TeoMainWrapper from '../../../components/TeoMainWrapper';
 import TeoNavTop from '../../../components/TeoNavTop';
 import TeoPageTitle from '../../../components/TeoPageTitle'
 import TeoBox from '../../../components/TeoBox';
-import TeoListItem from '../../../components/TeolistItem';
+import TeoListItem from './TeolistItem';
 import TeoModal from '../../../components/TeoModal';
 import Content from '../../../components/TeoField/Content'
 import TeoButton from '../../../components/TeoButton';
 import { DivCreateNew } from './styles';
+import { useSchool } from '../../../contexts/SchoolContext';
+import HeaderList from '../../../components/HeaderList'
+
 
 function Schools() {
 
@@ -22,23 +25,28 @@ function Schools() {
   const [itemToDelete, setItemToDelete] = useState(0);
   const history = useHistory();
 
-  useEffect(() => {
+  const {
+    loadSchoolList
+  } = useSchool();
 
-    if(update === true) {
-      setUpdate(false);
+  useEffect(() => {
+    async function getSchools() {
+      const schools = await loadSchoolList();
+      setSchools(schools);
     }
 
-    api.get('schools').then(response => {
-      setSchools(response.data)
-     })
-  }, [update])
+    getSchools()
+
+    // if(update === true) {
+    //   setUpdate(false);
+    // }
+
+  }, [])
 
   function confirmDelete(id) {
     setItemToDelete(id)
     setModalIsActived(true);
   }
-
-  console.log(schoolsDb)
 
   async function deleteItem(id) {
     await api.delete(`schools/${id}`);
@@ -83,6 +91,7 @@ function Schools() {
             <DivCreateNew>
               <TeoButton primary size='50%' onClick={createNewSchool}>Cadastrar nova Escola</TeoButton>
             </DivCreateNew>
+            <HeaderList arrayFields={['Nome', '', '', 'Opções']} />
             { schoolsDb <= 0 ? <Content>'Nenhuma escola cadastrada</Content> :
               schoolsDb.map(school => {
                 return (

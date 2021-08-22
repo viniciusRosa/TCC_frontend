@@ -10,11 +10,14 @@ export const Item = styled.div`
 
   border: 1px solid var(--color-grey-medium);
   border-radius: 2px;
+  &:hover {
+    background-color: var(--color-grey-light)
+  }
 `;
 
 export const ContentLink = styled(Content)`
   cursor: pointer;
-  
+
 `;
 
 

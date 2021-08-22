@@ -1,5 +1,5 @@
 {
-    "/api/schools/*": "/$1",
+    "/api/schools": "/schools",
     "/api/vacancyrequest/in_progress": "/in_progress",
     "/api/vacancyrequest/rejected": "/rejected",
     "/api/vacancyrequest/accepted": "/accepted",

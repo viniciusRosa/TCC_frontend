@@ -6,12 +6,12 @@ export const RouteContext = createContext({});
 export function RouteContextProvider({ children }) {
 
   async function loadRouteList() {
-    const response = await api.get(`routes`)
+    const response = await api.get(`routes`);
     return response.data;
   }
 
   async function loadRoute(routeId) {
-    const response = await api.get(`routes/${routeId}`)
+    const response = await api.get(`routes/${routeId}`);
     return response.data[0]
   }
 

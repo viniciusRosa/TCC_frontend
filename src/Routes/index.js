@@ -13,6 +13,7 @@ import RouteRoutes from './RouteRoutes';
 import { VacancyContextProvider } from '../contexts/VacancyContext';
 import { PointContextProvider } from '../contexts/PointContext';
 import { RouteContextProvider } from '../contexts/RouteContext';
+import { SchoolContextProvider } from '../contexts/SchoolContext';
 
 // const PrivateRoute = ({ component: Component, ...rest }) => (
 //   <Route
@@ -35,7 +36,10 @@ const Routes = () => (
         <>
           <Route exact path="/" component={Login} />
           <Route path="/dashboard" component={Dashboard} />
-          <SchoolRotes />
+
+          <SchoolContextProvider>
+            <SchoolRotes />
+          </SchoolContextProvider>
 
           <VacancyContextProvider>
             <VacancyRoutes />
@@ -46,7 +50,7 @@ const Routes = () => (
           </PointContextProvider>
 
           <RouteContextProvider>
-          <RouteRoutes />
+            <RouteRoutes />
           </RouteContextProvider>
         </>
       }

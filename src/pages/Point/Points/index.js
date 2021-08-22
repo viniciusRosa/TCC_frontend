@@ -91,7 +91,7 @@ function Points() {
             <DivCreateNew>
               <TeoButton primary size='50%' onClick={createNew}>Cadastrar novo ponto de parada</TeoButton>
             </DivCreateNew>
-            <HeaderList  arrayFields={['Nome',  'Opções']} />
+            <HeaderList  arrayFields={['Nome','', '', 'Opções']} />
             { items <= 0 ? <Content>'Nenhum ponto cadastrado</Content> :
               items.map(item => {
                 return (

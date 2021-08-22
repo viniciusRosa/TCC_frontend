@@ -10,6 +10,9 @@ export const Item = styled.div`
   border: 1px solid var(--color-grey-medium);
   border-radius: 4px;
   cursor: pointer;
+  &:hover {
+    background-color: var(--color-grey-light)
+  }
 `;
 
 export const ContentLink = styled(Content)`
@@ -56,7 +59,6 @@ export const ListTd = styled.td`
   width: 100%;
   align-items: center;
   justify-content: center;
-  border-right: 1px solid var(--color-grey-medium);
 
   & div {
     width: 100%;

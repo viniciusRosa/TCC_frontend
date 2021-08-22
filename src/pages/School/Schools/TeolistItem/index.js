@@ -1,9 +1,8 @@
 import React from 'react';
 import { Item, Left, Right, ImgThumb, ContentLink } from './styles';
-import urlimage from '../../services/urlImage';
 
 
-import TeoButton from '../TeoButton'
+import TeoButton from '../../../../components/TeoButton';
 
 
 
@@ -12,8 +11,7 @@ const TeoListItem = ({item, del, update, overview}) => {
   return (
     <Item>
       <Right >
-        <ImgThumb src={`${urlimage.baseURL}${item.filename}`} />
-        <ContentLink onClick={overview} >{item.school_name}</ContentLink>
+        <ContentLink onClick={overview} >{item.name}</ContentLink>
       </Right>
 
       <Left>
