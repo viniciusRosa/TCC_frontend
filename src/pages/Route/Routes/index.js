@@ -83,7 +83,7 @@ function Routes() {
           <TeoPageTitle title="Rotas" />
           <TeoBox>
             <DivCreateNew>
-              <TeoButton primary size='50%' onClick={createNew}>Cadastrar nova rota</TeoButton>
+              <button className="w3-button w3-teal w3-round" onClick={createNew}>+ Nova rota</button>
             </DivCreateNew>
             <HeaderList  arrayFields={['Nome', 'Vagas', 'Turno', 'Opções']} />
             { items <= 0 ? <Content>'Nenhuma rota cadastrado</Content> :

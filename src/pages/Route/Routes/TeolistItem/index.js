@@ -1,10 +1,5 @@
 import React from 'react';
 import { Item, Left, Right, DivColumn, ContentLink } from './styles';
-import urlimage from '../../../../services/urlImage';
-
-import TeoButton from '../../../../components/TeoButton'
-
-
 
 const TeoListItem = ({item, del, update, overview}) => {
 
@@ -23,8 +18,8 @@ const TeoListItem = ({item, del, update, overview}) => {
       </DivColumn>
 
       <Left>
-        <TeoButton secondary size='100px' onClick={update}>Editar</TeoButton>
-        <TeoButton warning size='100px' onClick={del}>Deletar</TeoButton>
+      <button className="w3-button w3-round w3-dark-grey" onClick={update}>Editar</button>
+      <button className="w3-button w3-round w3-red" style={{ marginLeft: '1rem' }} onClick={del}>Deletar</button>
       </Left>
 
     </Item>

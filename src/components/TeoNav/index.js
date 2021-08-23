@@ -28,12 +28,14 @@ const TeoNav = ({ status }) => {
 
   return (
     <Wrapper status={sidebar}>
-        <NavTop>
+
+      <TeoNavWrapper status={sidebar} className='w3-sidebar w3-bar-block w3-card w3-animate-left'>
+
+      <NavTop>
           <TeoMenuButton status={sidebar} onClick={handleSidebar}>
             <TeoMenuIcon />
           </TeoMenuButton>
         </NavTop>
-      <TeoNavWrapper status={sidebar} className='w3-sidebar w3-bar-block w3-card w3-animate-left'>
 
         <TeoMenuUl >
 

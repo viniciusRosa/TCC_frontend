@@ -2,6 +2,6 @@ import styled from 'styled-components';
 
 export const DivCreateNew = styled.div`
   display: flex;
-  justify-content: center;
-  margin: 1rem 0;
+  justify-content: end;
+  margin: 0.5rem 0;
 `;

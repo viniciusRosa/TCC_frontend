@@ -3,13 +3,11 @@ import logo from '../../assets/logoBranco.png'
 import { FiMenu, FiX } from 'react-icons/fi'
 
 export const Wrapper = styled.div`
-  position: relative;
   width: ${ props => props.status ? '0' : '200px' };
   /* flex-direction: ${ props => props.status ? 'row' : 'column' }; */
 `;
 
 export const TeoNavWrapper = styled.nav`
-  position:relative;
   display: ${ props => props.status ? 'none' : 'flex' };
   flex-direction: column;
   background-color: var(--color-white);
@@ -20,12 +18,12 @@ export const TeoNavWrapper = styled.nav`
 `;
 
 export const NavTop = styled.nav`
-  display: flex;
+display: flex;
   justify-content: space-between;
   align-items: center;
   height: 56px;
   width: 100%;
-  background-color: var(--color-primary);
+  // background-color: var(--color-primary);
 `;
 
 export const TeoLogo = styled.img.attrs({

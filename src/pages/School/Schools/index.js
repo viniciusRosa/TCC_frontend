@@ -89,7 +89,7 @@ function Schools() {
           <TeoPageTitle title="Escolas" />
           <TeoBox>
             <DivCreateNew>
-              <TeoButton primary size='50%' onClick={createNewSchool}>Cadastrar nova Escola</TeoButton>
+              <button className="w3-button w3-teal w3-round" onClick={createNewSchool}>+ Nova escola</button>
             </DivCreateNew>
             <HeaderList arrayFields={['Nome', '', '', '', 'Opções']} />
             { schoolsDb <= 0 ? <Content>'Nenhuma escola cadastrada</Content> :

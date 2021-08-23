@@ -89,7 +89,7 @@ function Points() {
           <TeoPageTitle title="Pontos de parada" />
           <TeoBox>
             <DivCreateNew>
-              <TeoButton primary size='50%' onClick={createNew}>Cadastrar novo ponto de parada</TeoButton>
+              <button className="w3-button w3-teal w3-round" onClick={createNew}>+ Novo ponto de parada</button>
             </DivCreateNew>
             <HeaderList  arrayFields={['Nome','', '', 'Opções']} />
             { items <= 0 ? <Content>'Nenhum ponto cadastrado</Content> :
