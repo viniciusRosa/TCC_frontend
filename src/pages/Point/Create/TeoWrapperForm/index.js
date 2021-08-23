@@ -7,8 +7,9 @@ import TeoField from '../../../../components/TeoField';
 import TeoButton from '../../../../components/TeoButton';
 import { FormColums, ErrorMessage } from './styles';
 import TeoModal from '../../../../components/TeoModal';
-import api from '../../../../services/api';
 import axios from 'axios';
+import { useSchool } from '../../../../contexts/SchoolContext';
+
 
 const TeoWrapperForm = () => {
 
@@ -21,6 +22,10 @@ const TeoWrapperForm = () => {
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState('')
   const form = useRef(null)
+
+  const {
+    createSchool
+  } = useSchool()
 
   const { errors, trigger, reset, handleSubmit, ...methods } = useForm({
     resolver: yupResolver(schema),
@@ -56,7 +61,7 @@ const TeoWrapperForm = () => {
     setModalIsActived(!modalIsActived)
     setLoading(true)
     try {
-      const response = await api.post('points', data);
+      const response = createSchool(data);
       setLoading(false)
       setModalIsActivedSuccess(!modalIsActivedSuccess)
     } catch (err) {

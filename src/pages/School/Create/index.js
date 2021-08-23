@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import TeoContainer from '../../../components/TeoContainer';
 import TeoNav from '../../../components/TeoNav';
 import TeoMainWrapper from '../../../components/TeoMainWrapper';
@@ -17,7 +16,7 @@ function Create() {
         <TeoNav />
         <TeoMainWrapper>
           <TeoNavTop />
-          <TeoPageTitle title="cadastrar Escola" />
+          <TeoPageTitle title="Cadastrar escola" />
           <TeoBox>
             <TeoWrapperForm />
           </TeoBox>

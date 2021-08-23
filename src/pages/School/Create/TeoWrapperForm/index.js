@@ -7,9 +7,8 @@ import TeoField from '../../../../components/TeoField';
 import TeoButton from '../../../../components/TeoButton';
 import { FormColums, ErrorMessage } from './styles';
 import TeoModal from '../../../../components/TeoModal';
-import api from '../../../../services/api';
 import axios from 'axios';
-import TeoDropzone from '../../../../components/TeoDropzone';
+
 
 const TeoWrapperForm = () => {
 
@@ -57,8 +56,8 @@ const TeoWrapperForm = () => {
     setModalIsActived(!modalIsActived)
     setLoading(true)
     try {
-      const formdata = new FormData(form.current);
-      const response = await api.post('schools', formdata);
+      console.log(data)
+      // const response = await api.post('schools', formdata);
       setLoading(false)
       setModalIsActivedSuccess(!modalIsActivedSuccess)
     } catch (err) {
@@ -99,8 +98,6 @@ const TeoWrapperForm = () => {
       <FormProvider {...methods}>
 
         <TeoForm onSubmit={handleSubmit(newSchool)} ref={form}>
-
-          <TeoDropzone accept='image/*' name='school' label='Foto da escola' text='Clique ou arraste' />
 
           <TeoField.Text label="Nome da Escola" type="text" name="school_name" register={methods.register} />
           {errors.school_name && (<ErrorMessage>{errors.school_name.message}</ErrorMessage>)}

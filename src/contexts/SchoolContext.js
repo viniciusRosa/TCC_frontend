@@ -11,12 +11,24 @@ export function SchoolContextProvider({ children }) {
     return response.data;
   }
 
+  async function loadSchool(id) {
+    const response = await api.get(`schools/${id}`);
+    return response.data[0];
+  }
+
+  async function createSchool(data) {
+    const response = await api.post('schools', data);
+    return response
+  }
+
 
 
   return (
     <SchoolContext.Provider
       value={{
-        loadSchoolList
+        loadSchoolList,
+        loadSchool,
+        createSchool
       }}>
 
         { children }

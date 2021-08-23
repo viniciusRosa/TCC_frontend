@@ -14,11 +14,11 @@ export default [
   },
   {
     path: '/vacancyaccepted',
-    title: 'Deferidos'
+    title: 'Solicitações Deferidas'
   },
   {
     path: 'vacancyrejected',
-    title: 'Indeferidos'
+    title: 'Solicitações Indeferidas'
   },
   {
     path: '/schools',

@@ -91,7 +91,7 @@ function Schools() {
             <DivCreateNew>
               <TeoButton primary size='50%' onClick={createNewSchool}>Cadastrar nova Escola</TeoButton>
             </DivCreateNew>
-            <HeaderList arrayFields={['Nome', '', '', 'Opções']} />
+            <HeaderList arrayFields={['Nome', '', '', '', 'Opções']} />
             { schoolsDb <= 0 ? <Content>'Nenhuma escola cadastrada</Content> :
               schoolsDb.map(school => {
                 return (

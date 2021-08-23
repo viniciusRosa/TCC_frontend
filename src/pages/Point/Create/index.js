@@ -17,7 +17,7 @@ function Create() {
         <TeoNav />
         <TeoMainWrapper>
           <TeoNavTop />
-          <TeoPageTitle title="cadastrar ponto de parada" />
+          <TeoPageTitle title="Cadastrar ponto de parada" />
           <TeoBox>
             <TeoWrapperForm />
           </TeoBox>
