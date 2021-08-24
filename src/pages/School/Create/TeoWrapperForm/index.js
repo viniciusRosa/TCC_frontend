@@ -4,11 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import schema from './validation';
 import TeoForm from '../../../../components/TeoForm';
 import TeoField from '../../../../components/TeoField';
-import TeoButton from '../../../../components/TeoButton';
 import { FormColums, ErrorMessage } from './styles';
 import TeoModal from '../../../../components/TeoModal';
-import axios from 'axios';
+import { useHistory } from 'react-router-dom'
 
+import axios from 'axios';
 
 const TeoWrapperForm = () => {
 
@@ -21,6 +21,9 @@ const TeoWrapperForm = () => {
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState('')
   const form = useRef(null)
+
+  const history = useHistory();
+
 
   const { errors, trigger, reset, handleSubmit, ...methods } = useForm({
     resolver: yupResolver(schema),
@@ -168,13 +171,32 @@ const TeoWrapperForm = () => {
         </TeoForm>
       </FormProvider>
 
-      <TeoButton primary
-        onClick={async () => {
-          const result = await trigger();
-          if (result) {
-            activeModal()
-          }
-        }} >Cadastrar</TeoButton>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between'
+      }}>
+        <button
+          className="w3-button w3-teal w3-round w3-small"
+          style={{ width: "25%" }}
+          onClick={
+            async () => {
+              const result = await trigger();
+              if (result) {
+                activeModal()
+              }
+            }
+          }>Cadastrar</button>
+
+        <button
+          className="w3-button w3-orange w3-round w3-small w3-text-white"
+          style={{ width: "25%" }}
+          onClick={
+            () => history.push('/schools')
+            }
+          >Cancelar</button>
+      </div>
+
+
     </>
   )
 }

@@ -5,7 +5,7 @@ const StyledSelect = styled.select`
   color: var(--color-grey-dark);
   padding: 6px 0;
   width: 100%;
-  border: 1px solid var(--color-grey-medium);
+  border: 1px solid var(--color-grey-dark);
   background-color: var(--color-white);
 `;
 
