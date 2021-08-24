@@ -6,35 +6,9 @@ export const DivHead = styled.div`
   align-items: center;
   margin-bottom: 2rem;
 
-  & div {
-    display: flex;
-    align-items: center;
-
-    & img {
-      margin-right: 1rem;
-      object-fit: cover;
-      width: 5rem;
-      height: 5rem;
-      border-radius: 50%;
-    }
-
-    & p {
-      color: #414d6a;
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
-
-  }
-
-  & a {
-      margin-right: 2rem;
-      text-decoration: none;
-      font-weight: bold;
-      color: var(--color-grey-dark);
-    }
-
-  & a:hover {
+  & p {
     color: #414d6a;
+    font-size: 2rem;
   }
 
 `;
@@ -57,7 +31,7 @@ export const TableRow = styled.tr`
 
   & td:first-child {
       border-right: 1px solid var(--color-grey-medium);
-      width: 30%;
+      width: 50%;
       text-align: right;
   }
 

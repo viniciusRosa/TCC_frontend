@@ -40,8 +40,8 @@ export const TeoMenuLi = styled.li`
   }
 
   & a:hover{
-    color: white;
-    background-color: var(--color-grey-dark);
+    // color: white;
+    background-color: var(--color-grey-light);
   }
 
   & > a {

@@ -37,10 +37,6 @@ function Schools() {
 
     getSchools()
 
-    // if(update === true) {
-    //   setUpdate(false);
-    // }
-
   }, [])
 
   function confirmDelete(id) {

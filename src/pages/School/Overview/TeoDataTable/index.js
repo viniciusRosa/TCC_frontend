@@ -1,50 +1,65 @@
 import React, { useEffect, useState } from 'react';
 import { ViewTable, TableHead, TableRow, DivHead } from './styles'
 import { useLocation, useHistory, Link } from 'react-router-dom';
-import api from '../../../../services/api';
-import urlimage from '../../../../services/urlImage';
+import { useSchool } from '../../../../contexts/SchoolContext';
+
 
 const TeoDataTable = () => {
+
+  const [result, setResult] = useState({})
 
   const { state } = useLocation();
   const history = useHistory();
 
-  const [result, setResult] = useState({})
+  const {
+    loadSchool
+  } = useSchool();
+
 
   useEffect(() => {
-    api.get(`schools/${state.school}`).then(
-      response => {
-        setResult(response.data[0])
-      }
-    )
-    }, [])
+    async function getSchool() {
+      const school = await loadSchool(state.school);
+      setResult(school);
+    }
+
+    getSchool()
+  }, [])
 
     console.log(result)
 
   async function goToUpdate(id) {
 
-    const { data } = await api.get(`schools/${id}`)
+    // const { data } = await api.get(`schools/${id}`)
 
-    history.push({
-      pathname: '/schools/update',
-      state: {
-        school: data[0],
-      }
-    })
+    // history.push({
+    //   pathname: '/schools/update',
+    //   state: {
+    //     school: data[0],
+    //   }
+    // })
   }
 
   return (
     <div>
       <DivHead>
-        <div>
-          <img src={`${urlimage.baseURL}${result.filename}`}/>
-          <p>{result.school_name}</p>
-        </div>
-        <Link onClick={() => goToUpdate(result.id)}>EDITAR</Link>
+        <button
+          className='w3-button w3-dark-grey w3-round'
+          onClick={() => history.push('/schools')}>
+          Voltar
+        </button>
+
+        <p>{result.name}</p>
+
+        <button
+          className='w3-button w3-amber w3-round' 
+          onClick={() => goToUpdate(result.id)}>
+          Editar
+        </button>
       </DivHead>
       <ViewTable>
         <TableHead >
-          <th></th>
+          <p>
+          </p>
         </TableHead>
         <tbody>
           <TableRow>
@@ -81,7 +96,7 @@ const TeoDataTable = () => {
           </TableRow>
           <TableRow>
             <td>Telefone</td>
-            <td>{result.phone_number}</td>
+            <td>{result.phone}</td>
           </TableRow>
         </tbody>
       </ViewTable>

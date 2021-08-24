@@ -176,7 +176,7 @@ const TeoWrapperForm = () => {
         justifyContent: 'space-between'
       }}>
         <button
-          className="w3-button w3-teal w3-round w3-small"
+          className="w3-button w3-teal w3-round"
           style={{ width: "25%" }}
           onClick={
             async () => {
@@ -188,7 +188,7 @@ const TeoWrapperForm = () => {
           }>Cadastrar</button>
 
         <button
-          className="w3-button w3-orange w3-round w3-small w3-text-white"
+          className="w3-button w3-orange w3-round w3-text-white"
           style={{ width: "25%" }}
           onClick={
             () => history.push('/schools')

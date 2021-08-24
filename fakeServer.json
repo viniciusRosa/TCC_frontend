@@ -92,6 +92,19 @@
     }
   ],
 
+  "pointresult": [
+    {
+      "id": "d664bba4-16eb-46df-9aa8-1f83a67ce870",
+      "name": "PONTO - polivalente",
+      "address": "Av.Brasil",
+      "number": "243",
+      "uf": "RS",
+      "city": "Osório",
+      "latitude": "123123123",
+      "longitude": "234234234"
+    }
+  ],
+
   "schools": [
     {
       "id": "6b5c9a5e-c506-444e-9012-1ce1cfbb9fdb",
@@ -110,19 +123,26 @@
       "updated_at": "2021-08-01T15:34:42.019Z"
     }
   ],
-
-  "pointresult": [
+  
+  "schoolResult": [
     {
-      "id": "d664bba4-16eb-46df-9aa8-1f83a67ce870",
-      "name": "PONTO - polivalente",
-      "address": "Av.Brasil",
-      "number": "243",
+      "id": "6b5c9a5e-c506-444e-9012-1ce1cfbb9fdb",
+      "name": "polivalente",
+      "address": "rua sei la",
+      "number": "234",
+      "district": "",
+      "complement": "",
       "uf": "RS",
-      "city": "Osório",
-      "latitude": "123123123",
-      "longitude": "234234234"
+      "city": "Osorio",
+      "cep": "345345",
+      "email": "poli@gmail.com",
+      "phone": "234234",
+      "point_id": "d664bba4-16eb-46df-9aa8-1f83a67ce870",
+      "created_at": "2021-08-01T15:34:42.019Z",
+      "updated_at": "2021-08-01T15:34:42.019Z"
     }
   ],
+  
 
   "routes": [
     {

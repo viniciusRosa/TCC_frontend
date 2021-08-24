@@ -1,5 +1,6 @@
 {
     "/api/schools": "/schools",
+    "/api/schools/*": "/schoolResult",
     "/api/vacancyrequest/in_progress": "/in_progress",
     "/api/vacancyrequest/rejected": "/rejected",
     "/api/vacancyrequest/accepted": "/accepted",

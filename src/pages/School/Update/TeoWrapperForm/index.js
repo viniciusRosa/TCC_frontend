@@ -10,9 +10,6 @@ import TeoModal from '../../../../components/TeoModal';
 import api from '../../../../services/api';
 import axios from 'axios';
 import { useLocation, useHistory } from 'react-router-dom';
-import TeoDropzone from '../../../../components/TeoDropzone';
-import ImageView from '../../../../components/ImageView';
-import urlimage from '../../../../services/urlImage';
 
 const TeoWrapperForm = () => {
 
@@ -126,11 +123,6 @@ const TeoWrapperForm = () => {
       <FormProvider {...methods}>
 
         <TeoForm onSubmit={handleSubmit(updateSchool)} ref={form}>
-
-        <FormColums>
-            <ImageView image={`${urlimage.baseURL}${state.school.filename}`} text='Foto atual' />
-            <TeoDropzone accept='image/*' name='image' label='Nova foto(opcional)' text='Clique ou arraste' />
-        </FormColums>
 
           <TeoField.Text label="Nome da Escola" type="text" name="school_name" register={methods.register} value={school.school_name} />
           {errors.school_name && (<ErrorMessage>{errors.school_name.message}</ErrorMessage>)}
