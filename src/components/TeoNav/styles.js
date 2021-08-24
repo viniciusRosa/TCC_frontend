@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import logo from '../../assets/logoBranco.png'
-import { FiMenu, FiX } from 'react-icons/fi'
 
 export const Wrapper = styled.div`
   width: ${ props => props.status ? '0' : '200px' };
@@ -17,15 +16,6 @@ export const TeoNavWrapper = styled.nav`
   }
 `;
 
-export const NavTop = styled.nav`
-display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 56px;
-  width: 100%;
-  // background-color: var(--color-primary);
-`;
-
 export const TeoLogo = styled.img.attrs({
   src: logo,
   alt: 'Logo do Teo'
@@ -34,9 +24,7 @@ export const TeoLogo = styled.img.attrs({
   margin-left: 20px;
 `;
 
-export const TeoMenuUl = styled.ul`
-
-`;
+export const TeoMenuUl = styled.ul``;
 
 const hide = css`
   display: none;
@@ -69,39 +57,11 @@ export const TeoMenuLi = styled.li`
     margin-left: 2rem;
   }
 
-  & ul li a {
-
-  }
 `;
 
 export const DivM = styled.div`
 
   & > ${TeoMenuUl}{
     margin-left: 2rem;
-  }
-`;
-
-export const TeoMenuIcon = styled(FiMenu)`
-  font-size: 36px;
-  color: var(--color-white);
-`;
-
-export const TeoMenuButton = styled.a`
-  display: flex;
-  justify-content: center;
-  margin-right: 20px;
-  margin-left: 1rem;
-  width: 40px;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.5s;
-
-  &:hover {
-    background-color: white;
-
-    & > ${TeoMenuIcon} {
-      color: var(--color-primary);
-
-    }
   }
 `;
