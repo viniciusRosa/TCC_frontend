@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import ReactDOM from 'react-dom';
-import api from '../../../services/api';
 import TeoContainer from '../../../components/TeoContainer';
 import TeoNav from '../../../components/TeoNav';
 import TeoMainWrapper from '../../../components/TeoMainWrapper';
@@ -11,7 +10,6 @@ import TeoBox from '../../../components/TeoBox';
 import TeoListItem from './TeolistItem';
 import TeoModal from '../../../components/TeoModal';
 import Content from '../../../components/TeoField/Content'
-import TeoButton from '../../../components/TeoButton';
 import { DivCreateNew } from './styles';
 import { usePoint } from '../../../contexts/PointContext';
 import HeaderList from '../../../components/HeaderList'
@@ -25,7 +23,9 @@ function Points() {
   const history = useHistory();
 
   const {
-    loadPointList
+    loadPointList,
+    deletePoint,
+    loadPoint
    } = usePoint();
 
   useEffect(() => {
@@ -37,11 +37,11 @@ function Points() {
 
     getPoints()
 
-    // if(update === true) {
-    //   setUpdate(false);
-    // }
+    if(update === true) {
+      setUpdate(false);
+    }
 
-  }, [])
+  }, [update, loadPointList])
 
   function confirmDelete(id) {
     setItemToDelete(id)
@@ -49,9 +49,13 @@ function Points() {
   }
 
   async function deleteItem(id) {
-    await api.delete(`points/${id}`);
-    setModalIsActived(!modalIsActived);
-    setUpdate(true);
+    try {
+      await deletePoint(id);
+      setModalIsActived(!modalIsActived);
+      setUpdate(true);
+    } catch(err) {
+      console.log(err);
+    }
   }
 
   function createNew() {
@@ -61,12 +65,12 @@ function Points() {
   }
 
   async function UpdateItem(id) {
-    const { data } = await api.get(`points/${id}`)
+    const point = await loadPoint(id)
 
     history.push({
       pathname: '/points/update',
       state: {
-        item: data[0],
+        item: point,
       }
     })
   }
@@ -75,7 +79,7 @@ function Points() {
     history.push({
       pathname: '/points/overview',
       state: {
-        item: id,
+        point: id,
       }
     })
   }

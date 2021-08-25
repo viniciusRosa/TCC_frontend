@@ -9,6 +9,7 @@ import { FormColums, ErrorMessage } from './styles';
 import TeoModal from '../../../../components/TeoModal';
 import axios from 'axios';
 import { useSchool } from '../../../../contexts/SchoolContext';
+import { useHistory } from 'react-router-dom'
 
 
 const TeoWrapperForm = () => {
@@ -23,8 +24,10 @@ const TeoWrapperForm = () => {
   const [selectedCity, setSelectedCity] = useState('')
   const form = useRef(null)
 
+  const history = useHistory();
+
   const {
-    createSchool
+    createPoint
   } = useSchool()
 
   const { errors, trigger, reset, handleSubmit, ...methods } = useForm({
@@ -61,7 +64,7 @@ const TeoWrapperForm = () => {
     setModalIsActived(!modalIsActived)
     setLoading(true)
     try {
-      const response = createSchool(data);
+      await createPoint(data);
       setLoading(false)
       setModalIsActivedSuccess(!modalIsActivedSuccess)
     } catch (err) {
@@ -164,13 +167,30 @@ const TeoWrapperForm = () => {
         </TeoForm>
       </FormProvider>
 
-      <TeoButton primary
-        onClick={async () => {
-          const result = await trigger();
-          if (result) {
-            activeModal()
-          }
-        }} >Cadastrar</TeoButton>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between'
+      }}>
+        <button
+          className="w3-button w3-teal w3-round"
+          style={{ width: "25%" }}
+          onClick={
+            async () => {
+              const result = await trigger();
+              if (result) {
+                activeModal()
+              }
+            }
+          }>Cadastrar</button>
+
+        <button
+          className="w3-button w3-orange w3-round w3-text-white"
+          style={{ width: "25%" }}
+          onClick={
+            () => history.push('/points')
+            }
+          >Cancelar</button>
+      </div>
     </>
   )
 }

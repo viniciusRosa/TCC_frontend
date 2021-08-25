@@ -29,7 +29,7 @@ export default [
     title: 'Pontos',
   },
   {
-    path: '/rotas',
+    path: '/routes',
     title: 'Rotas',
   },
 ]

@@ -8,7 +8,6 @@ import { FormColums, ErrorMessage } from './styles';
 import TeoModal from '../../../../components/TeoModal';
 import { useHistory } from 'react-router-dom'
 import { useSchool } from '../../../../contexts/SchoolContext';
-
 import axios from 'axios';
 
 const TeoWrapperForm = () => {
@@ -25,7 +24,9 @@ const TeoWrapperForm = () => {
 
   const history = useHistory();
 
-  const { createSchool } = useSchool();
+  const { 
+    createSchool 
+  } = useSchool();
 
 
   const { errors, trigger, reset, handleSubmit, ...methods } = useForm({
@@ -62,7 +63,6 @@ const TeoWrapperForm = () => {
     setModalIsActived(!modalIsActived)
     setLoading(true)
     try {
-      console.log(data)
       await createSchool(data);
       setLoading(false)
       setModalIsActivedSuccess(!modalIsActivedSuccess)
@@ -198,8 +198,6 @@ const TeoWrapperForm = () => {
             }
           >Cancelar</button>
       </div>
-
-
     </>
   )
 }

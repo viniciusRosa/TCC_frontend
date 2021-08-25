@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import ReactDOM from 'react-dom';
-import api from '../../../services/api';
 import TeoContainer from '../../../components/TeoContainer';
 import TeoNav from '../../../components/TeoNav';
 import TeoMainWrapper from '../../../components/TeoMainWrapper';
@@ -50,11 +49,11 @@ function Schools() {
   }
 
   async function deleteItem(id) {
-    try{
+    try {
       await deleteSchool(id);
       setModalIsActived(!modalIsActived);
       setUpdate(true);
-    }catch(err) {
+    } catch(err) {
       console.log(err)
     }
   }

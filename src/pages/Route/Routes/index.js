@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import ReactDOM from 'react-dom';
-import api from '../../../services/api';
 import TeoContainer from '../../../components/TeoContainer';
 import TeoNav from '../../../components/TeoNav';
 import TeoMainWrapper from '../../../components/TeoMainWrapper';
@@ -11,7 +10,6 @@ import TeoBox from '../../../components/TeoBox';
 import TeoListItem from './TeolistItem';
 import TeoModal from '../../../components/TeoModal';
 import Content from '../../../components/TeoField/Content'
-import TeoButton from '../../../components/TeoButton';
 import { DivCreateNew } from './styles';
 import { useRoute } from '../../../contexts/RouteContext';
 import HeaderList from '../../../components/HeaderList'
@@ -25,7 +23,9 @@ function Routes() {
   const history = useHistory();
 
   const {
-    loadRouteList
+    loadRouteList,
+    deleteRoute,
+    loadRoute
   } = useRoute();
 
   useEffect(() => {
@@ -35,7 +35,11 @@ function Routes() {
     }
 
     getRoutes()
-  }, [])
+    
+    if(update === true) {
+      setUpdate(false)
+    }
+  }, [update, loadRouteList])
 
   function confirmDelete(id) {
     setItemToDelete(id)
@@ -43,33 +47,37 @@ function Routes() {
   }
 
   async function deleteItem(id) {
-    // await api.delete(`points/${id}`);
-    // setModalIsActived(!modalIsActived);
-    // setUpdate(true);
+    try {
+      await deleteRoute(id);
+      setModalIsActived(!modalIsActived);
+      setUpdate(true);
+    } catch(err) {
+      console.log(err)
+    }
   }
 
   function createNew() {
-    // history.push({
-    //   pathname: '/points/create',
-    // })
+    history.push({
+      pathname: '/routes/create',
+    })
   }
 
   async function UpdateItem(id) {
-    // const { data } = await api.get(`points/${id}`)
+    const route = await loadRoute(id)
 
-    // history.push({
-    //   pathname: '/points/update',
-    //   state: {
-    //     item: data[0],
-    //   }
-    // })
+    history.push({
+      pathname: '/routes/update',
+      state: {
+        route: route,
+      }
+    })
   }
 
   function goOverview(id) {
     history.push({
-      pathname: '/route/overview',
+      pathname: '/routes/overview',
       state: {
-        item: id,
+        route: id,
       }
     })
   }

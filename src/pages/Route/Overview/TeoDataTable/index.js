@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ViewTable, TableHead, TableRow, DivHead, Title } from './styles'
 import { useLocation, useHistory, Link } from 'react-router-dom';
-import { usePoint } from '../../../../contexts/PointContext';
+import { useRoute } from '../../../../contexts/RouteContext';
 
 
 const TeoDataTable = () => {
@@ -12,70 +12,56 @@ const TeoDataTable = () => {
   const [result, setResult] = useState({})
 
   const {
-    loadPoint
-   } = usePoint()
+    loadRoute
+   } = useRoute()
 
   useEffect(() => {
-    async function getPoint() {
-      const point = await loadPoint(state.item)
-      setResult(point)
+    async function getRoute() {
+      const route = await loadRoute(state.route)
+      setResult(route)
     }
-    getPoint()
+    getRoute()
   }, [])
 
-  console.log(state.item)
+  async function goToUpdate() {
 
-  async function goToUpdate(id) {
-
-    // const { data } = await api.get(`points/${id}`)
-
-    // history.push({
-    //   pathname: '/points/update',
-    //   state: {
-    //     item: data[0],
-    //   }
-    // })
+    history.push({
+      pathname: '/routes/update',
+      state: {
+        item: result,
+      }
+    })
   }
 
   return (
     <div>
       <DivHead>
-        <div>
-        <Link to='/points' >VOLTAR</Link>
-        </div>
-        <Link onClick={() => goToUpdate(result.id)}>EDITAR</Link>
+      <button
+          className='w3-button w3-dark-grey w3-round'
+          onClick={() => history.push('/routes')}>
+          Voltar
+        </button>
+
+        <p>{result.name}</p>
+
+        <button
+          className='w3-button w3-amber w3-round'
+          onClick={() => goToUpdate(result.id)}>
+          Editar
+        </button>
       </DivHead>
-      <div>
-        <Title>{result.name}</Title>
-      </div>
       <ViewTable>
         <TableHead >
-          <th></th>
+          <p></p>
         </TableHead>
         <tbody>
           <TableRow>
-            <td>Endereço</td>
-            <td>{result.address}</td>
+            <td>Vagas</td>
+            <td>{result.vacancy}</td>
           </TableRow>
           <TableRow>
-            <td>Numero</td>
-            <td>{result.number}</td>
-          </TableRow>
-          <TableRow>
-            <td>UF</td>
-            <td>{result.uf}</td>
-          </TableRow>
-          <TableRow>
-            <td>Cidade</td>
-            <td>{result.city}</td>
-          </TableRow>
-          <TableRow>
-            <td>Latitude</td>
-            <td>{result.latitude}</td>
-          </TableRow>
-          <TableRow>
-            <td>Longitude</td>
-            <td>{result.longitude}</td>
+            <td>Turno</td>
+            <td>{result.shift}</td>
           </TableRow>
         </tbody>
       </ViewTable>

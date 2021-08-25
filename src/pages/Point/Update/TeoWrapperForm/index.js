@@ -10,6 +10,7 @@ import TeoModal from '../../../../components/TeoModal';
 import api from '../../../../services/api';
 import axios from 'axios';
 import { useLocation, useHistory } from 'react-router-dom';
+import { usePoint } from '../../../../contexts/PointContext';
 
 const TeoWrapperForm = () => {
 
@@ -27,14 +28,16 @@ const TeoWrapperForm = () => {
 
 
   const defaultValues = {
-    point_name: state.item.point_name,
-    address: state.item.address,
-    cep: state.item.cep,
-    city: state.item.city,
-    complement: state.item.complement,
-    district: state.item.district,
-    number: state.item.number
+    name: state.point.name,
+    address: state.point.address,
+    cep: state.point.cep,
+    city: state.point.city,
+    complement: state.point.complement,
+    district: state.point.district,
+    number: state.point.number
   }
+
+  const { updatePoint } = usePoint()
 
   const { errors, trigger, reset, handleSubmit, ...methods } = useForm({
     resolver: yupResolver(schema),
@@ -68,12 +71,12 @@ const TeoWrapperForm = () => {
     setSelectedCity(city);
   }
 
-  const updateSchool = async (data) => {
+  const handleUpdatePoint = async (data) => {
 
     setModalIsActived(!modalIsActived)
     setLoading(true)
     try {
-      const response = await api.put(`points/${state.item.id}`, data);
+      const response = await updatePoint(state.point.id, data);
       setLoading(false)
       setModalIsActivedSuccess(!modalIsActivedSuccess)
       history.push('/points')
@@ -82,10 +85,6 @@ const TeoWrapperForm = () => {
       setLoading(false)
       setModalIsActivedError(!modalIsActivedError)
     }
-  }
-
-  function goBack() {
-    history.push('/points')
   }
 
   function activeModal() {
@@ -118,10 +117,10 @@ const TeoWrapperForm = () => {
     <>
       <FormProvider {...methods}>
 
-        <TeoForm onSubmit={handleSubmit(updateSchool)} ref={form}>
+        <TeoForm onSubmit={handleSubmit(handleUpdatePoint)} ref={form}>
 
-          <TeoField.Text label="Nome do ponto" type="text" name="point_name" register={methods.register} />
-          {errors.point_name && (<ErrorMessage>{errors.point_name.message}</ErrorMessage>)}
+          <TeoField.Text label="Nome do ponto" type="text" name="name" register={methods.register} />
+          {errors.name && (<ErrorMessage>{errors.name.message}</ErrorMessage>)}
 
           <TeoField.Text label="Endereço" type="text" name="address" register={methods.register} />
           {errors.street && (<ErrorMessage>{errors.adress.message}</ErrorMessage>)}
@@ -181,15 +180,28 @@ const TeoWrapperForm = () => {
         </TeoForm>
       </FormProvider>
       <FormColums>
-        <TeoButton primary
+        
+        <button
+          className="w3-button w3-teal w3-round"
+          style={{ width: "25%" }}
           onClick={async () => {
             const result = await trigger();
             if (result) {
               activeModal()
             }
-          }} >Salvar</TeoButton>
+          }} >
+            Salvar
+        </button>
 
-        <TeoButton secondary onClick={goBack}>Voltar</TeoButton>
+        <button
+          className="w3-button w3-orange w3-round w3-text-white"
+          style={{ width: "25%" }}
+          onClick={
+            () => history.push('/points')
+            }
+          >
+            Voltar
+        </button>
 
       </FormColums>
     </>

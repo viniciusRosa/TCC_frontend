@@ -6,15 +6,14 @@ import { useSchool } from '../../../../contexts/SchoolContext';
 
 const TeoDataTable = () => {
 
-  const [result, setResult] = useState({})
-
   const { state } = useLocation();
   const history = useHistory();
+  
+  const [result, setResult] = useState({})
 
   const {
     loadSchool
   } = useSchool();
-
 
   useEffect(() => {
     async function getSchool() {
@@ -24,8 +23,6 @@ const TeoDataTable = () => {
 
     getSchool()
   }, [])
-
-    console.log(result)
 
   async function goToUpdate() {
 
@@ -56,8 +53,7 @@ const TeoDataTable = () => {
       </DivHead>
       <ViewTable>
         <TableHead >
-          <p>
-          </p>
+          <p></p>
         </TableHead>
         <tbody>
           <TableRow>

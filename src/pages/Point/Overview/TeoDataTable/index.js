@@ -17,40 +17,42 @@ const TeoDataTable = () => {
 
   useEffect(() => {
     async function getPoint() {
-      const point = await loadPoint(state.item)
+      const point = await loadPoint(state.point)
       setResult(point)
     }
     getPoint()
   }, [])
 
-  console.log(state.item)
+  async function goToUpdate() {
 
-  async function goToUpdate(id) {
-
-    // const { data } = await api.get(`points/${id}`)
-
-    // history.push({
-    //   pathname: '/points/update',
-    //   state: {
-    //     item: data[0],
-    //   }
-    // })
+    history.push({
+      pathname: '/points/update',
+      state: {
+        point: result,
+      }
+    })
   }
 
   return (
     <div>
       <DivHead>
-        <div>
-        <Link to='/points' >VOLTAR</Link>
-        </div>
-        <Link onClick={() => goToUpdate(result.id)}>EDITAR</Link>
+        <button
+          className='w3-button w3-dark-grey w3-round'
+          onClick={() => history.push('/points')}>
+          Voltar
+        </button>
+
+        <p>{result.name}</p>
+
+        <button
+          className='w3-button w3-amber w3-round'
+          onClick={() => goToUpdate(result.id)}>
+          Editar
+        </button>
       </DivHead>
-      <div>
-        <Title>{result.name}</Title>
-      </div>
       <ViewTable>
         <TableHead >
-          <th></th>
+          <p></p>
         </TableHead>
         <tbody>
           <TableRow>

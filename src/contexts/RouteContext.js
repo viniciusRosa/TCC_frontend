@@ -10,16 +10,33 @@ export function RouteContextProvider({ children }) {
     return response.data;
   }
 
-  async function loadRoute(routeId) {
-    const response = await api.get(`routes/${routeId}`);
+  async function loadRoute(id) {
+    const response = await api.get(`routes/${id}`);
     return response.data[0]
+  }
+
+  async function createRoute(data) {
+    const response = await api.post('routes', data);
+    return response
+  }
+
+  async function deleteRoute(id) {
+    await api.delete(`routes/${id}`);
+  }
+
+  async function updateRoute(id, data) {
+    const response = await api.put(`routes/${id}`, data);
+    return response;
   }
 
   return (
     <RouteContext.Provider
       value={{
         loadRouteList,
-        loadRoute
+        loadRoute,
+        createRoute,
+        deleteRoute,
+        updateRoute
       }}>
 
         { children }

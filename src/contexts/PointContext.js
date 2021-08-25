@@ -15,11 +15,29 @@ export function PointContextProvider({ children }) {
     return response.data[0]
   }
 
+  async function createPoint(data) {
+    const response = await api.post('points', data);
+    return response
+  }
+
+  async function deletePoint(id) {
+    await api.delete(`points/${id}`);
+  }
+
+  async function updatePoint(id, data) {
+    const response = await api.put(`points/${id}`, data);
+    return response;
+  }
+
+
   return (
     <PointContext.Provider
       value={{
         loadPointList,
-        loadPoint
+        loadPoint,
+        createPoint,
+        deletePoint,
+        updatePoint
       }}>
 
         { children }
