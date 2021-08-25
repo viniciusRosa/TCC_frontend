@@ -17,16 +17,16 @@ const TeoWrapperForm = () => {
   const [modalIsActivedError, setModalIsActivedError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [ufs, setUfs] = useState([]);
-  const [selectedUf, setSelectedUf] = useState('');
   const [cities, setCities] = useState([]);
-  const [selectedCity, setSelectedCity] = useState('')
   const [school, setSchool] = useState({});
   const form = useRef(null);
   const { state } = useLocation();
+  const [selectedUf, setSelectedUf] = useState('');
+  const [selectedCity, setSelectedCity] = useState('')
   const history = useHistory();
 
   const defaultValues = {
-    school_name: state.school.name,
+    name: state.school.name,
     address: state.school.address,
     cep: state.school.cep,
     city: state.school.city,
@@ -34,7 +34,7 @@ const TeoWrapperForm = () => {
     district: state.school.district,
     email: state.school.email,
     number: state.school.number,
-    phone_number: state.school.phone
+    phone: state.school.phone
   }
 
   const { updateSchool } = useSchool()
@@ -119,8 +119,8 @@ const TeoWrapperForm = () => {
 
         <TeoForm onSubmit={handleSubmit(handleupdateSchool)} ref={form}>
 
-          <TeoField.Text label="Nome da Escola" type="text" name="name" register={methods.register} value={school.school_name} />
-          {errors.school_name && (<ErrorMessage>{errors.school_name.message}</ErrorMessage>)}
+          <TeoField.Text label="Nome da Escola" type="text" name="name" register={methods.register}  />
+          {errors.name && (<ErrorMessage>{errors.name.message}</ErrorMessage>)}
 
           <TeoField.Text label="Endereço" type="text" name="address" register={methods.register} />
           {errors.street && (<ErrorMessage>{errors.adress.message}</ErrorMessage>)}
