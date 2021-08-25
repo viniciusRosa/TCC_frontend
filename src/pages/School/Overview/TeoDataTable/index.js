@@ -27,16 +27,14 @@ const TeoDataTable = () => {
 
     console.log(result)
 
-  async function goToUpdate(id) {
+  async function goToUpdate() {
 
-    // const { data } = await api.get(`schools/${id}`)
-
-    // history.push({
-    //   pathname: '/schools/update',
-    //   state: {
-    //     school: data[0],
-    //   }
-    // })
+    history.push({
+      pathname: '/schools/update',
+      state: {
+        school: result,
+      }
+    })
   }
 
   return (
@@ -51,7 +49,7 @@ const TeoDataTable = () => {
         <p>{result.name}</p>
 
         <button
-          className='w3-button w3-amber w3-round' 
+          className='w3-button w3-amber w3-round'
           onClick={() => goToUpdate(result.id)}>
           Editar
         </button>

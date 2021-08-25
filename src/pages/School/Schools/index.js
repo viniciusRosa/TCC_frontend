@@ -11,7 +11,6 @@ import TeoBox from '../../../components/TeoBox';
 import TeoListItem from './TeolistItem';
 import TeoModal from '../../../components/TeoModal';
 import Content from '../../../components/TeoField/Content'
-import TeoButton from '../../../components/TeoButton';
 import { DivCreateNew } from './styles';
 import { useSchool } from '../../../contexts/SchoolContext';
 import HeaderList from '../../../components/HeaderList'
@@ -26,7 +25,9 @@ function Schools() {
   const history = useHistory();
 
   const {
-    loadSchoolList
+    loadSchoolList,
+    deleteSchool,
+    loadSchool
   } = useSchool();
 
   useEffect(() => {
@@ -37,7 +38,11 @@ function Schools() {
 
     getSchools()
 
-  }, [])
+    if(update === true) {
+      setUpdate(false)
+    }
+
+  }, [update, loadSchoolList])
 
   function confirmDelete(id) {
     setItemToDelete(id)
@@ -45,9 +50,13 @@ function Schools() {
   }
 
   async function deleteItem(id) {
-    await api.delete(`schools/${id}`);
-    setModalIsActived(!modalIsActived);
-    setUpdate(true);
+    try{
+      await deleteSchool(id);
+      setModalIsActived(!modalIsActived);
+      setUpdate(true);
+    }catch(err) {
+      console.log(err)
+    }
   }
 
   function createNewSchool() {
@@ -57,12 +66,12 @@ function Schools() {
   }
 
   async function UpdateSchool(id) {
-    const { data } = await api.get(`schools/${id}`)
+    const school = await loadSchool(id)
 
     history.push({
       pathname: '/schools/update',
       state: {
-        school: data[0],
+        school: school,
       }
     })
   }

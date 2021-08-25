@@ -13,7 +13,6 @@
       "vacancyrequest": "57a946aa-a940-4849-a543-008241713a08"
     }
   ],
-
   "rejected": [
     {
       "filename": "1627832474177-40827609-studentphoto.jpg",
@@ -28,7 +27,6 @@
       "vacancyrequest": "57a946aa-a940-4849-a543-008241713a08"
     }
   ],
-
   "accepted": [
     {
       "filename": "1627832474177-40827609-studentphoto.jpg",
@@ -43,7 +41,6 @@
       "vacancyrequest": "57a946aa-a940-4849-a543-008241713a08"
     }
   ],
-
   "queue": [
     {
       "filename": "1627832474177-40827609-studentphoto.jpg",
@@ -58,7 +55,6 @@
       "vacancyrequest": "57a946aa-a940-4849-a543-008241713a08"
     }
   ],
-
   "points": [
     {
       "id": "d664bba4-16eb-46df-9aa8-1f83a67ce870",
@@ -91,7 +87,6 @@
       "longitude": "234234234"
     }
   ],
-
   "pointresult": [
     {
       "id": "d664bba4-16eb-46df-9aa8-1f83a67ce870",
@@ -104,7 +99,6 @@
       "longitude": "234234234"
     }
   ],
-
   "schools": [
     {
       "id": "6b5c9a5e-c506-444e-9012-1ce1cfbb9fdb",
@@ -121,9 +115,21 @@
       "point_id": "d664bba4-16eb-46df-9aa8-1f83a67ce870",
       "created_at": "2021-08-01T15:34:42.019Z",
       "updated_at": "2021-08-01T15:34:42.019Z"
+    },
+    {
+      "name": "Rural",
+      "address": "Br 101",
+      "number": "123",
+      "district": "centro",
+      "complement": "la no morro",
+      "uf": "RS",
+      "city": "Osório",
+      "cep": "95520-000",
+      "email": "escolarural@gmail.com",
+      "phone": "(51) 3663-1122",
+      "id": "ae_5P-j"
     }
   ],
-  
   "schoolResult": [
     {
       "id": "6b5c9a5e-c506-444e-9012-1ce1cfbb9fdb",
@@ -142,8 +148,6 @@
       "updated_at": "2021-08-01T15:34:42.019Z"
     }
   ],
-  
-
   "routes": [
     {
       "id": "d664bba4-16eb-46df-9aa8-1f83a67ce870",
@@ -163,6 +167,5 @@
       "vacancy": 23,
       "shift": "Noite"
     }
-
   ]
 }

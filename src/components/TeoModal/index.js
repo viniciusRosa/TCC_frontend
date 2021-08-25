@@ -22,8 +22,20 @@ const Warning = ({children, closeModal, action, secondary}) => {
         </ModalTitleContent>
         <ModalContent>{children}</ModalContent>
         <ModalButtons>
-          <TeoButton primary type='submit' onClick={action}>Confirmar</TeoButton>
-          <TeoButton secondary onClick={secondary}>Cancelar</TeoButton>
+          <button
+            className="w3-button w3-teal w3-round"
+            style={{ width: '30%' }}
+            type='submit'
+            onClick={action}>
+              Confirmar
+          </button>
+
+          <button
+            className="w3-button w3-orange w3-round w3-text-white"
+            style={{ width: '30%' }}
+            onClick={secondary}>
+              Cancelar
+          </button>
         </ModalButtons>
       </ModalContainer>
     </Modal>
@@ -41,7 +53,12 @@ const Success = ({text, closeModal, button}) => {
       </ModalTitleContent>
       <ModalContent>{text}</ModalContent>
       <ModalButton>
-        <TeoButton primary onClick={button}>ok</TeoButton>
+        <button
+          className="w3-button w3-teal w3-round"
+          style={{ width: '30%' }}
+          onClick={button}>
+            ok
+        </button>
       </ModalButton>
     </ModalContainer>
   </Modal>

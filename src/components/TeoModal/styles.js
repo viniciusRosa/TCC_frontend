@@ -19,7 +19,7 @@ export const ModalContainer = styled.div`
   color: var(--color-grey-dark);
   max-width:50%;
   min-width: 30%;
-  border-radius: 2px;
+  border-radius: 5px;
 `;
 
 export const ModalClose = styled.button`

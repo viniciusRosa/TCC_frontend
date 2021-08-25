@@ -21,6 +21,15 @@ export function SchoolContextProvider({ children }) {
     return response
   }
 
+  async function deleteSchool(id) {
+    await api.delete(`schools/${id}`);
+  }
+
+  async function updateSchool(id, data) {
+    const response = await api.put(`schools/${id}`, data);
+    return response;
+  }
+
 
 
   return (
@@ -28,7 +37,9 @@ export function SchoolContextProvider({ children }) {
       value={{
         loadSchoolList,
         loadSchool,
-        createSchool
+        createSchool,
+        deleteSchool,
+        updateSchool
       }}>
 
         { children }

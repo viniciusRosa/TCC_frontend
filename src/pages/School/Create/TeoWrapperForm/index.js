@@ -7,6 +7,7 @@ import TeoField from '../../../../components/TeoField';
 import { FormColums, ErrorMessage } from './styles';
 import TeoModal from '../../../../components/TeoModal';
 import { useHistory } from 'react-router-dom'
+import { useSchool } from '../../../../contexts/SchoolContext';
 
 import axios from 'axios';
 
@@ -23,6 +24,8 @@ const TeoWrapperForm = () => {
   const form = useRef(null)
 
   const history = useHistory();
+
+  const { createSchool } = useSchool();
 
 
   const { errors, trigger, reset, handleSubmit, ...methods } = useForm({
@@ -60,7 +63,7 @@ const TeoWrapperForm = () => {
     setLoading(true)
     try {
       console.log(data)
-      // const response = await api.post('schools', formdata);
+      await createSchool(data);
       setLoading(false)
       setModalIsActivedSuccess(!modalIsActivedSuccess)
     } catch (err) {
@@ -102,7 +105,7 @@ const TeoWrapperForm = () => {
 
         <TeoForm onSubmit={handleSubmit(newSchool)} ref={form}>
 
-          <TeoField.Text label="Nome da Escola" type="text" name="school_name" register={methods.register} />
+          <TeoField.Text label="Nome da Escola" type="text" name="name" register={methods.register} />
           {errors.school_name && (<ErrorMessage>{errors.school_name.message}</ErrorMessage>)}
 
           <TeoField.Text label="Endereço" type="text" name="address" register={methods.register} />
@@ -159,7 +162,7 @@ const TeoWrapperForm = () => {
           {errors.email && (<ErrorMessage>{errors.email.message}</ErrorMessage>)}
 
           <FormColums>
-            <TeoField.Text size='50%' label="Telefone" type="text" name="phone_number" mask='phone' placeholder='(00) 00000-00' register={methods.register} />
+            <TeoField.Text size='50%' label="Telefone" type="text" name="phone" mask='phone' placeholder='(00) 00000-00' register={methods.register} />
           </FormColums>
           {errors.phone_number && (<ErrorMessage>{errors.phone_number.message}</ErrorMessage>)}
 

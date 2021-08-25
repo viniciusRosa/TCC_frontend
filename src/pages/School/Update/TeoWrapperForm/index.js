@@ -4,12 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import schema from './validation';
 import TeoForm from '../../../../components/TeoForm';
 import TeoField from '../../../../components/TeoField';
-import TeoButton from '../../../../components/TeoButton';
 import { FormColums, ErrorMessage } from './styles';
 import TeoModal from '../../../../components/TeoModal';
-import api from '../../../../services/api';
 import axios from 'axios';
 import { useLocation, useHistory } from 'react-router-dom';
+import { useSchool } from '../../../../contexts/SchoolContext';
 
 const TeoWrapperForm = () => {
 
@@ -26,9 +25,8 @@ const TeoWrapperForm = () => {
   const { state } = useLocation();
   const history = useHistory();
 
-
   const defaultValues = {
-    school_name: state.school.school_name,
+    school_name: state.school.name,
     address: state.school.address,
     cep: state.school.cep,
     city: state.school.city,
@@ -36,8 +34,10 @@ const TeoWrapperForm = () => {
     district: state.school.district,
     email: state.school.email,
     number: state.school.number,
-    phone_number: state.school.phone_number
+    phone_number: state.school.phone
   }
+
+  const { updateSchool } = useSchool()
 
   const { errors, trigger, reset, handleSubmit, ...methods } = useForm({
     resolver: yupResolver(schema),
@@ -71,13 +71,12 @@ const TeoWrapperForm = () => {
     setSelectedCity(city);
   }
 
-  const updateSchool = async (data) => {
+  const handleupdateSchool = async (data) => {
 
     setModalIsActived(!modalIsActived)
     setLoading(true)
     try {
-      const formdata = new FormData(form.current);
-      const response = await api.put(`schools/${state.school.id}`, formdata);
+      const response = await updateSchool(state.school.id, data);
       setLoading(false)
       setModalIsActivedSuccess(!modalIsActivedSuccess)
       history.push('/schools')
@@ -86,10 +85,6 @@ const TeoWrapperForm = () => {
       setLoading(false)
       setModalIsActivedError(!modalIsActivedError)
     }
-  }
-
-  function goBack() {
-    history.push('/schools')
   }
 
   function activeModal() {
@@ -122,9 +117,9 @@ const TeoWrapperForm = () => {
     <>
       <FormProvider {...methods}>
 
-        <TeoForm onSubmit={handleSubmit(updateSchool)} ref={form}>
+        <TeoForm onSubmit={handleSubmit(handleupdateSchool)} ref={form}>
 
-          <TeoField.Text label="Nome da Escola" type="text" name="school_name" register={methods.register} value={school.school_name} />
+          <TeoField.Text label="Nome da Escola" type="text" name="name" register={methods.register} value={school.school_name} />
           {errors.school_name && (<ErrorMessage>{errors.school_name.message}</ErrorMessage>)}
 
           <TeoField.Text label="Endereço" type="text" name="address" register={methods.register} />
@@ -181,7 +176,7 @@ const TeoWrapperForm = () => {
           {errors.email && (<ErrorMessage>{errors.email.message}</ErrorMessage>)}
 
           <FormColums>
-            <TeoField.Text size='50%' label="Telefone" type="text" name="phone_number" mask='phone' placeholder='(00) 00000-00' register={methods.register} />
+            <TeoField.Text size='50%' label="Telefone" type="text" name="phone" mask='phone' placeholder='(00) 00000-00' register={methods.register} />
           </FormColums>
           {errors.phone_number && (<ErrorMessage>{errors.phone_number.message}</ErrorMessage>)}
 
@@ -193,15 +188,27 @@ const TeoWrapperForm = () => {
         </TeoForm>
       </FormProvider>
       <FormColums>
-        <TeoButton primary
+        <button
+          className="w3-button w3-teal w3-round"
+          style={{ width: "25%" }}
           onClick={async () => {
             const result = await trigger();
             if (result) {
               activeModal()
             }
-          }} >Salvar</TeoButton>
+          }} >
+            Salvar
+        </button>
 
-        <TeoButton secondary onClick={goBack}>Voltar</TeoButton>
+        <button
+          className="w3-button w3-orange w3-round w3-text-white"
+          style={{ width: "25%" }}
+          onClick={
+            () => history.push('/schools')
+            }
+          >
+            Voltar
+        </button>
 
         </FormColums>
       </>
