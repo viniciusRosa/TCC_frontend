@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import schema from './validation';
@@ -18,7 +18,6 @@ const TeoWrapperForm = () => {
   const [loading, setLoading] = useState(false);
   const [ufs, setUfs] = useState([]);
   const [cities, setCities] = useState([]);
-  const [school, setSchool] = useState({});
   const form = useRef(null);
   const { state } = useLocation();
   const [selectedUf, setSelectedUf] = useState('');
@@ -76,7 +75,7 @@ const TeoWrapperForm = () => {
     setModalIsActived(!modalIsActived)
     setLoading(true)
     try {
-      const response = await updateSchool(state.school.id, data);
+      await updateSchool(state.school.id, data);
       setLoading(false)
       setModalIsActivedSuccess(!modalIsActivedSuccess)
       history.push('/schools')

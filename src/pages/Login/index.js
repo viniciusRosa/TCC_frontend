@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import TeoButton from '../../components/TeoButton';
 import { useHistory } from 'react-router-dom';
 

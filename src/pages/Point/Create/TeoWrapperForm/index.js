@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import schema from './validation';
 import TeoForm from '../../../../components/TeoForm';
 import TeoField from '../../../../components/TeoField';
-import TeoButton from '../../../../components/TeoButton';
 import { FormColums, ErrorMessage } from './styles';
 import TeoModal from '../../../../components/TeoModal';
 import axios from 'axios';

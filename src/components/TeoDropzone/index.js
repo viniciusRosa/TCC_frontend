@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { DropzoneDiv, DropImg, ImgText, DivLabel } from './styles';
-import { useDropzone, DropzoneOptions } from 'react-dropzone'
+import { useDropzone } from 'react-dropzone'
 import { useFormContext } from 'react-hook-form';
 import Content from '../TeoField/Content';
 

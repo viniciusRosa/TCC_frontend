@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { ViewTable, TableHead, TableRow, DivHead, Title } from './styles'
-import { useLocation, useHistory, Link } from 'react-router-dom';
+import { ViewTable, TableHead, TableRow, DivHead } from './styles'
+import { useLocation, useHistory } from 'react-router-dom';
 import { useRoute } from '../../../../contexts/RouteContext';
 
 

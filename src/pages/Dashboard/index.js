@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom'
-import ReactDOM from 'react-dom';
+import React from 'react';
 import TeoContainer from '../../components/TeoContainer';
 import TeoNav from '../../components/TeoNav';
 import TeoMainWrapper from '../../components/TeoMainWrapper';

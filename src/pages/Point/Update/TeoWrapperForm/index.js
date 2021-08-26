@@ -4,10 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import schema from './validation';
 import TeoForm from '../../../../components/TeoForm';
 import TeoField from '../../../../components/TeoField';
-import TeoButton from '../../../../components/TeoButton';
 import { FormColums, ErrorMessage } from './styles';
 import TeoModal from '../../../../components/TeoModal';
-import api from '../../../../services/api';
 import axios from 'axios';
 import { useLocation, useHistory } from 'react-router-dom';
 import { usePoint } from '../../../../contexts/PointContext';
@@ -76,7 +74,7 @@ const TeoWrapperForm = () => {
     setModalIsActived(!modalIsActived)
     setLoading(true)
     try {
-      const response = await updatePoint(state.point.id, data);
+      await updatePoint(state.point.id, data);
       setLoading(false)
       setModalIsActivedSuccess(!modalIsActivedSuccess)
       history.push('/points')

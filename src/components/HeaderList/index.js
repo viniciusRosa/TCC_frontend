@@ -1,5 +1,5 @@
 import React from 'react';
-import { Item, Left, Right, DivColumn, ContentLink } from './styles';
+import { Item, DivColumn, ContentLink } from './styles';
 
 const HeaderList = ({arrayFields}) => {
 

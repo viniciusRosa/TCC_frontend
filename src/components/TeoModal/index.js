@@ -2,8 +2,6 @@ import React from 'react';
 import { Modal, ModalContainer, ModalClose, ModalContent, ModalTitleContent, ModalTile, ModalButton, ModalButtons } from './styles';
 import TeoButton from '../TeoButton';
 import TeoLoader from '../TeoLoader';
-import { useForm } from 'react-hook-form';
-import TeoForm from '../TeoForm';
 import TeoField from '../TeoField';
 import { useVacancy } from '../../contexts/VacancyContext';
 

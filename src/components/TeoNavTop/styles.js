@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components';
 import logo from '../../assets/logoBranco.png'
 import { FiMenu } from 'react-icons/fi'
@@ -40,6 +39,7 @@ export const TeoMenuButton = styled.a`
   justify-content: center;
   margin-right: 20px;
   margin-left: 1rem;
+  border-radius: 4px;
   width: 40px;
   position: relative;
   cursor: pointer;
@@ -50,6 +50,7 @@ export const TeoMenuButton = styled.a`
 
     & > ${TeoMenuIcon} {
       color: var(--color-primary);
+
 
     }
   }

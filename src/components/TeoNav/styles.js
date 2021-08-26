@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import logo from '../../assets/logoBranco.png'
 
 export const Wrapper = styled.div`
@@ -26,9 +26,6 @@ export const TeoLogo = styled.img.attrs({
 
 export const TeoMenuUl = styled.ul``;
 
-const hide = css`
-  display: none;
-`;
 
 export const TeoMenuLi = styled.li`
   display: flex;

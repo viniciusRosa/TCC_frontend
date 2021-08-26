@@ -1,5 +1,5 @@
 import React from 'react';
-import { Item, Left, Right, DivColumn, ContentLink } from './styles';
+import { Item, Left, DivColumn, ContentLink } from './styles';
 
 const TeoListItem = ({item, del, update, overview}) => {
 
