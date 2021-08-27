@@ -10,9 +10,9 @@ import Overview from '../pages/School/Overview';
 const SchoolRotes = () => (
   <>
     <Route exact path='/schools' component={ Schools } />
+    <Route path='/schools/overview' component={ Overview } />
     <Route path='/schools/create' component={ Create } />
     <Route path='/schools/update' component={ Update } />
-    <Route path='/schools/overview' component={ Overview } />
   </>
 );
 

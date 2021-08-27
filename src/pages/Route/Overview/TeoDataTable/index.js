@@ -28,7 +28,7 @@ const TeoDataTable = () => {
     history.push({
       pathname: '/routes/update',
       state: {
-        item: result,
+        route: result,
       }
     })
   }
