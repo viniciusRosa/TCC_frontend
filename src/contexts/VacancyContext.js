@@ -32,6 +32,10 @@ export function VacancyContextProvider({ children }) {
     })
   }
 
+  async function vacancyAccepted() {
+    const response = await api.put()
+
+  }
 
   return (
     <VacancyContext.Provider

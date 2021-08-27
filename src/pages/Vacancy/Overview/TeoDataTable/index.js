@@ -13,7 +13,6 @@ import {
     DivData
    } from './styles'
 import { useVacancy } from '../../../../contexts/VacancyContext';
-import TeoButton from '../../../../components/TeoButton';
 import TeoModal from '../../../../components/TeoModal';
 import { useLocation } from 'react-router-dom';
 import urlimage from '../../../../services/urlImage';
@@ -192,9 +191,29 @@ const TeoDataTable = () => {
 
       <ButtonDiv>
 
-        <TeoButton primary size='50%' >Deferido</TeoButton>
-        <TeoButton secondary size='50%' onClick={() => {handleMessage()} }>Entrar em contato</TeoButton>
-        <TeoButton warning size='50%' >Indeferido</TeoButton>
+        <button
+          className="w3-button w3-teal w3-round"
+          style={{ width: '30%' }}
+          type='submit'
+          // onClick={action}
+          >
+          Deferido
+        </button>
+
+        <button
+          className="w3-button w3-orange w3-round w3-text-white"
+          style={{ width: '30%' }}
+          onClick={() => {handleMessage()} }>
+          Entrar em contato
+        </button>
+
+        <button
+          className="w3-button w3-red w3-round w3-text-white"
+          style={{ width: '30%' }}
+          // onClick={secondary}
+          >
+          Indeferido
+        </button>
 
       </ButtonDiv>
 

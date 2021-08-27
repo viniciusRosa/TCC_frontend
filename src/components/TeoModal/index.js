@@ -1,6 +1,5 @@
 import React from 'react';
 import { Modal, ModalContainer, ModalClose, ModalContent, ModalTitleContent, ModalTile, ModalButton, ModalButtons } from './styles';
-import TeoButton from '../TeoButton';
 import TeoLoader from '../TeoLoader';
 import TeoField from '../TeoField';
 import { useVacancy } from '../../contexts/VacancyContext';
@@ -90,18 +89,38 @@ const SendMessage = ({closeModal, secondary, action}) => {
           </ModalTile>
           <ModalClose onClick={closeModal} />
         </ModalTitleContent>
-
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
           <TeoField.TextArea
             name='message'
             type='text'
             onChange={(event) => {handlemessage(event.target.value)}}
             placeholder='Mensagem'
             rows="5"
-            cols="80" />
+            
+            // cols="100" 
+            />
+
+        </div>
 
         <ModalButtons>
-          <TeoButton primary onClick={action}>Enviar</TeoButton>
-          <TeoButton secondary onClick={secondary}>Cancelar</TeoButton>
+          <button
+              className="w3-button w3-teal w3-round"
+              style={{ width: '30%' }}
+              type='submit'
+              onClick={action}>
+                Confirmar
+            </button>
+
+            <button
+              className="w3-button w3-orange w3-round w3-text-white"
+              style={{ width: '30%' }}
+              onClick={secondary}>
+                Cancelar
+            </button>
         </ModalButtons>
       </ModalContainer>
     </Modal>

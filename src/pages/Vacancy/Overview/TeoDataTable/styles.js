@@ -77,6 +77,7 @@ export const TableD = styled.td`
 export const ButtonDiv = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   margin-top: 5rem;
   margin-bottom: 4rem;
 `;
