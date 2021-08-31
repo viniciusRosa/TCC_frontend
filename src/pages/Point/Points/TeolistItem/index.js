@@ -11,7 +11,7 @@ const TeoListItem = ({item, del, update, overview}) => {
 
       <Left>
         <button className="w3-button w3-round w3-dark-grey" onClick={update}>Editar</button>
-        <button className="w3-button w3-round w3-red" style={{ marginLeft: '1rem' }} onClick={del}>Deletar</button>
+        {/* <button className="w3-button w3-round w3-red" style={{ marginLeft: '1rem' }} onClick={del}>Deletar</button> */}
       </Left>
 
     </Item>

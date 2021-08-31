@@ -7,7 +7,7 @@ import TeoField from '../../../../components/TeoField';
 import { FormColums, ErrorMessage } from './styles';
 import TeoModal from '../../../../components/TeoModal';
 import axios from 'axios';
-import { useSchool } from '../../../../contexts/SchoolContext';
+import { usePoint } from '../../../../contexts/PointContext';
 import { useHistory } from 'react-router-dom'
 
 
@@ -27,7 +27,7 @@ const TeoWrapperForm = () => {
 
   const {
     createPoint
-  } = useSchool()
+  } = usePoint()
 
   const { errors, trigger, reset, handleSubmit, ...methods } = useForm({
     resolver: yupResolver(schema),
@@ -105,8 +105,8 @@ const TeoWrapperForm = () => {
 
         <TeoForm onSubmit={handleSubmit(newPoint)} ref={form}>
 
-          <TeoField.Text label="Nome do ponto" type="text" name="point_name" register={methods.register} />
-          {errors.point_name && (<ErrorMessage>{errors.point_name.message}</ErrorMessage>)}
+          <TeoField.Text label="Nome do ponto" type="text" name="name" register={methods.register} />
+          {errors.name && (<ErrorMessage>{errors.name.message}</ErrorMessage>)}
 
           <TeoField.Text label="Endereço" type="text" name="address" register={methods.register} />
           {errors.street && (<ErrorMessage>{errors.adress.message}</ErrorMessage>)}
@@ -120,9 +120,6 @@ const TeoWrapperForm = () => {
             {errors.number ? (<ErrorMessage>{errors.number.message}</ErrorMessage>) : <div></div>}
             {errors.district ? (<ErrorMessage>{errors.district.message}</ErrorMessage>) : <div></div>}
           </FormColums>
-
-          <TeoField.Text label="Complemento" type="text" name="complement" register={methods.register} />
-          {errors.complement && (<ErrorMessage>{errors.complement.message}</ErrorMessage>)}
 
           <FormColums>
             <TeoField.Select size='20%' name='uf' label='UF' onChange={handleSelectedUF} value={selectedUf} register={methods.register}>
@@ -148,14 +145,12 @@ const TeoWrapperForm = () => {
               }
             </TeoField.Select>
 
-            <TeoField.Text label="CEP" type="text" name="cep" mask='cep' register={methods.register} />
 
           </FormColums>
 
           <FormColums>
             {errors.uf ? (<ErrorMessage>{errors.uf.message}</ErrorMessage>) : <div></div>}
             {errors.city ? (<ErrorMessage>{errors.city.message}</ErrorMessage>) : <div></div>}
-            {errors.cep ? (<ErrorMessage>{errors.cep.message}</ErrorMessage>) : <div></div>}
           </FormColums>
 
           {modalIsActived && <TeoModal.Warning closeModal={activeModal} secondary={resetButtonModal}>Tem Certeza?</TeoModal.Warning>}

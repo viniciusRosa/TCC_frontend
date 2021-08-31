@@ -42,6 +42,8 @@ function Points() {
 
   }, [update, loadPointList])
 
+  console.log(items)
+
   function confirmDelete(id) {
     setItemToDelete(id)
     setModalIsActived(true);
@@ -69,7 +71,7 @@ function Points() {
     history.push({
       pathname: '/points/update',
       state: {
-        item: point,
+        point: point,
       }
     })
   }

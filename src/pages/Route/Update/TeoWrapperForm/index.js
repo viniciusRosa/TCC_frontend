@@ -44,7 +44,7 @@ const TeoWrapperForm = () => {
     setModalIsActived(!modalIsActived)
     setLoading(true)
     try {
-      await updateRoute(state.routes.id, data);
+      await updateRoute(state.route.id, data);
       setLoading(false)
       setModalIsActivedSuccess(!modalIsActivedSuccess)
       history.push('/routes')

@@ -30,7 +30,6 @@ const TeoWrapperForm = () => {
     address: state.point.address,
     cep: state.point.cep,
     city: state.point.city,
-    complement: state.point.complement,
     district: state.point.district,
     number: state.point.number
   }
@@ -133,9 +132,6 @@ const TeoWrapperForm = () => {
             {errors.district ? (<ErrorMessage>{errors.district.message}</ErrorMessage>) : <div></div>}
           </FormColums>
 
-          <TeoField.Text label="Complemento" type="text" name="complement" register={methods.register} />
-          {errors.complement && (<ErrorMessage>{errors.complement.message}</ErrorMessage>)}
-
           <FormColums>
             <TeoField.Select size='20%' name='uf' label='UF' onChange={handleSelectedUF} value={selectedUf} register={methods.register}>
               <option value='0'>default</option>
@@ -160,14 +156,11 @@ const TeoWrapperForm = () => {
               }
             </TeoField.Select>
 
-            <TeoField.Text label="CEP" type="text" name="cep" mask='cep' register={methods.register} />
-
           </FormColums>
 
           <FormColums>
             {errors.uf ? (<ErrorMessage>{errors.uf.message}</ErrorMessage>) : <div></div>}
             {errors.city ? (<ErrorMessage>{errors.city.message}</ErrorMessage>) : <div></div>}
-            {errors.cep ? (<ErrorMessage>{errors.cep.message}</ErrorMessage>) : <div></div>}
           </FormColums>
 
           {modalIsActived && <TeoModal.Warning closeModal={activeModal} secondary={resetButtonModal}>Tem Certeza?</TeoModal.Warning>}
@@ -178,7 +171,7 @@ const TeoWrapperForm = () => {
         </TeoForm>
       </FormProvider>
       <FormColums>
-        
+
         <button
           className="w3-button w3-teal w3-round"
           style={{ width: "25%" }}

@@ -10,7 +10,7 @@ const TeoListItem = ({item, del, update, overview}) => {
       </DivColumn>
 
       <DivColumn>
-      <ContentLink onClick={overview}>23/{item.vacancy}</ContentLink>
+      <ContentLink onClick={overview}>0/{Number(item.vacancy)}</ContentLink>
       </DivColumn>
 
       <DivColumn>
