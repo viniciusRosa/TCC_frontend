@@ -26,10 +26,11 @@ const TeoDataTable = () => {
   const [loading, setLoading] = useState(false);
   const [modalIsActivedSuccess, setModalIsActivedSuccess] = useState(false);
   const [modalIsActivedError, setModalIsActivedError] = useState(false);
-
   const [overviewItem, setOverviewItem] = useState({})
   const [MessagesUpdate, setMessagesUpdate] = useState(false);
-  const [messages, setMessages] = useState([])
+  const [messages, setMessages] = useState([]);
+  const [acceptedOrRejectedModal, setAcceptedOrRejectedModal] = useState(false);
+  const [operation, setOperation] = useState('')
 
   const user = '31cfc616-530d-4621-bdb7-d61b626baab6';
 
@@ -94,6 +95,16 @@ const TeoDataTable = () => {
 
   function resetButtonError() {
     setModalIsActivedError(!modalIsActivedError)
+  }
+
+  function handleAcceptedOrRejectButtons(operationName) {
+    setOperation(operationName)
+    setAcceptedOrRejectedModal(true)
+  }
+
+  function requestAcceptedOrRejected() {
+    // console.log(operation)
+    // setAcceptedOrRejectedModal(true)
   }
 
   return (
@@ -195,7 +206,7 @@ const TeoDataTable = () => {
           className="w3-button w3-teal w3-round"
           style={{ width: '30%' }}
           type='submit'
-          // onClick={action}
+          onClick={() => {handleAcceptedOrRejectButtons('accepted')}}
           >
           Deferido
         </button>
@@ -210,7 +221,7 @@ const TeoDataTable = () => {
         <button
           className="w3-button w3-red w3-round w3-text-white"
           style={{ width: '30%' }}
-          // onClick={secondary}
+          onClick={() => {handleAcceptedOrRejectButtons('rejected')}}
           >
           Indeferido
         </button>
@@ -227,7 +238,11 @@ const TeoDataTable = () => {
       {loading && <TeoModal.Loading />}
       {modalIsActivedSuccess && <TeoModal.Success closeModal={activeModalSuccess} text={'Mensagem enviada com sucesso'} button={resetButtonSuccess} />}
       {modalIsActivedError && <TeoModal.Success closeModal={activeModalError} text={'Algo deu Errado'} button={resetButtonError} />}
-
+      {acceptedOrRejectedModal && <TeoModal.Warning
+        closeModal={() => {setAcceptedOrRejectedModal(!acceptedOrRejectedModal)}}
+        action={() => {requestAcceptedOrRejected(operation)}}
+        secondary={() => {setAcceptedOrRejectedModal(!acceptedOrRejectedModal)}}
+      >Tem certeza?</TeoModal.Warning>}
     </>
 
   )
