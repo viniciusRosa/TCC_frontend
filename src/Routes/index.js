@@ -9,11 +9,13 @@ import SchoolRotes from './SchoolRotes';
 import VacancyRoutes from './VacancyRoutes';
 import PointRotes from './PointRotes';
 import RouteRoutes from './RouteRoutes';
+import UserRotes from './UserRotes';
 
 import { VacancyContextProvider } from '../contexts/VacancyContext';
 import { PointContextProvider } from '../contexts/PointContext';
 import { RouteContextProvider } from '../contexts/RouteContext';
 import { SchoolContextProvider } from '../contexts/SchoolContext';
+import { UserContextProvider } from '../contexts/UserContext';
 
 // const PrivateRoute = ({ component: Component, ...rest }) => (
 //   <Route
@@ -52,6 +54,11 @@ const Routes = () => (
           <RouteContextProvider>
             <RouteRoutes />
           </RouteContextProvider>
+
+          <UserContextProvider>
+            <UserRotes />
+          </UserContextProvider>
+
         </>
       }
 

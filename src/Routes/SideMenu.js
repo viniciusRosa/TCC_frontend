@@ -32,4 +32,8 @@ export default [
     path: '/routes',
     title: 'Rotas',
   },
+  {
+    path: '/usuarios',
+    title: 'Usuários',
+  }
 ]

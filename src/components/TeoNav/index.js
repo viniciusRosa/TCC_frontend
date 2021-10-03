@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 import SubMenu from './SubMenu';
 import { useSideMenu } from '../../contexts/SideMenuContext';
 import SideMenu from '../../Routes/SideMenu';
+import UserBox from '../UserBox';
 
 const TeoNav = () => {
 
@@ -21,6 +22,8 @@ const TeoNav = () => {
     <Wrapper status={sidebar}>
 
       <TeoNavWrapper status={sidebar} className='w3-sidebar w3-bar-block w3-card w3-animate-left'>
+
+        <UserBox />
 
         <TeoMenuUl >
           {

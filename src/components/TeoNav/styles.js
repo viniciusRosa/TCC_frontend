@@ -12,7 +12,7 @@ export const TeoNavWrapper = styled.nav`
   background-color: var(--color-white);
 
   & > ul {
-    margin-top: 56px;
+    margin-top: 16px;
   }
 `;
 

@@ -7,7 +7,7 @@ import Update from '../pages/Point/Update';
 import Overview from '../pages/Point/Overview';
 
 
-const SchoolRotes = () => (
+const PointRotes = () => (
   <>
     <Route exact path='/points' component={ Points } />
     <Route path='/points/create' component={ Create } />
@@ -16,4 +16,4 @@ const SchoolRotes = () => (
   </>
 );
 
-export default SchoolRotes;
+export default PointRotes;
