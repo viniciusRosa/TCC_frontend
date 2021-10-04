@@ -10,30 +10,34 @@ export function UserContextProvider({ children }) {
     return response.data;
   }
 
-  // async function loadPoint(pointId) {
-  //   const response = await api.get(`points/${pointId}`)
-  //   return response.data[0]
-  // }
+  async function loadUser(userId) {
+    const response = await api.get(`users/${userId}`)
+    return response.data[0]
+  }
 
-  // async function createPoint(data) {
-  //   const response = await api.post('points', data);
-  //   return response
-  // }
+  async function createUser(data) {
+    const response = await api.post('users', data);
+    return response
+  }
 
-  // async function deletePoint(id) {
-  //   await api.delete(`points/${id}`);
-  // }
+  async function deleteUser(id) {
+    await api.delete(`users/${id}`);
+  }
 
-  // async function updatePoint(id, data) {
-  //   const response = await api.put(`points/${id}`, data);
-  //   return response;
-  // }
+  async function updateUser(id, data) {
+    const response = await api.put(`users/${id}`, data);
+    return response;
+  }
 
 
   return (
     <UserContext.Provider
       value={{
-        loadUsersList
+        loadUsersList,
+        loadUser,
+        createUser,
+        deleteUser,
+        updateUser
       }}>
 
         { children }
