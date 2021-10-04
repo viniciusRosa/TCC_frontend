@@ -5,10 +5,10 @@ export const UserContext = createContext({});
 
 export function UserContextProvider({ children }) {
 
-  // async function loadPointList() {
-  //   const response = await api.get(`points`)
-  //   return response.data;
-  // }
+  async function loadUsersList() {
+    const response = await api.get(`users`)
+    return response.data;
+  }
 
   // async function loadPoint(pointId) {
   //   const response = await api.get(`points/${pointId}`)
@@ -33,7 +33,7 @@ export function UserContextProvider({ children }) {
   return (
     <UserContext.Provider
       value={{
-
+        loadUsersList
       }}>
 
         { children }

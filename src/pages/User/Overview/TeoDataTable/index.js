@@ -38,7 +38,7 @@ const TeoDataTable = () => {
       <DivHead>
         <button
           className='w3-button w3-dark-grey w3-round'
-          onClick={() => history.push('/uusarios')}>
+          onClick={() => history.push('/usuarios')}>
           Voltar
         </button>
 

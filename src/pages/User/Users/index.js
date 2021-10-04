@@ -22,23 +22,23 @@ function Users() {
   const history = useHistory();
 
   const {
-
+    loadUsersList
    } = useUser();
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   async function getPoints() {
-  //     const points = await loadPointList();
-  //     setItem(points)
-  //   }
+    async function getUsers() {
+      const users = await loadUsersList();
+      setItem(users)
+    }
 
-  //   getPoints()
+    getUsers()
 
-  //   if(update === true) {
-  //     setUpdate(false);
-  //   }
+    if(update === true) {
+      setUpdate(false);
+    }
 
-  // }, [update, loadPointList])
+  }, [update, loadUsersList])
 
   function confirmDelete(id) {
     setItemToDelete(id)
@@ -92,7 +92,7 @@ function Users() {
             <DivCreateNew>
               <button className="w3-button w3-teal w3-round" onClick={createNew}>+ Novo usuário</button>
             </DivCreateNew>
-            <HeaderList  arrayFields={['Nome','', '', 'Opções']} />
+            <HeaderList  arrayFields={['Nome','Status', '', 'Opções']} />
             { items <= 0 ? <Content>'Nenhum usuario cadastrado</Content> :
               items.map(item => {
                 return (
