@@ -76,7 +76,7 @@ function Users() {
     history.push({
       pathname: '/usuarios/overview',
       state: {
-        point: id,
+        user: id,
       }
     })
   }

@@ -12,16 +12,17 @@ const TeoDataTable = () => {
   const [result, setResult] = useState({})
 
   const {
-
+    loadUser
    } = useUser()
 
-  // useEffect(() => {
-  //   async function getPoint() {
-  //     const point = await loadPoint(state.point)
-  //     setResult(point)
-  //   }
-  //   getPoint()
-  // }, [])
+  useEffect(() => {
+    async function getUser() {
+      const user = await loadUser(state.user);
+      console.log(user)
+      setResult(user)
+    }
+    getUser()
+  }, [])
 
   async function goToUpdate() {
 
@@ -56,29 +57,10 @@ const TeoDataTable = () => {
         </TableHead>
         <tbody>
           <TableRow>
-            <td>Endereço</td>
-            <td>{result.address}</td>
+            <td>Nome</td>
+            <td>{result.name}</td>
           </TableRow>
-          <TableRow>
-            <td>Numero</td>
-            <td>{result.number}</td>
-          </TableRow>
-          <TableRow>
-            <td>UF</td>
-            <td>{result.uf}</td>
-          </TableRow>
-          <TableRow>
-            <td>Cidade</td>
-            <td>{result.city}</td>
-          </TableRow>
-          <TableRow>
-            <td>Latitude</td>
-            <td>{result.latitude}</td>
-          </TableRow>
-          <TableRow>
-            <td>Longitude</td>
-            <td>{result.longitude}</td>
-          </TableRow>
+
         </tbody>
       </ViewTable>
     </div>
