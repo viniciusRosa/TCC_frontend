@@ -12,6 +12,11 @@ export function VacancyContextProvider({ children }) {
     return response.data;
   }
 
+  async function changeStudentStatus(vacancyId, operation) {
+    const response = await api.put(`vacancyrequest/${vacancyId}`, { status: operation })
+    return response.data[0];
+  }
+
   async function loadOverview(student) {
     const response = await api.get(`students/${student}`)
     return response.data[0]
@@ -46,6 +51,7 @@ export function VacancyContextProvider({ children }) {
         loadVacancyList,
         loadMessages,
         sendMessage,
+        changeStudentStatus
       }}>
 
         { children }

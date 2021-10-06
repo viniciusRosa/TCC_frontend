@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import TeoContainer from '../../../components/TeoContainer';
 import TeoNav from '../../../components/TeoNav';
 import TeoMainWrapper from '../../../components/TeoMainWrapper';
 import TeoNavTop from '../../../components/TeoNavTop';
-import TeoPageTitle from '../../../components/TeoPageTitle'
+import TeoPageTitle from '../../../components/TeoPageTitle';
 import TeoBox from '../../../components/TeoBox';
 import TeoListItem from './TeolistItem';
-import Content from '../../../components/TeoField/Content'
+import Content from '../../../components/TeoField/Content';
 import { useVacancy } from '../../../contexts/VacancyContext';
-import HeaderList from '../../../components/HeaderList'
+import HeaderList from '../../../components/HeaderList';
 
 function Vacancy() {
 
@@ -31,12 +31,13 @@ function Vacancy() {
 
   const history = useHistory();
 
-  async function goOverview(studentId, vacancyrequestId) {
+  async function goOverview(studentId, vacancyrequestId, vacancyrequestsStatus) {
     history.push({
       pathname: '/vacancy/overview',
       state: {
         student: studentId,
-        vacancyrequest: vacancyrequestId
+        vacancyrequest: vacancyrequestId,
+        status: vacancyrequestsStatus
       }
     })
   }
@@ -57,7 +58,7 @@ function Vacancy() {
                 return (
                   <TeoListItem key={item.id}
                     item={item}
-                    overview={() => { goOverview(item.id, item.vacancyrequest) }}
+                    overview={() => { goOverview(item.id, item.vacancyrequest, item.vacancyrequestsStatus) }}
                   />
                 )
               })}

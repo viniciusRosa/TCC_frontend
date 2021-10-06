@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import {
-    ViewTable,
-    TableHead,
-    TableRow,
-    DivHead,
-    ButtonDiv,
-    DivMessage,
-    DivMessages,
-    TextMessage,
-    DivMessageStudent,
-    DivstudentData,
-    DivData
-   } from './styles'
+  ViewTable,
+  TableHead,
+  TableRow,
+  DivHead,
+  ButtonDiv,
+  DivMessage,
+  DivMessages,
+  TextMessage,
+  DivMessageStudent,
+  DivstudentData,
+  DivData
+} from './styles'
 import { useVacancy } from '../../../../contexts/VacancyContext';
 import TeoModal from '../../../../components/TeoModal';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import urlimage from '../../../../services/urlImage';
 
 
 const TeoDataTable = () => {
 
   const { state } = useLocation();
+  const history = useHistory()
 
   const [modalIsActived, setModalIsActived] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,6 +32,7 @@ const TeoDataTable = () => {
   const [messages, setMessages] = useState([]);
   const [acceptedOrRejectedModal, setAcceptedOrRejectedModal] = useState(false);
   const [operation, setOperation] = useState('')
+  const [status, setStatus] = useState('');
 
   const user = '31cfc616-530d-4621-bdb7-d61b626baab6';
 
@@ -38,7 +40,8 @@ const TeoDataTable = () => {
     loadOverview,
     loadMessages,
     sendMessage,
-    message
+    message,
+    changeStudentStatus
   } = useVacancy()
 
   useEffect(() => {
@@ -58,6 +61,9 @@ const TeoDataTable = () => {
     setMessagesUpdate(false)
   }, [MessagesUpdate])
 
+  useEffect(() => {
+    setStatus(state.status);
+  }, [])
 
   function handleMessage() {
     setModalIsActived(true);
@@ -67,13 +73,13 @@ const TeoDataTable = () => {
     setModalIsActived(false);
     setLoading(true);
     console.log(message)
-    try{
+    try {
       await sendMessage(state.vacancyrequest, user, state.student, message);
       setLoading(false);
       setModalIsActivedSuccess(!modalIsActivedSuccess)
       setMessagesUpdate(true)
 
-    } catch(err) {
+    } catch (err) {
       console.log(err)
       setLoading(false);
       setModalIsActivedError(!modalIsActivedError)
@@ -102,9 +108,17 @@ const TeoDataTable = () => {
     setAcceptedOrRejectedModal(true)
   }
 
-  function requestAcceptedOrRejected() {
-    // console.log(operation)
-    // setAcceptedOrRejectedModal(true)
+  function requestAcceptedOrRejected(operation) {
+    try{
+      changeStudentStatus( state.vacancyrequest, operation);
+      console.log(operation)
+      setAcceptedOrRejectedModal(false);
+      alert('Operação realizada com sucesso.')
+      history.push('/solicitacoespendentes')
+
+    } catch(err) {
+
+    }
   }
 
   return (
@@ -112,7 +126,7 @@ const TeoDataTable = () => {
       <div>
         <DivHead>
           <div>
-            <img src={`${urlimage.baseURL}${overviewItem.filename}`} alt='foto do aluno'/>
+            <img src={`${urlimage.baseURL}${overviewItem.filename}`} alt='foto do aluno' />
             <p>{overviewItem.name}</p>
           </div>
         </DivHead>
@@ -173,76 +187,79 @@ const TeoDataTable = () => {
 
         {
 
-        messages.map((message, index) => {
+          messages.map((message, index) => {
 
-          if (message.from_id === state.student) {
-            return (
-              <DivstudentData>
-                <span>{overviewItem.name}</span>
-                <DivMessageStudent>
-                  <TextMessage>{message.message}</TextMessage>
-                </DivMessageStudent>
-              </DivstudentData>
-            )
+            if (message.from_id === state.student) {
+              return (
+                <DivstudentData>
+                  <span>{overviewItem.name}</span>
+                  <DivMessageStudent>
+                    <TextMessage>{message.message}</TextMessage>
+                  </DivMessageStudent>
+                </DivstudentData>
+              )
 
-          } else {
-            return (
-              <DivData>
+            } else {
+              return (
+                <DivData>
                   <span>Usuário</span>
-                <DivMessage>
-                  <TextMessage>{message.message}</TextMessage>
-                </DivMessage>
-              </DivData>
+                  <DivMessage>
+                    <TextMessage>{message.message}</TextMessage>
+                  </DivMessage>
+                </DivData>
 
-            )
-          }
-        })
+              )
+            }
+          })
         }
       </DivMessages>
 
-      <ButtonDiv>
+      {status === 'in_progress' &&
 
-        <button
-          className="w3-button w3-teal w3-round"
-          style={{ width: '30%' }}
-          type='submit'
-          onClick={() => {handleAcceptedOrRejectButtons('accepted')}}
+        <ButtonDiv>
+
+          <button
+            className="w3-button w3-teal w3-round"
+            style={{ width: '30%' }}
+            type='submit'
+            onClick={() => { handleAcceptedOrRejectButtons('accepted') }}
           >
-          Deferido
-        </button>
+            Deferido
+          </button>
 
-        <button
-          className="w3-button w3-orange w3-round w3-text-white"
-          style={{ width: '30%' }}
-          onClick={() => {handleMessage()} }>
-          Entrar em contato
-        </button>
+          <button
+            className="w3-button w3-orange w3-round w3-text-white"
+            style={{ width: '30%' }}
+            onClick={() => { handleMessage() }}>
+            Entrar em contato
+          </button>
 
-        <button
-          className="w3-button w3-red w3-round w3-text-white"
-          style={{ width: '30%' }}
-          onClick={() => {handleAcceptedOrRejectButtons('rejected')}}
+          <button
+            className="w3-button w3-red w3-round w3-text-white"
+            style={{ width: '30%' }}
+            onClick={() => { handleAcceptedOrRejectButtons('rejected') }}
           >
-          Indeferido
-        </button>
+            Indeferido
+          </button>
 
-      </ButtonDiv>
+        </ButtonDiv>
 
-
+      }
 
       {modalIsActived && <TeoModal.SendMessage
-          closeModal={() => {setModalIsActived(!modalIsActived)}}
-          secondary={() => {setModalIsActived(!modalIsActived)}}
-          action={() => handleSendMessage()}
-           />}
+        closeModal={() => { setModalIsActived(!modalIsActived) }}
+        secondary={() => { setModalIsActived(!modalIsActived) }}
+        action={() => handleSendMessage()}
+      />}
       {loading && <TeoModal.Loading />}
       {modalIsActivedSuccess && <TeoModal.Success closeModal={activeModalSuccess} text={'Mensagem enviada com sucesso'} button={resetButtonSuccess} />}
       {modalIsActivedError && <TeoModal.Success closeModal={activeModalError} text={'Algo deu Errado'} button={resetButtonError} />}
       {acceptedOrRejectedModal && <TeoModal.Warning
-        closeModal={() => {setAcceptedOrRejectedModal(!acceptedOrRejectedModal)}}
-        action={() => {requestAcceptedOrRejected(operation)}}
-        secondary={() => {setAcceptedOrRejectedModal(!acceptedOrRejectedModal)}}
+        closeModal={() => { setAcceptedOrRejectedModal(!acceptedOrRejectedModal) }}
+        action={() => { requestAcceptedOrRejected(operation) }}
+        secondary={() => { setAcceptedOrRejectedModal(!acceptedOrRejectedModal) }}
       >Tem certeza?</TeoModal.Warning>}
+
     </>
 
   )

@@ -17,7 +17,7 @@ export default [
     title: 'Solicitações Deferidas'
   },
   {
-    path: 'vacancyrejected',
+    path: '/vacancyrejected',
     title: 'Solicitações Indeferidas'
   },
   {
