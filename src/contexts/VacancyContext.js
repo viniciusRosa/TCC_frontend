@@ -12,8 +12,12 @@ export function VacancyContextProvider({ children }) {
     return response.data;
   }
 
-  async function changeStudentStatus(vacancyId, operation) {
-    const response = await api.put(`vacancyrequest/${vacancyId}`, { status: operation })
+  async function changeStudentStatus(vacancyId, operation, route, student) {
+    const response = await api.put(`vacancyrequest/${vacancyId}`, {
+      route: route,
+      newStatus: operation,
+      student: student
+    })
     return response.data[0];
   }
 

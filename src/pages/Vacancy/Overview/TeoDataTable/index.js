@@ -110,7 +110,7 @@ const TeoDataTable = () => {
 
   function requestAcceptedOrRejected(operation) {
     try{
-      changeStudentStatus( state.vacancyrequest, operation);
+      changeStudentStatus( state.vacancyrequest, operation, state.route, state.student);
       console.log(operation)
       setAcceptedOrRejectedModal(false);
       alert('Operação realizada com sucesso.')

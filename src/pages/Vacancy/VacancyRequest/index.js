@@ -29,15 +29,18 @@ function Vacancy() {
 
   }, [loadVacancyList])
 
+  console.log(resultDb);
+
   const history = useHistory();
 
-  async function goOverview(studentId, vacancyrequestId, vacancyrequestsStatus) {
+  async function goOverview(studentId, vacancyrequestId, vacancyrequestsStatus, vacancyrequestsRoute) {
     history.push({
       pathname: '/vacancy/overview',
       state: {
         student: studentId,
         vacancyrequest: vacancyrequestId,
-        status: vacancyrequestsStatus
+        status: vacancyrequestsStatus,
+        route: vacancyrequestsRoute
       }
     })
   }
@@ -58,7 +61,9 @@ function Vacancy() {
                 return (
                   <TeoListItem key={item.id}
                     item={item}
-                    overview={() => { goOverview(item.id, item.vacancyrequest, item.vacancyrequestsStatus) }}
+                    overview={() => {
+                      goOverview(item.id, item.vacancyrequest,
+                                item.vacancyrequestsStatus, item.vacancyrequestsRoute) }}
                   />
                 )
               })}
