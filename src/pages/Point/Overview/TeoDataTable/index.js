@@ -71,14 +71,6 @@ const TeoDataTable = () => {
             <td>Cidade</td>
             <td>{result.city}</td>
           </TableRow>
-          <TableRow>
-            <td>Latitude</td>
-            <td>{result.latitude}</td>
-          </TableRow>
-          <TableRow>
-            <td>Longitude</td>
-            <td>{result.longitude}</td>
-          </TableRow>
         </tbody>
       </ViewTable>
     </div>

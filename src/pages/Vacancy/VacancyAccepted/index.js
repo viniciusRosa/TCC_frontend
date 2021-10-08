@@ -49,7 +49,7 @@ function Vacancy() {
         <TeoNav />
         <TeoMainWrapper>
           <TeoNavTop />
-          <TeoPageTitle title="Solicitações pendentes" />
+          <TeoPageTitle title="Solicitações deferidas" />
           <TeoBox>
           <HeaderList  arrayFields={['Nome', 'Escola', 'Turno', 'Cidade', 'Data do pedido']} />
 
