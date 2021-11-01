@@ -10,6 +10,7 @@ import {
   LoginForm,
   Label,
   Input,
+  ForgetPassaword,
   TeoLogo } from './styles'
 
 
@@ -66,6 +67,11 @@ function Login() {
               marginTop: '1rem'
             }}>Entrar</TeoButton>
           </LoginForm>
+
+            <ForgetPassaword>
+              <a href='#'>Esqueci minha senha.</a>
+            </ForgetPassaword>
+
         </FormWrapper>
       </Box>
     </TEOLoginContainer>

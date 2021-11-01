@@ -87,7 +87,7 @@ function Users() {
         <TeoNav />
         <TeoMainWrapper>
           <TeoNavTop />
-          <TeoPageTitle title="Usúarios" />
+          <TeoPageTitle title="Usuários" />
           <TeoBox>
             <DivCreateNew>
               <button className="w3-button w3-teal w3-round" onClick={createNew}>+ Novo usuário</button>

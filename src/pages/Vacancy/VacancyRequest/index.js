@@ -27,7 +27,7 @@ function Vacancy() {
     }
     getVacancy()
 
-  }, [loadVacancyList])
+  }, [resultDb])
 
   console.log(resultDb);
 

@@ -55,3 +55,19 @@ export const TeoLogo = styled.img.attrs({
   height: 88px;
   padding: 2rem, 0;
 `;
+
+export const ForgetPassaword = styled.p`
+
+  display: flex;
+  justify-content: center;
+  margin: 1.1rem 0 0 0;
+
+  & a {
+    margin: 0.5rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--color-grey-dark);
+    text-decoration: none;
+  }
+
+`;
