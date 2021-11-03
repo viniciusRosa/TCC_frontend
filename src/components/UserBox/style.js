@@ -16,7 +16,9 @@ export const Container = styled.div`
 export const WrapperR = styled.div`
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   margin-bottom: 0.5rem;
 
@@ -26,28 +28,8 @@ export const WrapperR = styled.div`
     color: var(--color-white)
   }
 
-  & button {
+  /* & button {
     display: flex;
     align-self: flex-end;
-  }
+  } */
 `;
-
-// export const ImageDiv = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   width: 50%;
-//   margin-bottom: 2rem;
-// `;
-
-// export const ImageTitle = styled.p`
-//   color: var(--color-grey-dark);
-//   font-weight: bold;
-//   margin-top: 0.5rem;
-//   margin-bottom: 1rem;
-// `;
-
-// export const Image = styled.img`
-//   object-fit: cover;
-//   width: 100%;
-
-// `;

@@ -14,16 +14,15 @@ const UserBox = () => {
     <Container>
       <WrapperR>
           <p>Olá, {name}</p>
-      </WrapperR>
 
-      <WrapperR>
-        <button
+          <button
           className="w3-button w3-orange w3-round w3-text-white"
           style={{ width: '30%' }}
           onClick={() => {history.push('/')}}>
             Sair
         </button>
       </WrapperR>
+
     </Container>
   )
 }

@@ -24,10 +24,10 @@ export default [
     path: '/schools',
     title: 'Escolas',
   },
-  {
-    path: '/points',
-    title: 'Pontos',
-  },
+  // {
+  //   path: '/points',
+  //   title: 'Pontos',
+  // },
   {
     path: '/routes',
     title: 'Rotas',
