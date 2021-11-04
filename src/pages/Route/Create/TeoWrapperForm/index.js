@@ -8,6 +8,14 @@ import { FormColums, ErrorMessage } from './styles';
 import TeoModal from '../../../../components/TeoModal';
 import { useHistory } from 'react-router-dom'
 import { useRoute } from '../../../../contexts/RouteContext';
+import TeoPointForm from '../../../Point/Create/TeoPointForm';
+
+
+import {
+  DivRow,
+  PointBox,
+  Subtitle
+} from './styles';
 
 const TeoWrapperForm = () => {
 
@@ -37,15 +45,16 @@ const TeoWrapperForm = () => {
   const newRote = async (data) => {
     setModalIsActived(!modalIsActived)
     setLoading(true)
-    try {
-      await createRoute(data);
-      setLoading(false)
-      setModalIsActivedSuccess(!modalIsActivedSuccess)
-    } catch (err) {
-      console.log(err);
-      setLoading(false)
-      setModalIsActivedError(!modalIsActivedError)
-    }
+    console.log(data)
+    // try {
+    //   await createRoute(data);
+    //   setLoading(false)
+    //   setModalIsActivedSuccess(!modalIsActivedSuccess)
+    // } catch (err) {
+    //   console.log(err);
+    //   setLoading(false)
+    //   setModalIsActivedError(!modalIsActivedError)
+    // }
   }
 
   function activeModal() {
@@ -105,6 +114,61 @@ const TeoWrapperForm = () => {
         </TeoForm>
       </FormProvider>
 
+      <DivRow>
+
+
+
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between'
+        }}>
+
+          <Subtitle>Pontos de parada</Subtitle>
+
+          <FormColums>
+            <TeoField.Select name='saida' label='Saída' onChange={handleshift} value={selectedShift} register={methods.register}>
+              <option value='Manhã'>Manhã</option>
+              <option value='Tarde'>Tarde</option>
+              <option value='Noite'>Noite</option>
+            </TeoField.Select>
+          </FormColums>
+
+          <PointBox>
+
+            <FormColums>
+              <TeoField.Select name='pontoDeParada' label='Parada' onChange={handleshift} value={selectedShift} register={methods.register}>
+                <option value='Manhã'>Manhã</option>
+                <option value='Tarde'>Tarde</option>
+                <option value='Noite'>Noite</option>
+              </TeoField.Select>
+            </FormColums>
+
+            <button
+              className="w3-button w3-teal w3-round"
+              style={{ width: "25%" }}
+              onClick={() => { }
+              }>+ Inserir pont de parada</button>
+
+          </PointBox>
+
+          <FormColums>
+            <TeoField.Select name='chegada' label='Chegada' onChange={handleshift} value={selectedShift} register={methods.register}>
+              <option value='Manhã'>Manhã</option>
+              <option value='Tarde'>Tarde</option>
+              <option value='Noite'>Noite</option>
+            </TeoField.Select>
+          </FormColums>
+
+
+        </div>
+        <div>
+        <Subtitle>Cadastrar ponto de parada</Subtitle>
+          <TeoPointForm />
+        </div>
+
+      </DivRow>
+
       <div style={{
         display: 'flex',
         justifyContent: 'space-between'
@@ -119,15 +183,15 @@ const TeoWrapperForm = () => {
                 activeModal()
               }
             }
-          }>Cadastrar</button>
+          }>Cadastrar rota</button>
 
         <button
           className="w3-button w3-orange w3-round w3-text-white"
           style={{ width: "25%" }}
           onClick={
             () => history.push('/routes')
-            }
-          >Cancelar</button>
+          }
+        >Cancelar</button>
       </div>
     </>
   )

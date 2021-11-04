@@ -44,9 +44,9 @@ const Routes = () => (
           </SchoolContextProvider>
 
           <RouteContextProvider>
-          <VacancyContextProvider>
-            <VacancyRoutes />
-          </VacancyContextProvider>
+            <VacancyContextProvider>
+              <VacancyRoutes />
+            </VacancyContextProvider>
           </RouteContextProvider>
 
 
@@ -55,7 +55,11 @@ const Routes = () => (
           </PointContextProvider>
 
           <RouteContextProvider>
-            <RouteRoutes />
+            <PointContextProvider>
+
+              <RouteRoutes />
+            </PointContextProvider>
+
           </RouteContextProvider>
 
           <UserContextProvider>

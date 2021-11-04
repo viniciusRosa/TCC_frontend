@@ -11,7 +11,7 @@ import { usePoint } from '../../../../contexts/PointContext';
 import { useHistory } from 'react-router-dom'
 
 
-const TeoWrapperForm = () => {
+const TeoPointForm = () => {
 
   const [modalIsActived, setModalIsActived] = useState(false);
   const [modalIsActivedSuccess, setModalIsActivedSuccess] = useState(false);
@@ -163,7 +163,8 @@ const TeoWrapperForm = () => {
 
       <div style={{
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'flex-end',
+
       }}>
         <button
           className="w3-button w3-teal w3-round"
@@ -175,18 +176,18 @@ const TeoWrapperForm = () => {
                 activeModal()
               }
             }
-          }>Cadastrar</button>
+          }>Cadastrar ponto</button>
 
-        <button
+        {/* <button
           className="w3-button w3-orange w3-round w3-text-white"
           style={{ width: "25%" }}
           onClick={
             () => history.push('/points')
             }
-          >Cancelar</button>
+          >Cancelar</button> */}
       </div>
     </>
   )
 }
 
-export default TeoWrapperForm;
+export default TeoPointForm;

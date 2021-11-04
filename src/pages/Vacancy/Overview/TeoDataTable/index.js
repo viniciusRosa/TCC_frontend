@@ -216,7 +216,7 @@ console.log(route)
             } else {
               return (
                 <DivData>
-                  <span>Usuário</span>
+                  <span>Vinicius Rosa</span>
                   <DivMessage>
                     <TextMessage>{message.message}</TextMessage>
                   </DivMessage>
@@ -245,7 +245,7 @@ console.log(route)
             className="w3-button w3-orange w3-round w3-text-white"
             style={{ width: '30%' }}
             onClick={() => { handleMessage() }}>
-            Entrar em contato
+            Enviar mensagem
           </button>
 
           <button
