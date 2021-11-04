@@ -43,9 +43,12 @@ const Routes = () => (
             <SchoolRotes />
           </SchoolContextProvider>
 
+          <RouteContextProvider>
           <VacancyContextProvider>
             <VacancyRoutes />
           </VacancyContextProvider>
+          </RouteContextProvider>
+
 
           <PointContextProvider>
             <PointRotes />

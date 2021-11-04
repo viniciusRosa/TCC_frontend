@@ -8,6 +8,7 @@ import {
   ListTd
 } from './styles';
 import urlimage from '../../../../services/urlImage';
+import { format, parseISO } from 'date-fns'
 
 const TeoListItem = ({ item, overview }) => {
 
@@ -36,7 +37,7 @@ const TeoListItem = ({ item, overview }) => {
             </ListTd>
 
             <ListTd>
-              <ContentLink> horario</ContentLink>
+              <ContentLink> {format(parseISO(item.created_at), 'dd/MM/yyyy - HH:mm')} </ContentLink>
             </ListTd>
 
 

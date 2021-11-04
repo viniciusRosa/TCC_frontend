@@ -27,20 +27,21 @@ function Vacancy() {
     }
     getVacancy()
 
-  }, [resultDb])
+  }, [])
 
   console.log(resultDb);
 
   const history = useHistory();
 
-  async function goOverview(studentId, vacancyrequestId, vacancyrequestsStatus, vacancyrequestsRoute) {
+  async function goOverview(studentId, vacancyrequestId, vacancyrequestsStatus, vacancyrequestsRoute, routeName) {
     history.push({
       pathname: '/vacancy/overview',
       state: {
         student: studentId,
         vacancyrequest: vacancyrequestId,
         status: vacancyrequestsStatus,
-        route: vacancyrequestsRoute
+        route: vacancyrequestsRoute,
+        routename: routeName
       }
     })
   }
@@ -63,7 +64,7 @@ function Vacancy() {
                     item={item}
                     overview={() => {
                       goOverview(item.id, item.vacancyrequest,
-                                item.vacancyrequestsStatus, item.vacancyrequestsRoute) }}
+                                item.vacancyrequestsStatus, item.vacancyrequestsRoute, item.routeName) }}
                   />
                 )
               })}

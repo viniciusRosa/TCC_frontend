@@ -13,6 +13,7 @@ import {
   DivData
 } from './styles'
 import { useVacancy } from '../../../../contexts/VacancyContext';
+import { useRoute } from '../../../../contexts/RouteContext';
 import TeoModal from '../../../../components/TeoModal';
 import { useHistory, useLocation } from 'react-router-dom';
 import urlimage from '../../../../services/urlImage';
@@ -33,6 +34,7 @@ const TeoDataTable = () => {
   const [acceptedOrRejectedModal, setAcceptedOrRejectedModal] = useState(false);
   const [operation, setOperation] = useState('')
   const [status, setStatus] = useState('');
+  const [ route, setRoute ] = useState({});
 
   const user = '31cfc616-530d-4621-bdb7-d61b626baab6';
 
@@ -44,13 +46,21 @@ const TeoDataTable = () => {
     changeStudentStatus
   } = useVacancy()
 
+  const { loadRoute } = useRoute();
+
   useEffect(() => {
     async function getStudent() {
       const student = await loadOverview(state.student);
       setOverviewItem(student)
     }
+    async function getRoute() {
+      const response = await loadRoute(state.route)
+      setRoute(response)
+    }
     getStudent()
+    getRoute()
   }, [])
+console.log(route)
 
   useEffect(() => {
     async function getMessages() {
@@ -135,6 +145,10 @@ const TeoDataTable = () => {
             <th></th>
           </TableHead>
           <tbody>
+            <TableRow>
+              <td>Rota escolhida</td>
+              <td>{route.name}</td>
+            </TableRow>
             <TableRow>
               <td>RG</td>
               <td>{overviewItem.rg}</td>
