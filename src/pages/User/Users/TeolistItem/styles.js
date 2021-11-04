@@ -16,6 +16,7 @@ export const Item = styled.div`
 `;
 
 export const ContentLink = styled(Content)`
+  align-self: center;
   cursor: pointer;
 `;
 

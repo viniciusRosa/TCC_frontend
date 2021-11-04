@@ -100,8 +100,8 @@ const SendMessage = ({closeModal, secondary, action}) => {
             onChange={(event) => {handlemessage(event.target.value)}}
             placeholder='Mensagem'
             rows="5"
-            
-            // cols="100" 
+
+            // cols="100"
             />
 
         </div>
@@ -112,7 +112,7 @@ const SendMessage = ({closeModal, secondary, action}) => {
               style={{ width: '30%' }}
               type='submit'
               onClick={action}>
-                Confirmar
+                Enviar
             </button>
 
             <button

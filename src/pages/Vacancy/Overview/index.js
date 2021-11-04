@@ -15,7 +15,7 @@ function Schools() {
         <TeoNav />
         <TeoMainWrapper>
           <TeoNavTop />
-          <TeoPageTitle title="Visão Geral" />
+          <TeoPageTitle title="Solicitação de vaga" />
 
           <TeoBox>
             <TeoDataTable />
