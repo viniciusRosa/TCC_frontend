@@ -9,6 +9,7 @@ const TeoListItem = ({item, del, update, overview}) => {
         <ContentLink onClick={overview} >{item.name}</ContentLink>
       </Right>
 
+        <ContentLink onClick={overview} >Ativo</ContentLink>
       <Left>
         <button className="w3-button w3-round w3-dark-grey" onClick={update}>Editar</button>
         <button className="w3-button w3-round w3-red" style={{ marginLeft: '1rem' }} onClick={del}>Deletar</button>

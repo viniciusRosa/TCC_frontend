@@ -34,7 +34,7 @@ function Routes() {
     }
 
     getRoutes()
-    
+
     if(update === true) {
       setUpdate(false)
     }
@@ -92,7 +92,7 @@ function Routes() {
             <DivCreateNew>
               <button className="w3-button w3-teal w3-round" onClick={createNew}>+ Nova rota</button>
             </DivCreateNew>
-            <HeaderList  arrayFields={['Nome', 'Vagas', 'Turno', 'Opções']} />
+            <HeaderList  arrayFields={['Nome','','', 'Vagas','','','', 'Turno','','','', 'Opções']} />
             { items <= 0 ? <Content>'Nenhuma rota cadastrado</Content> :
               items.map(item => {
                 return (

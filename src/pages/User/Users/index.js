@@ -92,7 +92,7 @@ function Users() {
             <DivCreateNew>
               <button className="w3-button w3-teal w3-round" onClick={createNew}>+ Novo usuário</button>
             </DivCreateNew>
-            <HeaderList  arrayFields={['Nome','Status', '', 'Opções']} />
+            <HeaderList arrayFields={['Nome','','','','','Status','','','','','', 'Opções']} />
             { items <= 0 ? <Content>'Nenhum usuario cadastrado</Content> :
               items.map(item => {
                 return (

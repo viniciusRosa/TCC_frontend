@@ -47,7 +47,8 @@ export const ImgThumb = styled.img`
 
 export const DivColumn = styled.div`
   display: flex;
-  justify-content:center;
+  /* justify-content:center; */
+  margin-left: 1rem;
   align-items: center;
   width: 100%;
 `;

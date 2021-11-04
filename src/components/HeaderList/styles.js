@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const Item = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   min-height: 50px;
   margin-top: 1.5rem;
   border-bottom: 1px solid var(--color-grey-medium);
