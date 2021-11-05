@@ -146,9 +146,9 @@ const TeoWrapperForm = () => {
 
             <button
               className="w3-button w3-teal w3-round"
-              style={{ width: "25%" }}
+              style={{ width: "30%" }}
               onClick={() => { }
-              }>+ Inserir pont de parada</button>
+              }>+ Inserir ponto de parada</button>
 
           </PointBox>
 

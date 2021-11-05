@@ -168,7 +168,7 @@ const TeoPointForm = () => {
       }}>
         <button
           className="w3-button w3-teal w3-round"
-          style={{ width: "25%" }}
+          style={{ width: "30%" }}
           onClick={
             async () => {
               const result = await trigger();

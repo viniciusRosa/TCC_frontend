@@ -92,7 +92,7 @@ function Routes() {
             <DivCreateNew>
               <button className="w3-button w3-teal w3-round" onClick={createNew}>+ Nova rota</button>
             </DivCreateNew>
-            <HeaderList  arrayFields={['Nome','','', 'Vagas','','','', 'Turno','','','', 'Opções']} />
+            <HeaderList  arrayFields={['Nome da rota','','', 'Numero de vagas','','', 'Turno','','','', 'Opções']} />
             { items <= 0 ? <Content>'Nenhuma rota cadastrado</Content> :
               items.map(item => {
                 return (
