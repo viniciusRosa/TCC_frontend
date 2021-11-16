@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import schema from './validation';
@@ -8,6 +8,7 @@ import { FormColums, ErrorMessage } from './styles';
 import TeoModal from '../../../../components/TeoModal';
 import { useHistory } from 'react-router-dom'
 import { useRoute } from '../../../../contexts/RouteContext';
+import { usePoint } from '../../../../contexts/PointContext';
 import TeoPointForm from '../../../Point/Create/TeoPointForm';
 
 
@@ -26,11 +27,29 @@ const TeoWrapperForm = () => {
   const [selectedShift, setSelectedShift] = useState('');
   const form = useRef(null)
 
+  const [pointLoaded, setPointLoaded] = useState([])
+  const [selectedPoints, setSelectedPoints] = useState([])
+
+
   const history = useHistory();
 
   const {
     createRoute
   } = useRoute();
+
+  const {
+    loadPointList
+  } = usePoint();
+
+  useEffect(() => {
+    async function getPoints() {
+      const points = await loadPointList();
+      setPointLoaded(points)
+    }
+
+    getPoints();
+
+  }, [])
 
 
   const { errors, trigger, reset, handleSubmit, ...methods } = useForm({
@@ -42,9 +61,67 @@ const TeoWrapperForm = () => {
     setSelectedShift(shift)
   }
 
+  const handlePointlist = (event) => {
+    const {name, value} = event.target;
+
+    if (name === 'saida') {
+      const arrayPoints = selectedPoints;
+      arrayPoints[0] = {id: value}
+      setSelectedPoints(arrayPoints)
+    }
+
+    if (name === 'chegada') {
+      const arrayPoints = selectedPoints;
+      arrayPoints[arrayPoints.length] = {id: value}
+      setSelectedPoints(arrayPoints)
+    }
+
+    // if (name === 'pontoDeParada') {
+    //   const arrayPoints = selectedPoints;
+    //   const position = undefined;
+
+
+
+    //   arrayPoints[arrayPoints.length] = {id: value}
+    //   setSelectedPoints(arrayPoints)
+    // }
+
+    console.log(selectedPoints)
+    console.log(name, value)
+  }
+
+/* SELECAO DE ROTAS - handlePointlist
+
+
+  function handleSelectItem(id: number) {
+
+    const alreadySelected = selectedItems.findIndex(item => item === id);
+
+    if (alreadySelected >= 0) {
+        const filteredItems = selectedItems.filter(item => item !== id);
+        setSelectedItems(filteredItems);
+    }else {
+
+        setSelectedItems([...selectedItems, id])
+    }
+
+}
+
+ const { name, value} = event.target;
+
+const items = selectedItems;
+
+        const data = new FormData();
+
+
+            data.append('items', items.join(','));
+
+*/
+
+
   const newRote = async (data) => {
     setModalIsActived(!modalIsActived)
-    setLoading(true)
+    // setLoading(true)
     console.log(data)
     // try {
     //   await createRoute(data);
@@ -127,20 +204,30 @@ const TeoWrapperForm = () => {
           <Subtitle>Pontos de parada</Subtitle>
 
           <FormColums>
-            <TeoField.Select name='saida' label='Saída' onChange={handleshift} value={selectedShift} register={methods.register}>
-              <option value='Manhã'>Manhã</option>
-              <option value='Tarde'>Tarde</option>
-              <option value='Noite'>Noite</option>
+            <TeoField.Select name='saida' label='Saída' onChange={handlePointlist} >
+            <option value='0'>default</option>
+              {
+                pointLoaded.map(point => {
+                  return (
+                    <option key={point.id} value={point.id}>{point.name}</option>
+                  )
+                })
+              }
             </TeoField.Select>
           </FormColums>
 
           <PointBox>
 
             <FormColums>
-              <TeoField.Select name='pontoDeParada' label='Parada' onChange={handleshift} value={selectedShift} register={methods.register}>
-                <option value='Manhã'>Manhã</option>
-                <option value='Tarde'>Tarde</option>
-                <option value='Noite'>Noite</option>
+              <TeoField.Select name='pontoDeParada' label='Parada' onChange={handlePointlist}>
+              <option value='0'>default</option>
+              {
+                pointLoaded.map(point => {
+                  return (
+                    <option key={point.id} value={point.id}>{point.name}</option>
+                  )
+                })
+              }
               </TeoField.Select>
             </FormColums>
 
@@ -153,10 +240,15 @@ const TeoWrapperForm = () => {
           </PointBox>
 
           <FormColums>
-            <TeoField.Select name='chegada' label='Chegada' onChange={handleshift} value={selectedShift} register={methods.register}>
-              <option value='Manhã'>Manhã</option>
-              <option value='Tarde'>Tarde</option>
-              <option value='Noite'>Noite</option>
+            <TeoField.Select name='chegada' label='Chegada' onChange={handlePointlist}>
+            <option value='0'>default</option>
+              {
+                pointLoaded.map(point => {
+                  return (
+                    <option key={point.id} value={point.id}>{point.name}</option>
+                  )
+                })
+              }
             </TeoField.Select>
           </FormColums>
 
