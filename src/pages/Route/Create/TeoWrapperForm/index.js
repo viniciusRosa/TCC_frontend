@@ -25,11 +25,15 @@ const TeoWrapperForm = () => {
   const [modalIsActivedError, setModalIsActivedError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [selectedShift, setSelectedShift] = useState('');
-  const form = useRef(null)
+  const form = useRef(null);
 
-  const [pointLoaded, setPointLoaded] = useState([])
-  const [selectedPoints, setSelectedPoints] = useState([])
+  const [pointLoaded, setPointLoaded] = useState([]);
 
+  const [selectedInitialPoint, setSelectedInitialPoint] = useState({});
+  const [selectedFinalPoint, setSelectedFinalPoint] = useState({});
+  const [selectedPoints, setSelectedPoints] = useState([]);
+
+  const [pointList, setPointList] = useState([]);
 
   const history = useHistory();
 
@@ -51,7 +55,6 @@ const TeoWrapperForm = () => {
 
   }, [])
 
-
   const { errors, trigger, reset, handleSubmit, ...methods } = useForm({
     resolver: yupResolver(schema),
   });
@@ -65,30 +68,39 @@ const TeoWrapperForm = () => {
     const {name, value} = event.target;
 
     if (name === 'saida') {
-      const arrayPoints = selectedPoints;
-      arrayPoints[0] = {id: value}
-      setSelectedPoints(arrayPoints)
+      setSelectedInitialPoint({
+        value
+      })
     }
 
     if (name === 'chegada') {
+   
+      setSelectedFinalPoint({
+        id: value
+      })
+
+      console.log(selectedFinalPoint)
+    }
+
+    if (name === 'pontoDeParada') {
       const arrayPoints = selectedPoints;
-      arrayPoints[arrayPoints.length] = {id: value}
+      arrayPoints.push({
+        id: value
+      })
       setSelectedPoints(arrayPoints)
     }
 
-    // if (name === 'pontoDeParada') {
-    //   const arrayPoints = selectedPoints;
-    //   const position = undefined;
+    const arrayPoints = selectedPoints;
+    arrayPoints.push(selectedFinalPoint)
 
+    setSelectedPoints(arrayPoints)
 
-
-    //   arrayPoints[arrayPoints.length] = {id: value}
-    //   setSelectedPoints(arrayPoints)
-    // }
-
-    console.log(selectedPoints)
-    console.log(name, value)
+    console.log(selectedFinalPoint)
+    // console.log(name, value)
   }
+
+  // console.log(selectedFinalPoint)
+
 
 /* SELECAO DE ROTAS - handlePointlist
 
@@ -116,6 +128,50 @@ const items = selectedItems;
 
             data.append('items', items.join(','));
 
+
+arr
+Array(4) [ "primeiro", "meio", "terceiro", "ultimo" ]
+
+arr.splice(arr.length - 1, 0, 'terceiro')
+Array []
+
+arr.splice(arr.length - 1, 0, 'penultimo')
+Array []
+
+arr
+Array(6) [ "primeiro", "meio", "terceiro", "terceiro", "penultimo", "ultimo" ]
+
+arr.splice(0, 1, 'troquei')
+Array [ "primeiro" ]
+
+arr.splice(0, 1, 'troquei denovo')
+Array [ "troquei" ]
+
+arr.splice(arr.length, 1, 'troquei ultimo')
+Array []
+
+arr.splice(arr.length -1, 1, 'troquei ultimo')
+Array [ "troquei ultimo" ]
+
+arr.splice(arr.length -1, 1, 'ultimo')
+Array [ "troquei ultimo" ]
+
+arr.splice(arr.length -1, 1)
+Array [ "ultimo" ]
+
+arr.splice(arr.length -1, 1, 'troquei ultimo')
+Array [ "ultimo" ]
+
+acc = ['el4', 'el5']
+Array [ "el4", "el5" ]
+
+acc.map(a => {
+  arr.splice(arr.length -1, 0, a)
+})
+Array [ undefined, undefined ]
+
+arr
+Array(11) [ "troquei denovo", "meio", "terceiro", "terceiro", "penultimo", "el1", "el2", "el3", "el4", "el5", … ]
 */
 
 
@@ -214,6 +270,7 @@ const items = selectedItems;
                 })
               }
             </TeoField.Select>
+           
           </FormColums>
 
           <PointBox>
@@ -229,7 +286,46 @@ const items = selectedItems;
                 })
               }
               </TeoField.Select>
+                <button
+                  className="w3-button w3-red w3-round w3-text-white w3-small"
+                  style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignSelf: 'flex-end',
+                  width: '2rem',
+                  height: '3rem' 
+                }}>
+                X
+              </button>
             </FormColums>
+
+            { selectedPoints.map(point => {
+              return (
+                <FormColums>
+                  <TeoField.Select name='pontoDeParada' label='Parada' onChange={handlePointlist}>
+                  <option value='0'>default</option>
+                  {
+                    pointLoaded.map(point => {
+                      return (
+                       <option key={point.id} value={point.id}>{point.name}</option>
+                      )
+                    })
+                  }
+                  </TeoField.Select>
+                  <button
+                    className="w3-button w3-red w3-round w3-text-white w3-small"
+                    style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignSelf: 'flex-end',
+                    width: '2rem',
+                    height: '3rem' 
+                  }}>
+                    X
+                  </button>
+                </FormColums>
+              )
+            }) }
 
             <button
               className="w3-button w3-teal w3-round"
