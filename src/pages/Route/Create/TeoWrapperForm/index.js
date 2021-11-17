@@ -29,7 +29,7 @@ const TeoWrapperForm = () => {
 
   const [pointLoaded, setPointLoaded] = useState([]);
 
-  const [selectedPoints, setSelectedPoints] = useState([]);
+  const [selectedPoints, setSelectedPoints] = useState([{id: 0, name: 'saida'}, {id:0, name: 'parada'}, {id: 0, name: 'chegada'}]);
   const [adicionalPoint, setAdicionalPoint] = useState([]);
 
   const history = useHistory();
@@ -67,37 +67,56 @@ const TeoWrapperForm = () => {
     if (name === 'saida') {
       const pointsArray = selectedPoints;
       pointsArray.splice(0, 1, {
-          rota: 'saida',
-          id: value
+          id: value,  
+          name: 'saida'
         })
        setSelectedPoints(pointsArray);
     }
 
     if (name === 'chegada') {
 
-      if (selectedPoints.length > 1) {
-
-        const pointsArray = selectedPoints;
-        pointsArray.splice(pointsArray - 1, 1, {
-            rota: 'chegada',
-            id: value
+      const pointsArray = selectedPoints;
+      pointsArray.splice(2, 1, {
+        id: value,  
+        name: 'chegada'
           })
-         setSelectedPoints(pointsArray);
-      } else {
-
-        const pointsArray = selectedPoints;
-        pointsArray.push({
-          rota: 'chegada',
-          id: value
-        })
-      }
+        setSelectedPoints(pointsArray);
     }
 
     if (name === 'pontoDeParada') {
-
+      const pointsArray = selectedPoints;
+      pointsArray.splice(1, 1, {
+        id: value,  
+        name: 'parada 1'
+          })
+        setSelectedPoints(pointsArray);
     }
     console.log(selectedPoints)
   }
+
+  const addNewPoint = () => {
+  
+    setAdicionalPoint([...adicionalPoint, {
+          id: 0,  
+          }]);
+
+  }
+
+  const handlePointAdicionalList = (event) => {
+
+    const {name, value} = event.target;
+
+    const pointsArray = adicionalPoint;
+      pointsArray.splice(Number(name), 1, {
+          id: value,  
+          name: `parada ${Number(name) + 2}`
+        })
+       setAdicionalPoint(pointsArray);
+
+    
+  }
+
+  console.log(adicionalPoint)
 
 /* SELECAO DE ROTAS - handlePointlist
 
@@ -116,17 +135,7 @@ const TeoWrapperForm = () => {
 
 }
 
- const { name, value} = event.target;
-
-const items = selectedItems;
-
-        const data = new FormData();
-
-
-            data.append('items', items.join(','));
-
-
-
+ 
 arr.splice(arr.length - 1, 0, 'terceiro') insere no meio
 
 arr.splice(0, 1, 'troquei denovo') troca o primeiro elemento
@@ -255,7 +264,7 @@ Array(11) [ "troquei denovo", "meio", "terceiro", "terceiro", "penultimo", "el1"
                 })
               }
               </TeoField.Select>
-                <button
+                {/* <button
                   className="w3-button w3-red w3-round w3-text-white w3-small"
                   style={{
                   display: 'flex',
@@ -265,13 +274,13 @@ Array(11) [ "troquei denovo", "meio", "terceiro", "terceiro", "penultimo", "el1"
                   height: '3rem'
                 }}>
                 X
-              </button>
+              </button> */}
             </FormColums>
 
-            { selectedPoints.map(point => {
+            { adicionalPoint.map((point, index) => {
               return (
                 <FormColums>
-                  <TeoField.Select name='pontoDeParada' label='Parada' onChange={handlePointlist}>
+                  <TeoField.Select name={index} label='Parada' onChange={handlePointAdicionalList}>
                   <option value='0'>default</option>
                   {
                     pointLoaded.map(point => {
@@ -299,7 +308,7 @@ Array(11) [ "troquei denovo", "meio", "terceiro", "terceiro", "penultimo", "el1"
             <button
               className="w3-button w3-teal w3-round"
               style={{ width: "30%" }}
-              onClick={() => { }
+              onClick={() => addNewPoint()
               }>+ Inserir ponto de parada</button>
 
           </PointBox>
