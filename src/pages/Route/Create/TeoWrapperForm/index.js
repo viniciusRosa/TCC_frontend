@@ -31,6 +31,8 @@ const TeoWrapperForm = () => {
 
   const [selectedPoints, setSelectedPoints] = useState([{id: 0, name: 'saida'}, {id:0, name: 'parada'}, {id: 0, name: 'chegada'}]);
   const [adicionalPoint, setAdicionalPoint] = useState([]);
+  const [finalPoint, setFinalPoint] = useState([]);
+
 
   const history = useHistory();
 
@@ -39,7 +41,8 @@ const TeoWrapperForm = () => {
   } = useRoute();
 
   const {
-    loadPointList
+    loadPointList,
+    isUpdated
   } = usePoint();
 
   useEffect(() => {
@@ -50,7 +53,7 @@ const TeoWrapperForm = () => {
 
     getPoints();
 
-  }, [])
+  }, [isUpdated])
 
   const { errors, trigger, reset, handleSubmit, ...methods } = useForm({
     resolver: yupResolver(schema),
@@ -91,15 +94,13 @@ const TeoWrapperForm = () => {
           })
         setSelectedPoints(pointsArray);
     }
-    console.log(selectedPoints)
   }
 
   const addNewPoint = () => {
   
     setAdicionalPoint([...adicionalPoint, {
-          id: 0,  
-          }]);
-
+      id: 0,  
+    }]);
   }
 
   const handlePointAdicionalList = (event) => {
@@ -112,51 +113,23 @@ const TeoWrapperForm = () => {
           name: `parada ${Number(name) + 2}`
         })
        setAdicionalPoint(pointsArray);
-
-    
   }
 
-  console.log(adicionalPoint)
+  const mergeArrayPoints = () => {
+    const points = selectedPoints;
+    const adicional = adicionalPoint;
 
-/* SELECAO DE ROTAS - handlePointlist
-
-
-  function handleSelectItem(id: number) {
-
-    const alreadySelected = selectedItems.findIndex(item => item === id);
-
-    if (alreadySelected >= 0) {
-        const filteredItems = selectedItems.filter(item => item !== id);
-        setSelectedItems(filteredItems);
-    }else {
-
-        setSelectedItems([...selectedItems, id])
-    }
-
-}
-
- 
-arr.splice(arr.length - 1, 0, 'terceiro') insere no meio
-
-arr.splice(0, 1, 'troquei denovo') troca o primeiro elemento
-
-arr.splice(arr.length -1, 1, 'troquei ultimo') troca ultimo
-
-
-acc = ['el4', 'el5']
-Array [ "el4", "el5" ]
-
-acc.map(a => {
-  arr.splice(arr.length -1, 0, a)
-})
-Array(11) [ "troquei denovo", "meio", "terceiro", "terceiro", "penultimo", "el1", "el2", "el3", "el4", "el5", … ]
-*/
-
+    adicional.map( ad => {
+      points.splice(points.length - 1, 0, ad)
+    })
+    setFinalPoint(points)
+    console.log(points)
+  }
 
   const newRote = async (data) => {
     setModalIsActived(!modalIsActived)
     // setLoading(true)
-    console.log(data)
+ 
     // try {
     //   await createRoute(data);
     //   setLoading(false)
@@ -238,7 +211,7 @@ Array(11) [ "troquei denovo", "meio", "terceiro", "terceiro", "penultimo", "el1"
           <Subtitle>Pontos de parada</Subtitle>
 
           <FormColums>
-            <TeoField.Select name='saida' label='Saída' onChange={handlePointlist} >
+            <TeoField.Select name='saida' label='Saída' onChange={handlePointlist} register={methods.register}>
             <option value='0'>default</option>
               {
                 pointLoaded.map(point => {
@@ -254,7 +227,7 @@ Array(11) [ "troquei denovo", "meio", "terceiro", "terceiro", "penultimo", "el1"
           <PointBox>
 
             <FormColums>
-              <TeoField.Select name='pontoDeParada' label='Parada' onChange={handlePointlist}>
+              <TeoField.Select name='parada1' label='Parada' onChange={handlePointlist} register={methods.register}>
               <option value='0'>default</option>
               {
                 pointLoaded.map(point => {
@@ -264,23 +237,13 @@ Array(11) [ "troquei denovo", "meio", "terceiro", "terceiro", "penultimo", "el1"
                 })
               }
               </TeoField.Select>
-                {/* <button
-                  className="w3-button w3-red w3-round w3-text-white w3-small"
-                  style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignSelf: 'flex-end',
-                  width: '2rem',
-                  height: '3rem'
-                }}>
-                X
-              </button> */}
+                
             </FormColums>
 
             { adicionalPoint.map((point, index) => {
               return (
                 <FormColums>
-                  <TeoField.Select name={index} label='Parada' onChange={handlePointAdicionalList}>
+                  <TeoField.Select name={'parada'+(index + 2)} label='Parada' onChange={handlePointAdicionalList} register={methods.register}>
                   <option value='0'>default</option>
                   {
                     pointLoaded.map(point => {
@@ -314,7 +277,7 @@ Array(11) [ "troquei denovo", "meio", "terceiro", "terceiro", "penultimo", "el1"
           </PointBox>
 
           <FormColums>
-            <TeoField.Select name='chegada' label='Chegada' onChange={handlePointlist}>
+            <TeoField.Select name='chegada' label='Chegada' onChange={handlePointlist} register={methods.register}>
             <option value='0'>default</option>
               {
                 pointLoaded.map(point => {

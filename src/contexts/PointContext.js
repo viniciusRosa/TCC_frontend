@@ -1,12 +1,20 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import api from '../services/api'
 
 export const PointContext = createContext({});
 
 export function PointContextProvider({ children }) {
+  
+
+  const [isUpdated, setIsUpdated] = useState(false);
 
   async function loadPointList() {
     const response = await api.get(`points`)
+
+    if (isUpdated) {
+      setIsUpdated(false)
+    }
+
     return response.data;
   }
 
@@ -37,7 +45,10 @@ export function PointContextProvider({ children }) {
         loadPoint,
         createPoint,
         deletePoint,
-        updatePoint
+        updatePoint,
+
+        isUpdated,
+        setIsUpdated
       }}>
 
         { children }

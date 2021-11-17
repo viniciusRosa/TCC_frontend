@@ -26,7 +26,8 @@ const TeoPointForm = () => {
   const history = useHistory();
 
   const {
-    createPoint
+    createPoint,
+    setIsUpdated
   } = usePoint()
 
   const { errors, trigger, reset, handleSubmit, ...methods } = useForm({
@@ -65,6 +66,7 @@ const TeoPointForm = () => {
     try {
       await createPoint(data);
       setLoading(false)
+      setIsUpdated(true)
       setModalIsActivedSuccess(!modalIsActivedSuccess)
     } catch (err) {
       console.log(err);
