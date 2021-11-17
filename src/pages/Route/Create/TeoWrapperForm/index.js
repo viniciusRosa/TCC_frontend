@@ -70,7 +70,7 @@ const TeoWrapperForm = () => {
     if (name === 'saida') {
       const pointsArray = selectedPoints;
       pointsArray.splice(0, 1, {
-          id: value,  
+          id: value,
           name: 'saida'
         })
        setSelectedPoints(pointsArray);
@@ -80,7 +80,7 @@ const TeoWrapperForm = () => {
 
       const pointsArray = selectedPoints;
       pointsArray.splice(2, 1, {
-        id: value,  
+        id: value,
         name: 'chegada'
           })
         setSelectedPoints(pointsArray);
@@ -89,7 +89,7 @@ const TeoWrapperForm = () => {
     if (name === 'pontoDeParada') {
       const pointsArray = selectedPoints;
       pointsArray.splice(1, 1, {
-        id: value,  
+        id: value,
         name: 'parada 1'
           })
         setSelectedPoints(pointsArray);
@@ -97,22 +97,28 @@ const TeoWrapperForm = () => {
   }
 
   const addNewPoint = () => {
-  
+
     setAdicionalPoint([...adicionalPoint, {
-      id: 0,  
+      id: adicionalPoint.length + 1,
     }]);
+
   }
+  console.log(adicionalPoint)
 
   const handlePointAdicionalList = (event) => {
 
-    const {name, value} = event.target;
+    // const {name, value} = event.target;
 
-    const pointsArray = adicionalPoint;
-      pointsArray.splice(Number(name), 1, {
-          id: value,  
-          name: `parada ${Number(name) + 2}`
-        })
-       setAdicionalPoint(pointsArray);
+    // const pointsArray = adicionalPoint;
+
+      // pointsArray.splice(Number(name), 1, {
+      //     id: value,
+      //     name: `parada ${Number(name) + 2}`
+      //   })
+      //  setAdicionalPoint(pointsArray);
+
+      // setAdicionalPoint([...adicionalPoint, {id: name}])
+      // console.log(adicionalPoint)
   }
 
   const mergeArrayPoints = () => {
@@ -126,10 +132,20 @@ const TeoWrapperForm = () => {
     console.log(points)
   }
 
+  const deletePoint = (id) => {
+    const pointsArray = adicionalPoint;
+
+    const filteredItems = pointsArray.filter(item => item.id !== id)
+
+    console.log(id)
+
+    setAdicionalPoint(filteredItems)
+  }
+
   const newRote = async (data) => {
     setModalIsActived(!modalIsActived)
     // setLoading(true)
- 
+
     // try {
     //   await createRoute(data);
     //   setLoading(false)
@@ -216,7 +232,7 @@ const TeoWrapperForm = () => {
               {
                 pointLoaded.map(point => {
                   return (
-                    <option key={point.id} value={point.id}>{point.name}</option>
+                    <option key={point.id+'s'} value={point.id}>{point.name}</option>
                   )
                 })
               }
@@ -232,18 +248,18 @@ const TeoWrapperForm = () => {
               {
                 pointLoaded.map(point => {
                   return (
-                    <option key={point.id} value={point.id}>{point.name}</option>
+                    <option key={point.id+'p'} value={point.id}>{point.name}</option>
                   )
                 })
               }
               </TeoField.Select>
-                
+
             </FormColums>
 
             { adicionalPoint.map((point, index) => {
               return (
                 <FormColums>
-                  <TeoField.Select name={'parada'+(index + 2)} label='Parada' onChange={handlePointAdicionalList} register={methods.register}>
+                  <TeoField.Select key={index} name={'parada'+(index + 2)} label='Parada' onChange={handlePointAdicionalList} register={methods.register}>
                   <option value='0'>default</option>
                   {
                     pointLoaded.map(point => {
@@ -261,7 +277,8 @@ const TeoWrapperForm = () => {
                     alignSelf: 'flex-end',
                     width: '2rem',
                     height: '3rem'
-                  }}>
+                  }}
+                    onClick={() => {deletePoint(point.id)}}>
                     X
                   </button>
                 </FormColums>
