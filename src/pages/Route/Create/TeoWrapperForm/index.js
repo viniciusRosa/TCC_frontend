@@ -29,11 +29,8 @@ const TeoWrapperForm = () => {
 
   const [pointLoaded, setPointLoaded] = useState([]);
 
-  const [selectedInitialPoint, setSelectedInitialPoint] = useState({});
-  const [selectedFinalPoint, setSelectedFinalPoint] = useState({});
   const [selectedPoints, setSelectedPoints] = useState([]);
-
-  const [pointList, setPointList] = useState([]);
+  const [adicionalPoint, setAdicionalPoint] = useState([]);
 
   const history = useHistory();
 
@@ -68,39 +65,39 @@ const TeoWrapperForm = () => {
     const {name, value} = event.target;
 
     if (name === 'saida') {
-      setSelectedInitialPoint({
-        value
-      })
+      const pointsArray = selectedPoints;
+      pointsArray.splice(0, 1, {
+          rota: 'saida',
+          id: value
+        })
+       setSelectedPoints(pointsArray);
     }
 
     if (name === 'chegada') {
-   
-      setSelectedFinalPoint({
-        id: value
-      })
 
-      console.log(selectedFinalPoint)
+      if (selectedPoints.length > 1) {
+
+        const pointsArray = selectedPoints;
+        pointsArray.splice(pointsArray - 1, 1, {
+            rota: 'chegada',
+            id: value
+          })
+         setSelectedPoints(pointsArray);
+      } else {
+
+        const pointsArray = selectedPoints;
+        pointsArray.push({
+          rota: 'chegada',
+          id: value
+        })
+      }
     }
 
     if (name === 'pontoDeParada') {
-      const arrayPoints = selectedPoints;
-      arrayPoints.push({
-        id: value
-      })
-      setSelectedPoints(arrayPoints)
+
     }
-
-    const arrayPoints = selectedPoints;
-    arrayPoints.push(selectedFinalPoint)
-
-    setSelectedPoints(arrayPoints)
-
-    console.log(selectedFinalPoint)
-    // console.log(name, value)
+    console.log(selectedPoints)
   }
-
-  // console.log(selectedFinalPoint)
-
 
 /* SELECAO DE ROTAS - handlePointlist
 
@@ -129,38 +126,13 @@ const items = selectedItems;
             data.append('items', items.join(','));
 
 
-arr
-Array(4) [ "primeiro", "meio", "terceiro", "ultimo" ]
 
-arr.splice(arr.length - 1, 0, 'terceiro')
-Array []
+arr.splice(arr.length - 1, 0, 'terceiro') insere no meio
 
-arr.splice(arr.length - 1, 0, 'penultimo')
-Array []
+arr.splice(0, 1, 'troquei denovo') troca o primeiro elemento
 
-arr
-Array(6) [ "primeiro", "meio", "terceiro", "terceiro", "penultimo", "ultimo" ]
+arr.splice(arr.length -1, 1, 'troquei ultimo') troca ultimo
 
-arr.splice(0, 1, 'troquei')
-Array [ "primeiro" ]
-
-arr.splice(0, 1, 'troquei denovo')
-Array [ "troquei" ]
-
-arr.splice(arr.length, 1, 'troquei ultimo')
-Array []
-
-arr.splice(arr.length -1, 1, 'troquei ultimo')
-Array [ "troquei ultimo" ]
-
-arr.splice(arr.length -1, 1, 'ultimo')
-Array [ "troquei ultimo" ]
-
-arr.splice(arr.length -1, 1)
-Array [ "ultimo" ]
-
-arr.splice(arr.length -1, 1, 'troquei ultimo')
-Array [ "ultimo" ]
 
 acc = ['el4', 'el5']
 Array [ "el4", "el5" ]
@@ -168,9 +140,6 @@ Array [ "el4", "el5" ]
 acc.map(a => {
   arr.splice(arr.length -1, 0, a)
 })
-Array [ undefined, undefined ]
-
-arr
 Array(11) [ "troquei denovo", "meio", "terceiro", "terceiro", "penultimo", "el1", "el2", "el3", "el4", "el5", … ]
 */
 
@@ -270,7 +239,7 @@ Array(11) [ "troquei denovo", "meio", "terceiro", "terceiro", "penultimo", "el1"
                 })
               }
             </TeoField.Select>
-           
+
           </FormColums>
 
           <PointBox>
@@ -293,7 +262,7 @@ Array(11) [ "troquei denovo", "meio", "terceiro", "terceiro", "penultimo", "el1"
                   justifyContent: 'center',
                   alignSelf: 'flex-end',
                   width: '2rem',
-                  height: '3rem' 
+                  height: '3rem'
                 }}>
                 X
               </button>
@@ -319,7 +288,7 @@ Array(11) [ "troquei denovo", "meio", "terceiro", "terceiro", "penultimo", "el1"
                     justifyContent: 'center',
                     alignSelf: 'flex-end',
                     width: '2rem',
-                    height: '3rem' 
+                    height: '3rem'
                   }}>
                     X
                   </button>
