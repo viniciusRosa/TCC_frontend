@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TeoContainer from '../../components/TeoContainer';
 import TeoNav from '../../components/TeoNav';
 import TeoMainWrapper from '../../components/TeoMainWrapper';
@@ -25,8 +25,14 @@ function Dashboard() {
     routeAmount,
     vacancyAmount,
     queueAmount,
-    routeData
+    routeData,
+
+    setIsUpdate
   } = useData();
+
+  useEffect(() => {
+    setIsUpdate(true)
+  }, [])
 
   return (
     <>
