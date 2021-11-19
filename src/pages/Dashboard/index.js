@@ -7,6 +7,8 @@ import TeoPageTitle from '../../components/TeoPageTitle'
 import TeoBox from '../../components/TeoBox';
 import Card from '../../components/Card';
 
+import { useData } from '../../contexts/DataContext';
+
 import {
   StyledTable,
   Subtitle,
@@ -15,10 +17,16 @@ import {
   InformationBox
 } from './styles';
 
-
 function Dashboard() {
 
-  const location = { lat: -22.2154042, lng: -54.8331331 };
+  const {
+    schoolAmount,
+    studentAmount,
+    routeAmount,
+    vacancyAmount,
+    queueAmount,
+    routeData
+  } = useData();
 
   return (
     <>
@@ -34,15 +42,15 @@ function Dashboard() {
               <Subtitle>Informações gerais</Subtitle>
 
               <div className="w3-col m4 w3-center">
-                <Card name='Escolas' number='12' />
+                <Card name='Escolas' number={schoolAmount} />
               </div>
 
               <div className="w3-col m4 w3-center">
-                <Card name='Estudantes' number='45' />
+                <Card name='Estudantes' number={studentAmount} />
               </div>
 
               <div className="w3-col m4 w3-center">
-                <Card name='Rotas' number='4' />
+                <Card name='Rotas' number={routeAmount} />
               </div>
 
 
@@ -57,24 +65,22 @@ function Dashboard() {
               <div>
                 <Subtitle>Capacidade das rotas</Subtitle>
 
-                  <StyledTable className="w3-table w3-bordered w3-centered">
-                    <tr>
-                      <th>Rotas</th>
-                      <th>Vagas</th>
+                <StyledTable className="w3-table w3-bordered w3-centered">
+
+
+                  <tr>
+                    <th>Rotas</th>
+                    <th>Vagas</th>
+                  </tr>
+
+                  {routeData.map(route => (
+                    <tr key={route.name}>
+                      <td>{route.name}</td>
+                      <td>{route.vacancyOccupied}/{route.vacancyAmount}</td>
                     </tr>
-                    <tr>
-                      <td>Rota 1</td>
-                      <td>34/40</td>
-                    </tr>
-                    <tr>
-                      <td>Rota 2</td>
-                      <td>40/40</td>
-                    </tr>
-                    <tr>
-                      <td>Rota 3</td>
-                      <td>34/40</td>
-                    </tr>
-                  </StyledTable>
+                  ))}
+
+                </StyledTable>
               </div>
 
 
@@ -83,12 +89,12 @@ function Dashboard() {
                 <InformationBox>
                   <Information>
                     <p>Solicitações pendentes</p>
-                    <span>4</span>
+                    <span>{vacancyAmount}</span>
                   </Information>
 
                   <Information>
                     <p>Fila de espera</p>
-                    <span>0</span>
+                    <span>{queueAmount}</span>
                   </Information>
                 </InformationBox>
               </div>

@@ -16,6 +16,8 @@ import { PointContextProvider } from '../contexts/PointContext';
 import { RouteContextProvider } from '../contexts/RouteContext';
 import { SchoolContextProvider } from '../contexts/SchoolContext';
 import { UserContextProvider } from '../contexts/UserContext';
+import { DataContextProvider } from '../contexts/DataContext';
+
 
 // const PrivateRoute = ({ component: Component, ...rest }) => (
 //   <Route
@@ -37,7 +39,10 @@ const Routes = () => (
       {
         <>
           <Route exact path="/" component={Login} />
-          <Route path="/dashboard" component={Dashboard} />
+
+          <DataContextProvider>
+            <Route path="/dashboard" component={Dashboard} />
+          </DataContextProvider>
 
           <SchoolContextProvider>
             <SchoolRotes />

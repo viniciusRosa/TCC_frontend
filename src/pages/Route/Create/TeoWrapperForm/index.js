@@ -103,7 +103,6 @@ const TeoWrapperForm = () => {
     }]);
 
   }
-  console.log(adicionalPoint)
 
   const handlePointAdicionalList = (event) => {
 
@@ -118,7 +117,6 @@ const TeoWrapperForm = () => {
       //  setAdicionalPoint(pointsArray);
 
       // setAdicionalPoint([...adicionalPoint, {id: name}])
-      // console.log(adicionalPoint)
   }
 
   const mergeArrayPoints = () => {
@@ -129,7 +127,6 @@ const TeoWrapperForm = () => {
       points.splice(points.length - 1, 0, ad)
     })
     setFinalPoint(points)
-    console.log(points)
   }
 
   const deletePoint = (id) => {
@@ -137,7 +134,6 @@ const TeoWrapperForm = () => {
 
     const filteredItems = pointsArray.filter(item => item.id !== id)
 
-    console.log(id)
 
     setAdicionalPoint(filteredItems)
   }
@@ -145,7 +141,7 @@ const TeoWrapperForm = () => {
   const newRote = async (data) => {
     setModalIsActived(!modalIsActived)
     // setLoading(true)
-
+    console.log(data)
     // try {
     //   await createRoute(data);
     //   setLoading(false)
