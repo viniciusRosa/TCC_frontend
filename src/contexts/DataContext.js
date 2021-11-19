@@ -31,8 +31,21 @@ export function DataContextProvider({ children }) {
     setStudentAmount(response.data);
   }
 
+  async function getRouteAmount() {
+    const response = await api.get(`data/routeamount`)
+    setRouteAmount(response.data);
+  }
+
+  async function getvacancyAmount() {
+    const response = await api.get(`data/vacancyamount`)
+    setVacancyAmount(response.data);
+  }
+
   if(isUpdate) {
     getSchoolAmount();
+    getStudentAmount();
+    getRouteAmount();
+    getvacancyAmount();
 
     setIsUpdate(false);
   }
