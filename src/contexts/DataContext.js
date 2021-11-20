@@ -15,7 +15,7 @@ export function DataContextProvider({ children }) {
   const [studentAmount, setStudentAmount] = useState(0)
   const [routeAmount, setRouteAmount] = useState(0)
 
-  const [routeData, setRouteData] = useState([routeDataExample])
+  const [routeData, setRouteData] = useState([])
   const [vacancyAmount, setVacancyAmount] = useState(0)
   const [queueAmount, setQueueAmount] = useState(0)
 
@@ -41,11 +41,17 @@ export function DataContextProvider({ children }) {
     setVacancyAmount(response.data);
   }
 
+  async function getRouteData() {
+    const response = await api.get(`data/routedata`)
+    setRouteData(response.data);
+  }
+
   if(isUpdate) {
     getSchoolAmount();
     getStudentAmount();
     getRouteAmount();
     getvacancyAmount();
+    getRouteData();
 
     setIsUpdate(false);
   }

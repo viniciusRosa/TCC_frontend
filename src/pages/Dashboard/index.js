@@ -82,7 +82,7 @@ function Dashboard() {
                   {routeData.map(route => (
                     <tr key={route.name}>
                       <td>{route.name}</td>
-                      <td>{route.vacancyOccupied}/{route.vacancyAmount}</td>
+                      <td>{route.count} / {Number(route.vacancy)}</td>
                     </tr>
                   ))}
 
