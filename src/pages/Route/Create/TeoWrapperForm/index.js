@@ -140,17 +140,17 @@ const TeoWrapperForm = () => {
 
   const newRote = async (data) => {
     setModalIsActived(!modalIsActived)
-    // setLoading(true)
+    setLoading(true)
     console.log(data)
-    // try {
-    //   await createRoute(data);
-    //   setLoading(false)
-    //   setModalIsActivedSuccess(!modalIsActivedSuccess)
-    // } catch (err) {
-    //   console.log(err);
-    //   setLoading(false)
-    //   setModalIsActivedError(!modalIsActivedError)
-    // }
+    try {
+      await createRoute(data);
+      setLoading(false)
+      setModalIsActivedSuccess(!modalIsActivedSuccess)
+    } catch (err) {
+      console.log(err);
+      setLoading(false)
+      setModalIsActivedError(!modalIsActivedError)
+    }
   }
 
   function activeModal() {
@@ -185,14 +185,14 @@ const TeoWrapperForm = () => {
 
         <TeoForm onSubmit={handleSubmit(newRote)} ref={form}>
 
-          <TeoField.Text label="Nome da rota" type="text" name="name" register={methods.register} />
+          <TeoField.Text label="Nome da rota" type="text" name="R00_name" register={methods.register} />
           {errors.name && (<ErrorMessage>{errors.name.message}</ErrorMessage>)}
 
-          <TeoField.Text label="Vagas" type="text" name="vacancy" register={methods.register} />
+          <TeoField.Text label="Vagas" type="text" name="R01_vacancy" register={methods.register} />
           {errors.vacancy && (<ErrorMessage>{errors.vacancy.message}</ErrorMessage>)}
 
           <FormColums>
-            <TeoField.Select size='20%' name='shift' label='Turno' onChange={handleshift} value={selectedShift} register={methods.register}>
+            <TeoField.Select size='20%' name='R02_shift' label='Turno' onChange={handleshift} value={selectedShift} register={methods.register}>
               <option value='Manhã'>Manhã</option>
               <option value='Tarde'>Tarde</option>
               <option value='Noite'>Noite</option>
@@ -223,7 +223,7 @@ const TeoWrapperForm = () => {
           <Subtitle>Pontos de parada</Subtitle>
 
           <FormColums>
-            <TeoField.Select name='saida' label='Saída' onChange={handlePointlist} register={methods.register}>
+            <TeoField.Select name='R10_saida' label='Saída' onChange={handlePointlist} register={methods.register}>
             <option value='0'>default</option>
               {
                 pointLoaded.map(point => {
@@ -239,7 +239,7 @@ const TeoWrapperForm = () => {
           <PointBox>
 
             <FormColums>
-              <TeoField.Select name='parada1' label='Parada' onChange={handlePointlist} register={methods.register}>
+              <TeoField.Select name='R11_parada' label='Parada' onChange={handlePointlist} register={methods.register}>
               <option value='0'>default</option>
               {
                 pointLoaded.map(point => {
@@ -255,7 +255,7 @@ const TeoWrapperForm = () => {
             { adicionalPoint.map((point, index) => {
               return (
                 <FormColums>
-                  <TeoField.Select key={index} name={'parada'+(index + 2)} label='Parada' onChange={handlePointAdicionalList} register={methods.register}>
+                  <TeoField.Select key={index} name={'R1'+(index + 2)+'_parada'} label='Parada' onChange={handlePointAdicionalList} register={methods.register}>
                   <option value='0'>default</option>
                   {
                     pointLoaded.map(point => {
@@ -290,7 +290,7 @@ const TeoWrapperForm = () => {
           </PointBox>
 
           <FormColums>
-            <TeoField.Select name='chegada' label='Chegada' onChange={handlePointlist} register={methods.register}>
+            <TeoField.Select name='R20_chegada' label='Chegada' onChange={handlePointlist} register={methods.register}>
             <option value='0'>default</option>
               {
                 pointLoaded.map(point => {
