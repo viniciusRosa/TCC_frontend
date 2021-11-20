@@ -46,12 +46,18 @@ export function DataContextProvider({ children }) {
     setRouteData(response.data);
   }
 
+  async function getQueueAmountData() {
+    const response = await api.get(`data/queueamount`)
+    setQueueAmount(response.data);
+  }
+
   if(isUpdate) {
     getSchoolAmount();
     getStudentAmount();
     getRouteAmount();
     getvacancyAmount();
     getRouteData();
+    getQueueAmountData();
 
     setIsUpdate(false);
   }
