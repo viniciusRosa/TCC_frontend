@@ -24,8 +24,8 @@ const TeoWrapperForm = () => {
 
   const history = useHistory();
 
-  const { 
-    createSchool 
+  const {
+    createSchool
   } = useSchool();
 
 
@@ -106,10 +106,10 @@ const TeoWrapperForm = () => {
         <TeoForm onSubmit={handleSubmit(newSchool)} ref={form}>
 
           <TeoField.Text label="Nome da Escola" type="text" name="name" register={methods.register} />
-          {errors.school_name && (<ErrorMessage>{errors.school_name.message}</ErrorMessage>)}
+          {errors.name && (<ErrorMessage>{errors.name.message}</ErrorMessage>)}
 
           <TeoField.Text label="Endereço" type="text" name="address" register={methods.register} />
-          {errors.street && (<ErrorMessage>{errors.adress.message}</ErrorMessage>)}
+          {errors.address && (<ErrorMessage>{errors.address.message}</ErrorMessage>)}
 
           <FormColums>
             <TeoField.Text label="Numero" type="text" name="number" register={methods.register} mask='number' />
