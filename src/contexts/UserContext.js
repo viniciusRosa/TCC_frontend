@@ -30,7 +30,8 @@ export function UserContextProvider({ children }) {
   }
 
   async function updateActivity(id, check) {
-    const response = await api.put(`users/activity/${id}`, check)
+    const response = await api.put(`users/activity/${id}`, {msg: check})
+    return response;
   }
 
 

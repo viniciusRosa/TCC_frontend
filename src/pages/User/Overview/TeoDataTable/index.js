@@ -10,7 +10,7 @@ const TeoDataTable = () => {
   const history = useHistory();
 
   const [result, setResult] = useState({})
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
 
   const {
     loadUser,
@@ -20,16 +20,24 @@ const TeoDataTable = () => {
   useEffect(() => {
     async function getUser() {
       const user = await loadUser(state.user);
-      console.log(user)
+      setChecked(Number(user.is_active) === 1 ? true : false)
       setResult(user)
     }
     getUser()
-    setChecked(result.is_active)
   }, [])
 
+  useEffect(() => {
+    async function changestatus() {
+      const changeActivity = await updateActivity(result.id, checked);
+    }
+  changestatus()
+  },[checked])
+
   const handleChange = async () => {
-    setChecked(!checked);
-    const changeActivity = await updateActivity(result.id, checked);
+    setChecked(!checked)
+    //const changeActivity = await updateActivity(result.id, checked);
+    // setChecked(changeActivity === 1 ? true : false)
+
   };
   console.log(checked)
 
