@@ -81,3 +81,22 @@ export const Title = styled.p`
   text-align: center;
 
 `;
+
+export const CheckBox = styled.div`
+  margin: 2rem;
+
+  & > label {
+    padding: 2rem;
+    font-size: 1.6rem;
+    color: var(--color-grey-dark);
+    display: flex;
+    align-items: center;
+  }
+
+  & > label > input {
+    width: 2rem;
+    margin-right: 1rem;
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+`;

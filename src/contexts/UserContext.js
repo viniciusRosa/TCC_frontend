@@ -29,6 +29,10 @@ export function UserContextProvider({ children }) {
     return response;
   }
 
+  async function updateActivity(id, check) {
+    const response = await api.put(`users/activity/${id}`, check)
+  }
+
 
   return (
     <UserContext.Provider
@@ -37,7 +41,8 @@ export function UserContextProvider({ children }) {
         loadUser,
         createUser,
         deleteUser,
-        updateUser
+        updateUser,
+        updateActivity
       }}>
 
         { children }

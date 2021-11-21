@@ -6,7 +6,6 @@ import TeoForm from '../../../../components/TeoForm';
 import TeoField from '../../../../components/TeoField';
 import { FormColums, ErrorMessage } from './styles';
 import TeoModal from '../../../../components/TeoModal';
-import axios from 'axios';
 import { useUser } from '../../../../contexts/UserContext';
 import { useHistory } from 'react-router-dom'
 
@@ -22,7 +21,7 @@ const TeoWrapperForm = () => {
   const history = useHistory();
 
   const {
-
+    createUser
   } = useUser()
 
   const { errors, trigger, reset, handleSubmit, ...methods } = useForm({
@@ -30,10 +29,11 @@ const TeoWrapperForm = () => {
   });
 
   const newUser = async (data) => {
+    console.log(data)
     setModalIsActived(!modalIsActived)
     setLoading(true)
     try {
-      // await createUser(data);
+      await createUser(data);
       setLoading(false)
       setModalIsActivedSuccess(!modalIsActivedSuccess)
     } catch (err) {
@@ -77,6 +77,12 @@ const TeoWrapperForm = () => {
 
           <TeoField.Text label="Nome do usuário" type="text" name="name" register={methods.register} />
           {errors.name && (<ErrorMessage>{errors.name.message}</ErrorMessage>)}
+
+          <TeoField.Text label="Email" type="text" name="email" register={methods.register} />
+          {errors.email && (<ErrorMessage>{errors.email.message}</ErrorMessage>)}
+
+          <TeoField.Text label="Senha" type="password" name="senha" register={methods.register} />
+          {errors.senha && (<ErrorMessage>{errors.senha.message}</ErrorMessage>)}
 
           {modalIsActived && <TeoModal.Warning closeModal={activeModal} secondary={resetButtonModal}>Tem Certeza?</TeoModal.Warning>}
           {modalIsActivedSuccess && <TeoModal.Success closeModal={activeModalSuccess} text={'Usuário cadastrado com sucesso'} button={resetButtonSuccess} />}

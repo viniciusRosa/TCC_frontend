@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ViewTable, TableHead, TableRow, DivHead } from './styles'
+import { ViewTable, TableHead, TableRow, DivHead, CheckBox } from './styles'
 import { useLocation, useHistory } from 'react-router-dom';
 import { useUser } from '../../../../contexts/UserContext';
 
@@ -10,9 +10,11 @@ const TeoDataTable = () => {
   const history = useHistory();
 
   const [result, setResult] = useState({})
+  const [checked, setChecked] = useState(true);
 
   const {
-    loadUser
+    loadUser,
+    updateActivity
    } = useUser()
 
   useEffect(() => {
@@ -22,7 +24,14 @@ const TeoDataTable = () => {
       setResult(user)
     }
     getUser()
+    setChecked(result.is_active)
   }, [])
+
+  const handleChange = async () => {
+    setChecked(!checked);
+    const changeActivity = await updateActivity(result.id, checked);
+  };
+  console.log(checked)
 
   async function goToUpdate() {
 
@@ -61,9 +70,27 @@ const TeoDataTable = () => {
             <td>{result.name}</td>
           </TableRow>
 
+          <TableRow>
+            <td>Email</td>
+            <td>{result.email}</td>
+          </TableRow>
+
         </tbody>
       </ViewTable>
+
+      <CheckBox>
+      <label>
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={handleChange}
+        />
+        Ativo
+      </label>
+      </CheckBox>
+
     </div>
+
   )
 }
 

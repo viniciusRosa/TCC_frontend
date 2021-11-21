@@ -22,7 +22,9 @@ function Users() {
   const history = useHistory();
 
   const {
-    loadUsersList
+    loadUsersList,
+    loadUser,
+    deleteUser
    } = useUser();
 
   useEffect(() => {
@@ -47,7 +49,7 @@ function Users() {
 
   async function deleteItem(id) {
     try {
-      // await deletePoint(id);
+      await deleteUser(id);
       setModalIsActived(!modalIsActived);
       setUpdate(true);
     } catch(err) {
@@ -62,12 +64,12 @@ function Users() {
   }
 
   async function UpdateItem(id) {
-    // const user = await loadPoint(id)
+    const user = await loadUser(id);
 
     history.push({
       pathname: '/usuarios/update',
       state: {
-        // point: user,
+        user: user,
       }
     })
   }
