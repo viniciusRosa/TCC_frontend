@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
-import { isAuthenticated } from '../services/auth';
 import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
 
@@ -17,6 +16,7 @@ import { RouteContextProvider } from '../contexts/RouteContext';
 import { SchoolContextProvider } from '../contexts/SchoolContext';
 import { UserContextProvider } from '../contexts/UserContext';
 import { DataContextProvider } from '../contexts/DataContext';
+import { AuthProvider } from '../contexts/AuthContext';
 
 
 // const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -38,38 +38,40 @@ const Routes = () => (
 
       {
         <>
-          <Route exact path="/" component={Login} />
+          <AuthProvider>
+            <Route exact path="/" component={Login} />
 
-          <DataContextProvider>
-            <Route path="/dashboard" component={Dashboard} />
-          </DataContextProvider>
+            <DataContextProvider>
+              <Route path="/dashboard" component={Dashboard} />
+            </DataContextProvider>
 
-          <SchoolContextProvider>
-            <SchoolRotes />
-          </SchoolContextProvider>
+            <SchoolContextProvider>
+              <SchoolRotes />
+            </SchoolContextProvider>
 
-          <RouteContextProvider>
-            <VacancyContextProvider>
-              <VacancyRoutes />
-            </VacancyContextProvider>
-          </RouteContextProvider>
+            <RouteContextProvider>
+              <VacancyContextProvider>
+                <VacancyRoutes />
+              </VacancyContextProvider>
+            </RouteContextProvider>
 
 
-          <PointContextProvider>
-            <PointRotes />
-          </PointContextProvider>
-
-          <RouteContextProvider>
             <PointContextProvider>
-
-              <RouteRoutes />
+              <PointRotes />
             </PointContextProvider>
 
-          </RouteContextProvider>
+            <RouteContextProvider>
+              <PointContextProvider>
 
-          <UserContextProvider>
-            <UserRotes />
-          </UserContextProvider>
+                <RouteRoutes />
+              </PointContextProvider>
+
+            </RouteContextProvider>
+
+            <UserContextProvider>
+              <UserRotes />
+            </UserContextProvider>
+          </AuthProvider>
 
         </>
       }

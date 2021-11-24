@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, WrapperR } from './style';
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 
 
 const UserBox = () => {
+
+  const { user, setUser, reSignin } = useAuth();
+
+  useEffect(() => {
+    reSignin()
+  }, [])
 
   const history = useHistory()
 
@@ -13,7 +20,7 @@ const UserBox = () => {
   return (
     <Container>
       <WrapperR>
-          <p>Olá, {name}</p>
+          <p>Olá, {user.name}</p>
 
           <button
           className="w3-button w3-orange w3-round w3-text-white"

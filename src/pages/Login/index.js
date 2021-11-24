@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TeoButton from '../../components/TeoButton';
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 
 import {
@@ -18,17 +19,32 @@ function Login() {
 
   const history = useHistory();
 
+  const { signIn } = useAuth();
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    history.push({
-      pathname: '/dashboard',
-    })
+    if (email === '' || password === '') {
+      alert("Email ou senha vazios.")
+      return
+    }
+    try {
+      const response = await signIn(email, password);
 
+      history.push({
+        pathname: '/dashboard'
+      })
+
+    } catch (err) {
+
+      alert("Email ou senha inválidos.")
+      console.log(err)
+
+    }
   }
 
   return (

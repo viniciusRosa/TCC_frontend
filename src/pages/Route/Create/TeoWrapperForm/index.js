@@ -200,6 +200,9 @@ const TeoWrapperForm = () => {
 
             </TeoField.Select>
 
+            <TeoField.Text size='20%' label="Horário de saída" type="time" name="R03_time" register={methods.register} />
+            {errors.vacancy && (<ErrorMessage>{errors.vacancy.message}</ErrorMessage>)}
+
           </FormColums>
 
           {modalIsActived && <TeoModal.Warning closeModal={activeModal} secondary={resetButtonModal}>Tem Certeza?</TeoModal.Warning>}
