@@ -118,13 +118,16 @@ console.log(route)
     setAcceptedOrRejectedModal(true)
   }
 
-  function requestAcceptedOrRejected(operation) {
+  async function requestAcceptedOrRejected(operation) {
     try{
-      changeStudentStatus( state.vacancyrequest, operation, state.route, state.student);
+      const response = await changeStudentStatus( state.vacancyrequest, operation, state.route, state.student);
       console.log(operation)
-      setAcceptedOrRejectedModal(false);
-      alert('Operação realizada com sucesso.')
-      history.push('/solicitacoespendentes')
+      if (response) {
+        setAcceptedOrRejectedModal(false);
+        alert('Operação realizada com sucesso.')
+        history.push('/solicitacoespendentes')
+
+      }
 
     } catch(err) {
 
